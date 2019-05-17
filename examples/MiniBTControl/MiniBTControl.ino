@@ -54,17 +54,17 @@ int pp = 0;
 void setup() {
   Serial.begin(9600);
   myMini.begin();// Analog servos set at ~60 Hz updates
-//  BT.begin(9600);
+  //  BT.begin(9600);
 }
 
 void loop() {
   if (Serial.available() > 0) {
     Serial.readBytes(bf, cmd);
-//    Serial.print(bf[0]);
-//    Serial.print(":");
-//    Serial.print(bf[key]);
-//    Serial.print(":");
-//    Serial.println(bf[value]);
+    //    Serial.print(bf[0]);
+    //    Serial.print(":");
+    //    Serial.print(bf[key]);
+    //    Serial.print(":");
+    //    Serial.println(bf[value]);
   }
   if (bf[0] == 255) {
     switch (bf[key]) {
@@ -137,13 +137,13 @@ void loop() {
 
       case _RC3:
         if (bf[value] == 201 && pos3 <= 180) {
-          pos3+=2;
+          pos3 += 2;
           myMini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos3 >= 0) {
-          pos3-=2;
+          pos3 -= 2;
           myMini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
@@ -152,16 +152,16 @@ void loop() {
           RCFlag = 0;
         }
         break;
-        
+
       case _RC4:
         if (bf[value] == 201 && pos4 <= 180) {
-          pos4+=2;
+          pos4 += 2;
           myMini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos4 >= 0) {
-          pos4-=2;
+          pos4 -= 2;
           myMini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
@@ -198,8 +198,8 @@ void loop() {
         break;
     }
   }
-  myMini.LED1.setRGB(map(r1, 0, 255, 0, 4096), map(g1, 0, 255, 0, 4096), map(b1, 0, 255, 0, 4096));
-  myMini.LED2.setRGB(map(r2, 0, 255, 0, 4096), map(g2, 0, 255, 0, 4096), map(b2, 0, 255, 0, 4096));
+  myMini.LED1.setRGB(255, 255, 255,);
+  myMini.LED2.setRGB( 255, 255, 255,);
   if (RCFlag == 0) {
     for (int i = 0; i < cmd; i++) {
       bf[i] = 0;
