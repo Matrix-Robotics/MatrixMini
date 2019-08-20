@@ -1,4 +1,3 @@
-
 /*************************************************************************
   File Name          : Matrix_mini_BT_Control_Uart.ino
   Author             : Frason

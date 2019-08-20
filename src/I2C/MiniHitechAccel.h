@@ -1,6 +1,6 @@
 // Made by Alex Tkachenko
 
-#define HT_ACCEL_DEVADDR 		0x02
+#define HT_ACCEL_DEVADDR 		0x01
 
 #define HT_ACCEL_X8		0x42
 #define HT_ACCEL_Y8		0x43
