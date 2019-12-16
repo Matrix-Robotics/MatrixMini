@@ -2,8 +2,8 @@
 
 void MiniDIG::begin(int portInit){
 	port = portInit;
-	
-	mode = OUTPUT;
+
+	mode = INPUT;
 	pinMode(port, mode);
 }
 
@@ -29,4 +29,3 @@ void MiniDIG::updateMode(int m) {
 		pinMode(port, mode);
 	}
 }
-
