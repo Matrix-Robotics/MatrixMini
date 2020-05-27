@@ -19,9 +19,9 @@ MiniDC::MiniDC(void) {
 }
 
 void MiniDC::begin(
-  MINI_PWMServoDriver * _pwm, 
+  MINI_PWMServoDriver * _pwm,
   uint8_t _PWMpin,
-  uint8_t in1, 
+  uint8_t in1,
   uint8_t in2)
 {
   pwm = _pwm;

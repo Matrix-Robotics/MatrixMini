@@ -43,8 +43,10 @@ void MatrixMini::begin(uint16_t freq) {
   _pwm.begin();
   _freq = freq;
   _pwm.setPWMFreq(_freq);  // This is the maximum PWM frequency
-  for (uint8_t i=0; i<16; i++)
+
+  for (uint8_t i=0; i<16; i++){
     _pwm.setPWM(i, 0, 0);
+  }
 
 
 	// Init Modules:
@@ -75,4 +77,6 @@ void MatrixMini::begin(uint16_t freq) {
 	US2.begin(4,3);
 	US3.begin(5,4);
 	US4.begin(6,5);
+
+
 }

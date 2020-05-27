@@ -5,8 +5,11 @@ class MiniUS{
 private:
 	int echo;
 	int trig;
-	
+	float duration;
+	float distance;
+	float sum;
+
 public:
     void begin(int, int);
-    int get();
+    float get();
 };

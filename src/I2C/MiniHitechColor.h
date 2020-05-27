@@ -1,6 +1,6 @@
 // Made by Alex Tkachenko
 
-#define HT_COLOR_DEVADDR 		0x01
+#define HT_COLOR_DEVADDR 		0x03
 
 #define HT_COLOR_REG_COMMAND	0x41
 #define HT_COLOR_REG_COLOR		0x42

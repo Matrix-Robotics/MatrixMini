@@ -23,8 +23,6 @@ void MiniRC::begin(MINI_PWMServoDriver * _pwm,uint8_t _PWMpin){
 
 
 void MiniRC::set(int pos) {
-  uint16_t pulse = map(pos, 0, 180, 150, 550);
+  uint16_t pulse = map(pos, 0, 180, 150, 600);
   pwm->miniSetPWM(PWMpin, pulse);
 }
-
-
