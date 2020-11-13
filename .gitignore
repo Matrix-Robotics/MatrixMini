@@ -1,3 +1,5 @@
-# MakeCode
+# vscode config
 .vscode
-.ino
+
+# test code
+app.ino
