@@ -1,15 +1,15 @@
-#include "utility/MINI_PWMServoDriver.h"
-#include <inttypes.h>
-#include <Wire.h>
+#include "utility/PCA9685.h"
+#include <Servo.h>
 
 
-class MiniRC
-{
+class MiniRC {
   public:
-    MiniRC(void);
-    void begin(MINI_PWMServoDriver *, uint8_t);
-    void set(int pos);
-  public:
-    uint8_t PWMpin;
-    MINI_PWMServoDriver * pwm;
+    void set(int angle);
+	  friend class MatrixMini_;
+
+  private:
+    int _pin;
+    int _ver;
+    Servo _RCServo;
+    void begin(int, int);
 };

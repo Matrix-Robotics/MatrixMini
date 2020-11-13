@@ -1,15 +1,15 @@
 #include "MiniBTN.h"
 
-void MiniBTN::begin(int portInit){
+void MiniBTN::begin(int ver, int portInit){
 	port = portInit;
+	pinMode(port, INPUT);
 	
-	pinMode(port, OUTPUT);
-	digitalWrite(port, HIGH);
+	if(ver == 1){
+		digitalWrite(port, HIGH);
+	}
 }
 
 
 bool MiniBTN::get() {
   return !digitalRead(port);
 }
-
-

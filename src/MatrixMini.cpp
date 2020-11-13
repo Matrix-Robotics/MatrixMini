@@ -1,82 +1,136 @@
-/*!
- * @file MatrixMini.cpp
- *
- * @section author Author
- * Written by
- * @section license License
- * BSD license, all text here must be included in any redistribution.
- *
- */
 
 #include "MatrixMini.h"
 
-/**************************************************************************/
-/*!
-    @brief  Create the Motor Shield object at an I2C address, default is 0x60
-    @param  addr Optional I2C address if you've changed it
-*/
-/**************************************************************************/
-MatrixMini::MatrixMini(uint8_t addr) {
-  _addr = addr;
-  _pwm = MINI_PWMServoDriver(_addr);
+
+
+void MatrixMini_::begin(float vbat) {
+  Wire.begin();
+  det_version();
+  init();
+  set_VBAT(vbat);
+  cli();
+    
+  TIMSK2 |= (1<<OCIE2A);
+
+  sei();
 }
 
+void MatrixMini_:: det_version() {
 
+  pinMode(det_pin, INPUT);
 
-
-/**************************************************************************/
-/*!
-    @brief  Initialize the I2C hardware and PWM driver, then turn off all pins.
-    @param    freq
-    The PWM frequency for the driver, used for speed control and microstepping.
-    By default we use 1600 Hz which is a little audible but efficient.
-    @param    theWire
-    A pointer to an optional I2C interface. If not provided, we use Wire or Wire1
-    (on Due)
-*/
-/**************************************************************************/
-void MatrixMini::begin(uint16_t freq) {
-
-  _i2c = &Wire;
-  // init PWM w/_freq
-  _i2c->begin();
-  _pwm.begin();
-  _freq = freq;
-  _pwm.setPWMFreq(_freq);  // This is the maximum PWM frequency
-
-  for (uint8_t i=0; i<16; i++){
-    _pwm.setPWM(i, 0, 0);
+  if(digitalRead(det_pin))
+  {
+    _ver = 2;
+  }
+  else if (v3_check() == 4)
+  {
+    _ver = 3;
+  }
+  else
+  {
+    _ver = 1;
   }
 
-
-	// Init Modules:
-	M1.begin(&_pwm, 0, 1, 2);
-	M2.begin(&_pwm, 5, 4, 3);
-
-	RC1.begin(&_pwm, 6);
-	RC2.begin(&_pwm, 7);
-	RC3.begin(&_pwm, 8);
-	RC4.begin(&_pwm, 9);
-
-	LED1.begin(&_pwm, 14, 13, 15);
-	LED2.begin(&_pwm, 11, 10, 12);
-
-	BTN1.begin(8);
-	BTN2.begin(7);
-
-	D1.begin(2);
-	D2.begin(3);
-	D3.begin(4);
-	D4.begin(5);
-
-	ANG1.begin(A0); //first pin of Mini's A1 Port
-	ANG2.begin(A1); //first pin of Mini's A2 Port
-	ANG3.begin(A2); //first pin of Mini's A3 Port
-
-	US1.begin(3,2);
-	US2.begin(4,3);
-	US3.begin(5,4);
-	US4.begin(6,5);
-
+  i2cMUXDisable();
 
 }
+
+void MatrixMini_:: init() {
+
+  switch (_ver){
+    case 1:
+      
+      BTN1.begin(_ver, 8);
+      BTN2.begin(_ver, 7);
+
+      D1.begin(2,3); 
+      D2.begin(3,4);
+      D3.begin(4,5); 
+      D4.begin(5,6); 
+
+      init_PCA9685(0x79); //50Hz
+
+      RC1.begin(_ver, 6);
+      RC2.begin(_ver, 7);
+      RC3.begin(_ver, 8);
+      RC4.begin(_ver, 9);
+
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 5);
+      
+      RGB2.begin(_ver, 11, 10, 12);
+      RGB1.begin(_ver, 14, 13, 15);
+      break;
+
+    case 2:
+
+      BTN1.begin(_ver, 8);
+      BTN2.begin(_ver, 7);
+
+      D1.begin(2,3); 
+      D2.begin(3,4); 
+      D3.begin(4,5); 
+      D4.begin(5,12); 
+
+      init_PCA9685(0x03); //1526Hz
+
+      RC1.begin(_ver, 6);
+      RC2.begin(_ver, 9);
+      RC3.begin(_ver, 10);
+      RC4.begin(_ver, 11);
+
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 5);
+
+      RGB2.begin(_ver, 11, 10, 12);
+      RGB1.begin(_ver, 14, 13, 15);
+
+      break;
+
+    case 3:
+      
+      BTN1.begin(_ver, 3);
+      BTN2.begin(_ver, 2);
+
+      D1.begin(5,6); 
+      D2.begin(7,9);
+      D3.begin(10,11); 
+      D4.begin(12,13); 
+
+      init_PCA9633();
+
+      RC1.begin(_ver, 16);
+      RC2.begin(_ver, 4);
+      RC3.begin(_ver, 15);
+      RC4.begin(_ver, 14);
+
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 2);
+    
+      RGB1.begin(_ver, 1);
+      RGB2.begin(_ver, 2);
+
+      break;
+  }
+
+  A1.begin(_ver, 1);
+  A2.begin(_ver, 2);
+  A3.begin(_ver, 3);
+
+  I2C1.begin(_ver, 0);
+  I2C2.begin(_ver, 1);
+  I2C3.begin(_ver, 2);
+  I2C4.begin(_ver, 3);
+
+  ENCO.begin(_ver);
+}
+
+
+int MatrixMini_:: v3_check() {
+  i2cWriteData(ADDR_PCA9633, PCA9633_MODE2, 0x04);
+  delay(100);
+  return i2cReadData(ADDR_PCA9633, PCA9633_MODE2, 1);
+}
+
+MatrixMini_ Mini;

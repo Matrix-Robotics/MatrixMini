@@ -1,17 +1,32 @@
-#include "utility/MINI_PWMServoDriver.h"
-#include <inttypes.h>
-#include <Wire.h>
+#include "utility/PCA9685.h"
+#include "utility/WS2812b.h"
+
+#define BLACK 0
+#define RED 1
+#define ORANGE 2
+#define YELLOW 3
+#define GREEN 4
+#define CYAN 5
+#define BLUE 6
+#define MAGENTA 7
+#define WHITE 8
+
 
 
 class MiniLED
 {
   public:
-    MiniLED(void);			
-    void begin(MINI_PWMServoDriver *, uint8_t, uint8_t, uint8_t);	
-    void setRGB(byte , byte , byte );
-    void setHSV(int, float, float);
+  void setRGB(byte , long , byte );
+  void setHSV(int, float, float);
+  void set(byte);
 
-  public:
-    uint8_t PWMR,PWMG,PWMB;
-    MINI_PWMServoDriver * pwm;
+  private:
+  void begin(int, uint8_t, uint8_t, uint8_t);
+  void begin(int, uint8_t);
+  uint8_t _led;
+  uint8_t _r, _g, _b;
+  int _ver;
+
+  friend class MatrixMini_;
+  //Adafruit_NeoPixel pixels;
 };

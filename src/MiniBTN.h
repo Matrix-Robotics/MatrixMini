@@ -1,9 +1,10 @@
 #include <Arduino.h>
 
-class MiniBTN{
-  public:
+class MiniBTN {
+public:
+	friend class MatrixMini_;
+	bool get();
+private:
 	int port;
-	
-    void begin(int);
-    bool get();
+	void begin(int, int);
 };

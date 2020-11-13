@@ -11,18 +11,21 @@
     give you a Servo object with {@link MatrixMini.getServo}
 */
 /**************************************************************************/
-MiniRC::MiniRC(void) {
-  pwm = NULL;
-  PWMpin = 0;
+
+void MiniRC::begin(int ver, int pin){
+  _pin = pin;
+  _ver = ver;
+  
+  if (_ver > 1){
+    _RCServo.attach(_pin);
+  }
 }
 
-void MiniRC::begin(MINI_PWMServoDriver * _pwm,uint8_t _PWMpin){
-  pwm = _pwm;
-  PWMpin = _PWMpin;
-}
-
-
-void MiniRC::set(int pos) {
-  uint16_t pulse = map(pos, 0, 180, 150, 600);
-  pwm->miniSetPWM(PWMpin, pulse);
+void MiniRC::set(int angle) {
+  if (_ver > 1){
+    _RCServo.write(angle);
+  }
+  else{
+    setPWM_PCA9685(_pin, map(angle, 0, 180, 105, 515));
+  }
 }

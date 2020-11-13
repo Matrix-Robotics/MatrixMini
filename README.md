@@ -1,5 +1,5 @@
-# MatrixMini
-Matrix Mini Arduino Library from KKITC
+# Matrix Mini V2
+Matrix Mini V2 Arduino Library from KKITC
 
 Matrix Mini is an Arduino based robot controller. 
 

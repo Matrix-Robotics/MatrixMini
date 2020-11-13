@@ -1,50 +1,53 @@
 /******************************************************************
-
+ *  MatrixMini.h
+ *
+ * Written by KKITC RD Team
+ * BSD license, all text here must be included in any redistribution.
+ *
  ******************************************************************/
 
 #ifndef _MatrixMini_h_
 #define _MatrixMini_h_
 
 #include <Arduino.h>
-#include <inttypes.h>
-#include <Wire.h>
-
-#include "utility/MINI_PWMServoDriver.h"
-// #include "utility/MINI_PWMStepper.h"
 #include "MiniDC.h"
-#include "MiniRC.h"
 #include "MiniLED.h"
-#include "MiniUS.h"
 #include "MiniBTN.h"
 #include "MiniDIG.h"
 #include "MiniANG.h"
-#include "I2C/SensorList.h"
+#include "MiniRC.h"
+#include "I2C/MiniI2C.h"
+#include "utility/Encoder.h"
+
+#define det_pin 8
+
+#define AA_6 8.1
+#define LI_2 7.4
+#define LI_3 11.1
+#define LI_2 14.8
+#define LI_3 18.5
+#define LI_6 22.2
 
 
-
-class MatrixMini{
+class MatrixMini_{
 private:
-    TwoWire *_i2c;
-    uint8_t _addr;
-    uint16_t _freq;
-
-    // Modules
-    MINI_PWMServoDriver _pwm;
-
-
+    int v3_check();
+    void det_version();
+    void init();
+    
 public:
-    MatrixMini(uint8_t addr = 0x60);
-    //void begin(uint16_t freq = 1600);
-    void begin(uint16_t freq = 60);
-
+    void begin(float vbat = AA_6);
+    int _ver;
     // Modules
-    MiniDC M1, M2;
-    MiniRC RC1, RC2, RC3, RC4;
-    MiniLED LED1, LED2;
-	  MiniBTN BTN1, BTN2;
-	  MiniDIG D1, D2, D3, D4;
-	  MiniANG ANG1, ANG2, ANG3;
-	  MiniUS US1, US2, US3, US4;
+    MiniDC  M1, M2;
+    MiniRC  RC1, RC2, RC3, RC4;
+    MiniLED RGB1, RGB2;
+	MiniBTN BTN1, BTN2;
+	MiniDIG D1, D2, D3, D4;
+	MiniANG A1, A2, A3;
+    MiniI2C I2C1, I2C2, I2C3, I2C4;
+    Encoder ENCO;
 };
+extern MatrixMini_ Mini;
 
 #endif

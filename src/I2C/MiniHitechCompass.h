@@ -1,27 +1,37 @@
-// Made by Alex Tkachenko
+// /******************************************************************
+//  *  MiniHitechCompass.h
+//  *
+//  * Written by KKITC RD Team
+//  * BSD license, all text here must be included in any redistribution.
+//  *
+//  ******************************************************************/
 
-#define HT_COMPASS_DEVADDR 		0x01
+// #define HT_COMPASS_DEVADDR 		0x01
 
-#define HT_COMPASS_REG_COMMAND	0x41
-#define HT_COMPASS_HEADING2		0x42
-#define HT_COMPASS_HEADING1		0x43
-#define HT_COMPASS_HEADING 		0x44
+// #define HT_COMPASS_REG_COMMAND	0x41
+// #define HT_COMPASS_HEADING2		0x42
+// #define HT_COMPASS_HEADING1		0x43
+// #define HT_COMPASS_HEADING 		0x44
 
 
-#include <Wire.h>
-#include <Arduino.h>
+// #include <Wire.h>
+// #include <Arduino.h>
 
-#include "MiniHitech.h"
+// #include "MiniHitech.h"
 
-class MiniHitechCompass : public MiniHitech{
-private:
+// class MiniHitechCompass : public MiniHitech{
+// private:
+// 	int _chan;
+// public:
+// 	// Constructor
+//   MiniHitechCompass(byte);
+// 	void begin();
 
-public:
-	void begin();		// Constructor
-
-	void startCalibration();
-	bool finishCalibration();
-	byte getHeading2();
-	int getHeading1();
-	int getHeading();
-};
+// 	void startCalibration();
+// 	bool finishCalibration();
+// 	byte getRawHeading2();
+// 	int getRawHeading1();
+// 	int getRawHeading();
+// 	int getHeading();
+// 	void test();
+// };

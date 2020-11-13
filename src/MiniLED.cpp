@@ -1,7 +1,5 @@
 #include "MiniLED.h"
 
-// hue
-#define PINK 315
 
 /**************************************************************************/
 /*!
@@ -10,43 +8,46 @@
     give you a RGB object with {@link MatrixMini.getRGB}
 */
 /**************************************************************************/
-MiniLED::MiniLED(void){
-  pwm = NULL;
-  PWMR = PWMG = PWMB = 0;
+void MiniLED::begin(int ver, uint8_t r,  uint8_t g,  uint8_t b){
+  _r = r;
+  _g = g;
+  _b = b;
+  _ver = ver;
 }
 
-
-void MiniLED::begin(
-  MINI_PWMServoDriver * _pwm, 
-  uint8_t r,
-  uint8_t g, 
-  uint8_t b)
-{
-  pwm = _pwm;
-  PWMR = r;
-  PWMG = g;
-  PWMB = b;
+void MiniLED::begin(int ver, uint8_t led){
+  
+  _ver = ver;
+  _led = led;
+  if(ver == 3){
+    send_buff(8);
+  }
 }
-
-
-
-
 /**************************************************************************/
 /*!
     @brief  Control the RGB pwm frequencies
     @param  speed The 16-bit PWM value, 0 is dark, 4096 is at full density
 */
 /**************************************************************************/
-/*void MiniLED::setRGB(uint16_t freqR, uint16_t freqG, uint16_t freqB) {
 
-  pwm->miniSetPWM(PWMR, freqR);
-  pwm->miniSetPWM(PWMG, freqG);
-  pwm->miniSetPWM(PWMB, freqB);
-}*/
-void MiniLED::setRGB(byte R, byte G, byte B) {
-  pwm->miniSetPWM(PWMR, map(R, 0, 255, 0, 4095));
-  pwm->miniSetPWM(PWMG, map(G, 0, 255, 0, 4095));
-  pwm->miniSetPWM(PWMB, map(B, 0, 255, 0, 4095));
+void MiniLED::setRGB(byte R, long G, byte B) {
+  if(_ver == 3){
+    switch (_led)
+    {
+    case 1:
+      set_RGB1((G << 16) + (R << 8) + B);
+      break;
+    case 2:
+      set_RGB2((G << 16) + (R << 8) + B);
+      break;
+    }
+    send_buff(8);
+  }
+  else{
+    setPWM_PCA9685(_r, map(R, 0, 255, 0, 4095));
+    setPWM_PCA9685(_g, map(G, 0, 255, 0, 4095));
+    setPWM_PCA9685(_b, map(B, 0, 255, 0, 4095));
+  }
 }
 
 void MiniLED::setHSV(int H, float S, float V){
@@ -99,5 +100,54 @@ void MiniLED::setHSV(int H, float S, float V){
   setRGB(r, g, b);
 }
 
-
-
+void MiniLED::set(byte color) {
+  float r, g, b;
+  switch(color)  {
+    case BLACK:
+      r = 0;
+      g = 0;
+      b = 0;
+      break;
+    case RED:
+      r = 255;
+      g = 0;
+      b = 0;
+      break;
+    case ORANGE:
+      r = 255;
+      g = 125;
+      b = 0;
+      break;
+    case YELLOW:
+      r = 255;
+      g = 255;
+      b = 0;
+      break;
+    case GREEN:
+      r = 0;
+      g = 255;
+      b = 0;
+      break;
+    case CYAN:
+      r = 0;
+      g = 255;
+      b = 255;
+      break;
+    case BLUE:
+      r = 0;
+      g = 0;
+      b = 255;
+      break;
+    case MAGENTA:
+      r = 255;
+      g = 0;
+      b = 255;
+      break;
+    case WHITE:
+      r = 255;
+      g = 255;
+      b = 255;
+      break;
+  }
+  setRGB(r, g, b);
+}

@@ -1,11 +1,14 @@
 #include <Arduino.h>
+#include "utility/ADS1015.h"
 
 class MiniANG{
 private:
-	int port;
+	int pin1;
+	int pin2;
+	int _ver;
+	void begin(int, int);
 
 public:
-    void begin(int);
-    int get();
-		void set(int);
+  	int get();
+	friend class MatrixMini_;
 };
