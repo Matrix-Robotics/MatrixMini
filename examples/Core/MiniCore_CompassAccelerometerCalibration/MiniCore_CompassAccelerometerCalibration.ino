@@ -35,7 +35,7 @@ void setup(){
   CompassSensor.begin();
   Serial.begin(9600);
 
-  Mini.LED1.setRGB(200,200,200);
+  Mini.RGB1.setRGB(200,200,200);
   // Calibrate Accelerometer on X,Y,Z axis inside Compass sensor
   Serial.println("Accelerometer Calibration");
   Serial.println("  1. For X and Y keep sensor perfectly flat. For Z place sensor vertical");

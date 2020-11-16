@@ -3,13 +3,11 @@
  * Description: Demonstrates how to use Motor Commands.
  *   
  * Author:      Frason Fan
- * modified 16 Dec 2019
+ * modified 16 Nov 2020
  *
  * www.matrixrobotics.com
  */
 #include <MatrixMini.h>
-
-MatrixMini Mini;
 
 void setup() {
   Mini.begin();  
@@ -20,7 +18,6 @@ void setup() {
   Mini.M2.set(0);
   delay(2000);
 }
-
 
 void loop() {
   int i;

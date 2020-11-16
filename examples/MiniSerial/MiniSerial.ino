@@ -126,8 +126,8 @@ void Receive(){
         else if(field==_RC2) Mini.RC2.set(value);
         else if(field==_RC3) Mini.RC3.set(value);
         else if(field==_RC4) Mini.RC4.set(value);
-        else if(field==_LED1) Mini.LED1.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
-        else if(field==_LED2) Mini.LED2.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
+        else if(field==_LED1) Mini.RGB1.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
+        else if(field==_LED2) Mini.RGB2.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
         else if(field==_BTN1) ;
         else if(field==_BTN2) ;
         else if(field==_D1) Mini.D1.set(value);

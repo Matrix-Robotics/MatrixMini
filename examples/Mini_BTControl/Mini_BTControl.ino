@@ -197,8 +197,8 @@ void loop() {
         break;
     }
   }
-  myMini.LED1.setRGB(r1, g1, b1);
-  myMini.LED2.setRGB(r2, g2, b2);
+  myMini.RGB1.setRGB(r1, g1, b1);
+  myMini.RGB2.setRGB(r2, g2, b2);
   if (RCFlag == 0) {
     for (int i = 0; i < cmd; i++) {
       bf[i] = 0;

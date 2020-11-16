@@ -10,20 +10,16 @@
  */
 #include <MatrixMini.h>
 
-MatrixMini Mini;
-
-
 void setup() {
   Mini.begin();
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("\nMatrix Mini Test - Ultrasonic Sensor\n");
 }
-//US1, US2, US3, US4
-// D1,  D2,  D3,  D4
+// We suggest you connect Ultrasonic Sensor on digital port
 
 void loop() {
   Serial.print("Distance read from Ultrasonic Sensor at D4 Port: "); 
-  Serial.print(Mini.US4.get());
+  Serial.print(Mini.D4.US.get());
   Serial.println("cm");
   delay(1000);
 }

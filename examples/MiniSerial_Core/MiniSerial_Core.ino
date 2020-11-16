@@ -83,8 +83,8 @@ void Receive(){
         else if(field== RC2_ANGLE) Mini.RC2.set(value);
         else if(field== RC3_ANGLE) Mini.RC3.set(value);
         else if(field== RC4_ANGLE) Mini.RC4.set(value);
-        else if(field== LED1_HSV) Mini.LED1.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
-        else if(field== LED2_HSV) Mini.LED2.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
+        else if(field== LED1_HSV) Mini.RGB1.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
+        else if(field== LED2_HSV) Mini.RGB2.setHSV(map(value, 0, 254, 0, 360), 1.0, 1.0);
         else if(field== BTN1) ;
         else if(field== BTN2) ;
         else if(field== D1_CONFIG) Mini.D1.set(value);
