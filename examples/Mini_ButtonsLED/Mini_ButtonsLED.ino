@@ -4,7 +4,7 @@
  *               Pressed buttons to light up the LEDs.
  *              
  * Author:      Frason Fan
- * modified 16 Dec 2019
+ * modified 17 Nov 2020
  *  
  * www.matrixrobotics.com
 */
@@ -24,11 +24,9 @@ void loop() {
   else
     Mini.RGB1.setRGB(0,0, 0);
 
-
   if(Mini.BTN2.get()) 
     Mini.RGB2.setRGB(0,255, 0);
   else
     Mini.RGB2.setRGB(0,0, 0);
-  
   delay(50);
 }
