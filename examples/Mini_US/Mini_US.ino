@@ -4,7 +4,7 @@
  *              measure the distance between the obstacle and the sensor.
  *
  * Author:      Frason Fan
- * modified 16 Dec 2019
+ * modified 17 Nov 2020
  *  
  * www.matrixrobotics.com
  */
@@ -15,7 +15,7 @@ void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("\nMatrix Mini Test - Ultrasonic Sensor\n");
 }
-// We suggest you connect Ultrasonic Sensor on digital port
+// We suggest you connecting Ultrasonic Sensor on digital port
 
 void loop() {
   Serial.print("Distance read from Ultrasonic Sensor at D4 Port: "); 
