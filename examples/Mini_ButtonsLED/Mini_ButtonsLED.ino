@@ -12,7 +12,7 @@
 
 void setup() {
   Mini.begin(); 
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("\nMatrix Mini Test - Buttons & LED\n");
   Serial.println("Starting Up ... ");
   delay(2000);
