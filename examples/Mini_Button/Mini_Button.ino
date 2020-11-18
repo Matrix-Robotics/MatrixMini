@@ -9,11 +9,11 @@
  */
 #include <MatrixMini.h>
 
-MatrixMini Mini;
+;
 
 void setup() {
   Mini.begin(); 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Test - Button\n");
 }
