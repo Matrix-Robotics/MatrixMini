@@ -12,7 +12,7 @@
 
 void setup() {
   Mini.begin();
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(115200);           // set up Serial library at 115200 bps
   Serial.println("\nMatrix Mini Test - Ultrasonic Sensor\n");
 }
 // We suggest you connecting Ultrasonic Sensor on digital port
