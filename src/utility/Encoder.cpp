@@ -107,23 +107,27 @@ void BAT_Det(){
         break;
     case 3:
         if(DET_vcc > DET_VBAT){
-            //set_det_led(0x0000FF);
+            setPWM_PCA9685(9, 4095);
         }
         else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
-            //set_det_led(0x00FF00);
+            setPWM_PCA9685(9, 0);
+            setPWM_PCA9685(8, 4095);
         }
         else if((5.6 < DET_vcc) & (DET_vcc < (DET_VBAT*0.95))){
             if(VBAT_toggle_flag){
-                //set_det_led(0x00FF00);
+                setPWM_PCA9685(9, 0);
+                setPWM_PCA9685(8, 4095);
                 VBAT_toggle_flag = 0;
             }
             else{
-                //set_det_led(0x000000);
+                setPWM_PCA9685(9, 0);
+                setPWM_PCA9685(8, 0);
                 VBAT_toggle_flag = 1;
             }
         }
         else{
-           // set_det_led(0x000000);
+            setPWM_PCA9685(9, 0);
+            setPWM_PCA9685(8, 4095);
         }
         break;
     default:

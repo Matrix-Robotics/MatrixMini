@@ -59,8 +59,8 @@ void MatrixMini_:: init() {
       M1.begin(_ver, 0);
       M2.begin(_ver, 5);
       
-      RGB2.begin(_ver, 11, 10, 12);
-      RGB1.begin(_ver, 14, 13, 15);
+      RGB2.begin(11, 10, 12);
+      RGB1.begin(14, 13, 15);
       break;
 
     case 2:
@@ -83,8 +83,8 @@ void MatrixMini_:: init() {
       M1.begin(_ver, 0);
       M2.begin(_ver, 5);
 
-      RGB2.begin(_ver, 11, 10, 12);
-      RGB1.begin(_ver, 14, 13, 15);
+      RGB2.begin(11, 10, 12);
+      RGB1.begin(14, 13, 15);
 
       break;
 
@@ -98,18 +98,18 @@ void MatrixMini_:: init() {
       D3.begin(10,11); 
       D4.begin(12,13); 
 
-      init_PCA9633();
+      init_PCA9685(0x03); //1526Hz
 
       RC1.begin(_ver, 16);
       RC2.begin(_ver, 4);
       RC3.begin(_ver, 15);
       RC4.begin(_ver, 14);
 
-      M1.begin(_ver, 0);
-      M2.begin(_ver, 2);
+      M1.begin(_ver, 9);
+      M2.begin(_ver, 11);
     
-      RGB1.begin(_ver, 1);
-      RGB2.begin(_ver, 2);
+      RGB2.begin(0, 1, 2);
+      RGB1.begin(3, 4, 5);
 
       break;
   }

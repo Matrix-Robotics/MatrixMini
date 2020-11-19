@@ -1,5 +1,4 @@
 #include "utility/PCA9685.h"
-#include "utility/PCA9633.h"
 
 
 #define FORWARD 1
@@ -14,16 +13,14 @@
 class MiniDC{
 public:
 	friend class MatrixMini_;
-	void set(int);
+	void set(int speed);
 
 private:
 	int _pin;
-    int _ver;
 	int _speed;
 	int _mode;
 
-	void begin(int, int);
+	void begin(int pin);
 	
-	void setMode_PCA9633();
 	void setMode_PCA9685();
 };
