@@ -23,7 +23,7 @@ void MatrixMini_:: det_version() {
   {
     _ver = 2;
   }
-  else if (v3_check() == 4)
+  else if (v3_check() == 0x85)
   {
     _ver = 3;
   }
@@ -56,8 +56,8 @@ void MatrixMini_:: init() {
       RC3.begin(_ver, 8);
       RC4.begin(_ver, 9);
 
-      M1.begin(_ver, 0);
-      M2.begin(_ver, 5);
+      M1.begin(0);
+      M2.begin(5);
       
       RGB2.begin(11, 10, 12);
       RGB1.begin(14, 13, 15);
@@ -80,8 +80,8 @@ void MatrixMini_:: init() {
       RC3.begin(_ver, 10);
       RC4.begin(_ver, 11);
 
-      M1.begin(_ver, 0);
-      M2.begin(_ver, 5);
+      M1.begin(0);
+      M2.begin(5);
 
       RGB2.begin(11, 10, 12);
       RGB1.begin(14, 13, 15);
@@ -105,8 +105,8 @@ void MatrixMini_:: init() {
       RC3.begin(_ver, 15);
       RC4.begin(_ver, 14);
 
-      M1.begin(_ver, 9);
-      M2.begin(_ver, 11);
+      M1.begin(9);
+      M2.begin(11);
     
       RGB2.begin(0, 1, 2);
       RGB1.begin(3, 4, 5);
@@ -128,9 +128,9 @@ void MatrixMini_:: init() {
 
 
 int MatrixMini_:: v3_check() {
-  i2cWriteData(ADDR_PCA9633, PCA9633_MODE2, 0x04);
+  i2cWriteData(ADDR_ADS1015, ADS1015_Config, 0x05, 0x83);
   delay(100);
-  return i2cReadData(ADDR_PCA9633, PCA9633_MODE2, 1);
+  return i2cReadData(ADDR_ADS1015, ADS1015_Config, 1);
 }
 
 MatrixMini_ Mini;
