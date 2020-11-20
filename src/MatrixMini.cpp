@@ -9,8 +9,12 @@ void MatrixMini_::begin(float vbat) {
   init();
   set_VBAT(vbat);
   cli();
-    
-  TIMSK2 |= (1<<OCIE2A);
+
+    TCCR2B = 3;
+    // set prescaler to 32 and starts PWM
+
+    TIMSK2 = 2;
+    //Set interrupt on compare match
 
   sei();
 }

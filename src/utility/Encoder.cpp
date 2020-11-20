@@ -12,44 +12,47 @@ int vcc_cont = 0;
 
 ISR(TIMER2_COMPA_vect){
     
-    //if(ENCO_flag){
-        int8_t val, diff;
-
-        val = 0;
-
-        if(digitalRead(encLtA)){
-            val = 3;
-        }
-        if(digitalRead(encLtB)){
-            val ^= 1;					// convert gray to binary
-        }
-        diff = lastLt - val;				// difference last - new
-
-        if( diff & 1 ){				// bit 0 = value (1)
-            lastLt = val;				// store new as next last
-            encDeltaLt += (diff & 2) - 1;		// bit 1 = direction (+/-)
-        }
-
-        val = 0;
-
-        if(digitalRead(encRtA)){
-            val = 3;
-        }
-        if(digitalRead(encRtB)){
-            val ^= 1;					// convert gray to binary
-        }
-        diff = lastRt - val;				// difference last - new
-
-        if( diff & 1 ){				// bit 0 = value (1)
-            lastRt = val;				// store new as next last
-            encDeltaRt += (diff & 2) - 1;		// bit 1 = direction (+/-)
-        }
-
-        encLt += ReadLt();
-        encRt += ReadRt();
-    //}
+    Encoderead();
     VBAT_check();
 }
+
+void Encoderead(){
+    int8_t val, diff;
+
+    val = 0;
+
+    if(digitalRead(encLtA)){
+        val = 3;
+    }
+    if(digitalRead(encLtB)){
+        val ^= 1;					// convert gray to binary
+    }
+    diff = lastLt - val;				// difference last - new
+
+    if( diff & 1 ){				// bit 0 = value (1)
+        lastLt = val;				// store new as next last
+        encDeltaLt += (diff & 2) - 1;		// bit 1 = direction (+/-)
+    }
+
+    val = 0;
+
+    if(digitalRead(encRtA)){
+        val = 3;
+    }
+    if(digitalRead(encRtB)){
+        val ^= 1;					// convert gray to binary
+    }
+    diff = lastRt - val;				// difference last - new
+
+    if( diff & 1 ){				// bit 0 = value (1)
+        lastRt = val;				// store new as next last
+        encDeltaRt += (diff & 2) - 1;		// bit 1 = direction (+/-)
+    }
+
+    encLt += ReadLt();
+    encRt += ReadRt();
+}
+
 
 int8_t ReadLt( void ){
 
@@ -91,7 +94,7 @@ void BAT_Det(){
         else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
             setPWM_PCA9685(6, 4095);
         }
-        else if((5.6 < DET_vcc) &(DET_vcc < (DET_VBAT*0.95))){
+        else{
             if(VBAT_toggle_flag){
                 setPWM_PCA9685(6, 4095);
                 VBAT_toggle_flag = 0;
@@ -100,9 +103,6 @@ void BAT_Det(){
                 setPWM_PCA9685(6, 0);
                 VBAT_toggle_flag = 1;
             }
-        }
-        else{
-            setPWM_PCA9685(6, 4095);
         }
         break;
     case 3:
@@ -113,7 +113,7 @@ void BAT_Det(){
             setPWM_PCA9685(9, 0);
             setPWM_PCA9685(8, 4095);
         }
-        else if((5.6 < DET_vcc) & (DET_vcc < (DET_VBAT*0.95))){
+        else{
             if(VBAT_toggle_flag){
                 setPWM_PCA9685(9, 0);
                 setPWM_PCA9685(8, 4095);
@@ -125,10 +125,6 @@ void BAT_Det(){
                 VBAT_toggle_flag = 1;
             }
         }
-        else{
-            setPWM_PCA9685(9, 0);
-            setPWM_PCA9685(8, 4095);
-        }
         break;
     default:
         break;
@@ -137,7 +133,7 @@ void BAT_Det(){
 void VBAT_check(){
     vcc_cont++;
 
-    if(vcc_cont >= 200){
+    if(vcc_cont >= 500){
         switch (version)
         {
         case 2:
@@ -162,6 +158,15 @@ void set_VBAT(float vbat){
 
 
 void Encoder::Init(int portL, int portR){
+    // cli();
+
+    // TCCR2B = 2;
+    // // set prescaler to 64 and starts PWM
+
+    // TIMSK2 = 2;
+    // //Set interrupt on compare match
+
+    // sei();
 
     det_pinL(portL);
     det_pinR(portR);
