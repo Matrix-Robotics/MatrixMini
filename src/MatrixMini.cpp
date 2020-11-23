@@ -108,7 +108,10 @@ void MatrixMini_:: init() {
       RC2.begin(_ver, 4);
       RC3.begin(_ver, 15);
       RC4.begin(_ver, 14);
-
+      
+      pinMode(8, OUTPUT);// enable motor driver
+      digitalWrite(8, HIGH);
+      
       M1.begin(9);
       M2.begin(11);
     
