@@ -1,5 +1,4 @@
 #include "utility/PCA9685.h"
-#include "utility/WS2812b.h"
 
 #define BLACK 0
 #define RED 1
@@ -21,11 +20,8 @@ class MiniLED
   void set(byte);
 
   private:
-  void begin(int, uint8_t, uint8_t, uint8_t);
-  void begin(int, uint8_t);
-  uint8_t _led;
+  void begin(uint8_t, uint8_t, uint8_t);
   uint8_t _r, _g, _b;
-  int _ver;
 
   friend class MatrixMini_;
   //Adafruit_NeoPixel pixels;

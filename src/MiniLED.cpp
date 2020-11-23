@@ -8,20 +8,10 @@
     give you a RGB object with {@link MatrixMini.getRGB}
 */
 /**************************************************************************/
-void MiniLED::begin(int ver, uint8_t r,  uint8_t g,  uint8_t b){
+void MiniLED::begin(uint8_t r,  uint8_t g,  uint8_t b){
   _r = r;
   _g = g;
   _b = b;
-  _ver = ver;
-}
-
-void MiniLED::begin(int ver, uint8_t led){
-  
-  _ver = ver;
-  _led = led;
-  if(ver == 3){
-    send_buff(8);
-  }
 }
 /**************************************************************************/
 /*!
@@ -31,23 +21,11 @@ void MiniLED::begin(int ver, uint8_t led){
 /**************************************************************************/
 
 void MiniLED::setRGB(byte R, long G, byte B) {
-  if(_ver == 3){
-    switch (_led)
-    {
-    case 1:
-      set_RGB1((G << 16) + (R << 8) + B);
-      break;
-    case 2:
-      set_RGB2((G << 16) + (R << 8) + B);
-      break;
-    }
-    send_buff(8);
-  }
-  else{
-    setPWM_PCA9685(_r, map(R, 0, 255, 0, 4095));
-    setPWM_PCA9685(_g, map(G, 0, 255, 0, 4095));
-    setPWM_PCA9685(_b, map(B, 0, 255, 0, 4095));
-  }
+
+  setPWM_PCA9685(_r, map(R, 0, 255, 0, 4095));
+  setPWM_PCA9685(_g, map(G, 0, 255, 0, 4095));
+  setPWM_PCA9685(_b, map(B, 0, 255, 0, 4095));
+
 }
 
 void MiniLED::setHSV(int H, float S, float V){

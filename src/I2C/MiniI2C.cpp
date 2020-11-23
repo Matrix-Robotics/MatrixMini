@@ -2,7 +2,8 @@
 #include "MiniI2C.h"
 
 void MiniI2C::begin(int ver, byte ch){
-    HTC._ch = ch;
-    HTC._ver = ver;
+    MC._ch = ch;
+    MC._ver = ver;
+    MC.init();
 }
     
