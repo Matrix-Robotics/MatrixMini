@@ -9,11 +9,15 @@ float DET_VBAT;
 int VBAT_toggle_flag = 0;
 float DET_vcc;
 int vcc_cont = 0;
+int VBAT_flag = 1;
 
 ISR(TIMER2_COMPA_vect){
     
     Encoderead();
-    VBAT_check();
+    if(VBAT_flag){
+        VBAT_check();
+    }
+    
 }
 
 void Encoderead(){
@@ -107,21 +111,21 @@ void BAT_Det(){
         break;
     case 3:
         if(DET_vcc > DET_VBAT){
-            setPWM_PCA9685(9, 4095);
+            setPWM_PCA9685(8, 4095);
         }
         else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
-            setPWM_PCA9685(9, 0);
-            setPWM_PCA9685(8, 4095);
+            setPWM_PCA9685(8, 0);
+            setPWM_PCA9685(6, 4095);
         }
         else{
             if(VBAT_toggle_flag){
-                setPWM_PCA9685(9, 0);
-                setPWM_PCA9685(8, 4095);
+                setPWM_PCA9685(8, 0);
+                setPWM_PCA9685(6, 4095);
                 VBAT_toggle_flag = 0;
             }
             else{
-                setPWM_PCA9685(9, 0);
                 setPWM_PCA9685(8, 0);
+                setPWM_PCA9685(6, 0);
                 VBAT_toggle_flag = 1;
             }
         }
@@ -158,15 +162,25 @@ void set_VBAT(float vbat){
 
 
 void Encoder::Init(int portL, int portR){
-    // cli();
 
-    // TCCR2B = 2;
-    // // set prescaler to 64 and starts PWM
+    if(ver == 3){
+        setPWM_PCA9685(6, 0);
+        setPWM_PCA9685(8, 0);
+        setPWM_PCA9685(7, 4095);
+    }
 
-    // TIMSK2 = 2;
-    // //Set interrupt on compare match
+    cli();
 
-    // sei();
+    TCCR2B = 2;
+    // set prescaler to 64 and starts PWM
+
+    TIMSK2 = 2;
+    //Set interrupt on compare match
+
+    sei();
+
+    VBAT_flag =0;
+
 
     det_pinL(portL);
     det_pinR(portR);
