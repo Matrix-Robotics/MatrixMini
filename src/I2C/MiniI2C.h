@@ -1,4 +1,4 @@
-#include "HT_Color.h"
+#include "Matrix_Color.h"
 
 
 
@@ -7,6 +7,6 @@ private:
 	void begin(int ver, byte ch);
 public:
 	friend class MatrixMini_;
-	HT_Color HTC;
+	M_Color MC;
 };
 
