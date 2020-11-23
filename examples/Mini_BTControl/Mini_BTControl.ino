@@ -5,7 +5,7 @@
  *              
  * Author:      Frason Fan
  * modified 18 Nov 2020
- *  
+ * 
  * www.matrixrobotics.com
 */
 
@@ -15,8 +15,6 @@
 
 SoftwareSerial BT (6, 5); // Bluetooth module on D4
 
-String  Version = "02.51.000";
-boolean isAvailable = false;
 int pos1 = 90;
 int pos2 = 90;
 int pos3 = 90;
@@ -90,6 +88,7 @@ void loop() {
         break;
 
       // SERVO
+      // RC1, RC2 move slowly
       case _RC1:
         if (bf[value] == 201 && pos1 <= 180) {
           pos1++;
@@ -126,15 +125,16 @@ void loop() {
         }
         break;
 
+      //RC3, RC4 move faster
       case _RC3:
         if (bf[value] == 201 && pos3 <= 180) {
-          pos3 += 2;
+          pos3 += 3;
           Mini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos3 >= 0) {
-          pos3 -= 2;
+          pos3 -= 3;
           Mini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
@@ -146,22 +146,21 @@ void loop() {
 
       case _RC4:
         if (bf[value] == 201 && pos4 <= 180) {
-          pos4 += 2;
+          pos4 += 3;
           Mini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos4 >= 0) {
-          pos4 -= 2;
+          pos4 -= 3;
           Mini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value == 203]) {
           RCFlag = 0;
-        }0
+        }
         break;
-
 
       //RGB
       case LeftR:
