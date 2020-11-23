@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 #include "utility/MiniSerial.h"
-MatrixMini Mini;
+;
 MiniCoreColor ColorSensor;
 MiniCoreGyro GyroSensor;
 MiniCoreCompass CompassSensor;
@@ -27,7 +27,7 @@ int MagX,MagY,MagZ;
 
 void setup() {
   Mini.begin(); 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Initializing Core sensors
   GyroSensor.begin();

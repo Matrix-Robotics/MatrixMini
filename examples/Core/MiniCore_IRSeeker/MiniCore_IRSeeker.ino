@@ -1,12 +1,12 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniCoreSeeker SeekerSensor;
 
 void setup() {
   Mini.begin();
   SeekerSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Core Seeker Sensor Test \n");
   Serial.println(SeekerSensor.getVersion(), HEX);

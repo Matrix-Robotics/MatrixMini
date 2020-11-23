@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniHitechCompass CompassSensor;
 
 int headings;
@@ -8,7 +8,7 @@ int headings;
 void setup() {
   Mini.begin();
   CompassSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Hitech Accel Sensor Test \n");
   Serial.println(CompassSensor.getVersion());

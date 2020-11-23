@@ -9,8 +9,9 @@ void MatrixMini_::begin(float vbat) {
   init();
   set_VBAT(vbat);
   cli();
-    
-  TIMSK2 |= (1<<OCIE2A);
+  TCCR2B |= (1 << CS22);
+  // TCCR2B |= (1 << CS20);
+  TIMSK2 |= (1 << OCIE2A);
 
   sei();
 }

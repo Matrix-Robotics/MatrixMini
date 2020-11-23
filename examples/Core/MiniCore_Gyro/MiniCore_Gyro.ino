@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniCoreGyro GyroSensor; //Intergrated Gyro Sensor
 
 int RawX,RawY,RawZ;
@@ -9,7 +9,7 @@ int Degree;
 void setup() {
   Mini.begin();
   GyroSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Interrupt Gyro Compass Sensor Test \n");
   Serial.println(GyroSensor.getVersion(), HEX);

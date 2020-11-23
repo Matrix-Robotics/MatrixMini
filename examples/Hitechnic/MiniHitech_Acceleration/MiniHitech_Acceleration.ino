@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniHitechAccel AccelSensor;
 
 int x,y,z;
@@ -8,7 +8,7 @@ int x,y,z;
 void setup() {
   Mini.begin();
   AccelSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Hitech Accel Sensor Test \n");
   Serial.println(AccelSensor.getVersion());

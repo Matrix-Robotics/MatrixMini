@@ -47,8 +47,6 @@ int RCFlag = 0;
 #define _RC3 17
 #define _RC4 18
 
-
-int pp = 0;
 void setup() {
   Serial.begin(115200);
   Mini.begin();
@@ -161,7 +159,7 @@ void loop() {
         }
         else if (bf[value == 203]) {
           RCFlag = 0;
-        }
+        }0
         break;
 
 

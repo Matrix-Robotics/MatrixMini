@@ -27,13 +27,13 @@
 -------------------------------------------------------------------------------------------*/
 #include "MatrixMini.h"
 #include "utility/MiniSerial.h"
-MatrixMini Mini;
+;
 MiniCoreCompass CompassSensor;
 
 void setup(){
   Mini.begin();
   CompassSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Mini.RGB1.setRGB(200,200,200);
   // Calibrate Accelerometer on X,Y,Z axis inside Compass sensor

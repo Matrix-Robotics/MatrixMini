@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniHitechCtrl MXctrl;
 
 byte tmp;
@@ -8,7 +8,7 @@ byte tmp;
 void setup() {
   Mini.begin();
   MXctrl.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Hitechnic Matrix Controller Test \n");
   Serial.println("Starting Up ... ");

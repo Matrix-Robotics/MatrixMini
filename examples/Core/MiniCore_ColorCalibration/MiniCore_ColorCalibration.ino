@@ -15,14 +15,14 @@
 -------------------------------------------------------------------------------------------*/
 #include <MatrixMini.h>
 
-MatrixMini Mini;
+;
 MiniCoreColor ColorSensor;
 
 byte r,g,b,grayscale;
 void setup(){
   Mini.begin();
   ColorSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   Serial.println("\n Matrix Mini Color Balance Calibrations\n");
   Mini.RGB1.setRGB(0,0,0);        //LED1 is set emtpy for black level's button indication

@@ -5,7 +5,7 @@
 String old_addr, new_addr;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {

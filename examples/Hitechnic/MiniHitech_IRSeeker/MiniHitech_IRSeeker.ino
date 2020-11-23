@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniHitechIRSeeker IRSeeker;
 
 byte Direction,d1,d2,d3,d4,d5;
@@ -8,7 +8,7 @@ byte Direction,d1,d2,d3,d4,d5;
 void setup() {
   Mini.begin();
   IRSeeker.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Hitech IR Seeker Sensor Test \n");
   Serial.println(IRSeeker.getVersion());

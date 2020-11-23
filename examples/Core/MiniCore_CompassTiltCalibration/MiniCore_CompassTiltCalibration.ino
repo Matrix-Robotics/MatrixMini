@@ -17,12 +17,12 @@
 -------------------------------------------------------------------------------------------*/
 #include <MatrixMini.h>
 
-MatrixMini Mini;
+;
 
 void setup(){
   Mini.begin();
   CompassSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Calibrate Compass to be level on a horizontal surface
   Serial.println("Tilt Calibration");

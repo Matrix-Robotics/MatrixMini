@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniHitechColor ColorSensor;
 
 byte r,g,b,grayscale;
@@ -8,7 +8,7 @@ byte r,g,b,grayscale;
 void setup() {
   Mini.begin();
   ColorSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Hitech Color Sensor Test \n");
   Serial.println(ColorSensor.getVersion());

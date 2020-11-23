@@ -42,7 +42,7 @@
 ///////////////////////////
 
 #include <MatrixMini.h>
-MatrixMini Mini;
+;
 
 #define RATE 10
 
@@ -56,7 +56,7 @@ byte btnValue = 0;
 
 void setup() {
   Mini.begin(); 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 

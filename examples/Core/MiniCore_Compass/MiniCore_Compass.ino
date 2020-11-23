@@ -1,6 +1,6 @@
 #include "MatrixMini.h"
 
-MatrixMini Mini;
+;
 MiniCoreCompass CompassSensor;
 
 int AccX,AccY,AccZ;
@@ -9,7 +9,7 @@ int MagX,MagY,MagZ;
 void setup() {
   Mini.begin();
   CompassSensor.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Serial.println("\n Matrix Mini Core Compass Sensor Test \n");
   Serial.println(CompassSensor.getVersion(), HEX);
