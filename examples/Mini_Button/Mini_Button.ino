@@ -9,8 +9,6 @@
  */
 #include <MatrixMini.h>
 
-;
-
 void setup() {
   Mini.begin(); 
   Serial.begin(115200);
