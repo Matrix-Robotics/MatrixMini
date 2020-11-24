@@ -3,24 +3,21 @@
  * Description: Demonstrates how to use Motor Commands.
  *   
  * Author:      Frason Fan
- * modified 16 Dec 2019
+ * modified 16 Nov 2020
  *
  * www.matrixrobotics.com
  */
 #include <MatrixMini.h>
 
-MatrixMini Mini;
-
 void setup() {
   Mini.begin();  
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(115200);           // set up Serial library at 115200 bps
   Serial.println("\nMatrix Mini Test - DC Motor\n");
   Serial.println("Starting Up ... ");
   Mini.M1.set(0);
   Mini.M2.set(0);
   delay(2000);
 }
-
 
 void loop() {
   int i;

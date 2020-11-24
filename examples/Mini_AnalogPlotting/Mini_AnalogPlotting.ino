@@ -6,23 +6,21 @@
  *              insted of Serial Monitor.
  *               Tools-> Serial Plotter(Ctrl+Shift+L)
  * Author:      Frason Fan
- * modified 16 Dec 2019
+ * modified 18 Nov 2020
  *  
  * www.matrixrobotics.com
 */
 #include "MatrixMini.h"
 
-MatrixMini Mini;
-
 void setup() {
   Mini.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("\nMATRIX Mini Test - Analog Plotting\n");
   Serial.println("Starting Up ... ");
 }
 
 void loop() {
-  Serial.print(Mini.ANG1.get());
+  Serial.print(Mini.A1.get());
   Serial.print(" ");
-  Serial.println(Mini.ANG3.get());
+  Serial.println(Mini.A3.get());
 }

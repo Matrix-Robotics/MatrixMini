@@ -10,11 +10,9 @@
 */
 #include "MatrixMini.h"
 
-MatrixMini Mini;
-
 void setup() {
   Mini.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("\nMATRIX Mini Test - Digital Read/ Set\n");
   Serial.println("Starting Up ... ");
   delay(2000);

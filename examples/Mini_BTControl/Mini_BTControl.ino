@@ -4,20 +4,17 @@
  * Note:        Download the remote control APP from Matrix Robotics website.             
  *              
  * Author:      Frason Fan
- * modified 17 Dec 2019
- *  
+ * modified 18 Nov 2020
+ * 
  * www.matrixrobotics.com
 */
 
 #include <Wire.h>
 #include <MatrixMini.h>
-//#include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
 
-MatrixMini myMini;
-//SoftwareSerial BT (6, 5);
+SoftwareSerial BT (6, 5); // Bluetooth module on D4
 
-String  Version = "02.51.000";
-boolean isAvailable = false;
 int pos1 = 90;
 int pos2 = 90;
 int pos3 = 90;
@@ -48,66 +45,60 @@ int RCFlag = 0;
 #define _RC3 17
 #define _RC4 18
 
-
-int pp = 0;
 void setup() {
-  Serial.begin(9600);
-  myMini.begin();// Analog servos set at ~60 Hz updates
-  //  BT.begin(9600);
+  Serial.begin(115200);
+  Mini.begin();
+  BT.begin(9600);
 }
 
 void loop() {
-  if (Serial.available() > 0) {
-    Serial.readBytes(bf, cmd);
-    //    Serial.print(bf[0]);
-    //    Serial.print(":");
-    //    Serial.print(bf[key]);
-    //    Serial.print(":");
-    //    Serial.println(bf[value]);
+  if (BT.available() > 0) {
+    BT.readBytes(bf, cmd);
   }
   if (bf[0] == 255) {
     switch (bf[key]) {
       // DCMOTOR
       case Forward:  //Forward
-        myMini.M1.set(bf[value]);
-        myMini.M2.set(bf[value]);
+        Mini.M1.set(bf[value]);
+        Mini.M2.set(bf[value]);
         break;
       case TurnLeft:  //Turn Left
-        myMini.M1.set(-bf[value]);
-        myMini.M2.set(bf[value]);
+        Mini.M1.set(-bf[value]);
+        Mini.M2.set(bf[value]);
         break;
       case TurnRight:  //Turn Right
-        myMini.M1.set(bf[value]);
-        myMini.M2.set(-bf[value]);
+        Mini.M1.set(bf[value]);
+        Mini.M2.set(-bf[value]);
         break;
       case Backward:  //Back
-        myMini.M1.set(-bf[value]);
-        myMini.M2.set(-bf[value]);
+        Mini.M1.set(-bf[value]);
+        Mini.M2.set(-bf[value]);
         break;
       case GoLeft:  //Go Left
-        myMini.M1.set(0.8 * bf[value]);
-        myMini.M2.set(bf[value]);
+        Mini.M1.set(0.8 * bf[value]);
+        Mini.M2.set(bf[value]);
         break;
       case GoRight:  //Go Right
-        myMini.M1.set(bf[value]);
-        myMini.M2.set(0.8 * bf[value]);
+        Mini.M1.set(bf[value]);
+        Mini.M2.set(0.8 * bf[value]);
         break;
       case Stop:
-        myMini.M1.set(0);
-        myMini.M2.set(0);
+        Mini.M1.set(0);
+        Mini.M2.set(0);
         break;
 
       // SERVO
+      // RC1, RC2 move slowly
       case _RC1:
         if (bf[value] == 201 && pos1 <= 180) {
           pos1++;
-          myMini.RC1.set(pos1);
+          Mini.RC1.set(pos1);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos1 >= 0) {
           pos1--;
-          myMini.RC1.set(pos1);
+          Mini.RC1.set(pos1);
           delay(10);
           RCFlag = 1;
         }
@@ -119,13 +110,13 @@ void loop() {
       case _RC2:
         if (bf[value] == 201 && pos2 <= 180) {
           pos2++;
-          myMini.RC2.set(pos2);
+          Mini.RC2.set(pos2);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos2 >= 0) {
           pos2--;
-          myMini.RC2.set(pos2);
+          Mini.RC2.set(pos2);
           delay(10);
           RCFlag = 1;
         }
@@ -134,16 +125,17 @@ void loop() {
         }
         break;
 
+      //RC3, RC4 move faster
       case _RC3:
         if (bf[value] == 201 && pos3 <= 180) {
-          pos3 += 2;
-          myMini.RC3.set(pos3);
+          pos3 += 3;
+          Mini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos3 >= 0) {
-          pos3 -= 2;
-          myMini.RC3.set(pos3);
+          pos3 -= 3;
+          Mini.RC3.set(pos3);
           delay(10);
           RCFlag = 1;
         }
@@ -154,14 +146,14 @@ void loop() {
 
       case _RC4:
         if (bf[value] == 201 && pos4 <= 180) {
-          pos4 += 2;
-          myMini.RC4.set(pos4);
+          pos4 += 3;
+          Mini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
         }
         else if (bf[value] == 202 && pos4 >= 0) {
-          pos4 -= 2;
-          myMini.RC4.set(pos4);
+          pos4 -= 3;
+          Mini.RC4.set(pos4);
           delay(10);
           RCFlag = 1;
         }
@@ -169,7 +161,6 @@ void loop() {
           RCFlag = 0;
         }
         break;
-
 
       //RGB
       case LeftR:
@@ -192,13 +183,13 @@ void loop() {
         break;
 
       default:
-        myMini.M1.set(0);
-        myMini.M2.set(0);
+        Mini.M1.set(0);
+        Mini.M2.set(0);
         break;
     }
   }
-  myMini.LED1.setRGB(r1, g1, b1);
-  myMini.LED2.setRGB(r2, g2, b2);
+  Mini.RGB1.setRGB(r1, g1, b1);
+  Mini.RGB2.setRGB(r2, g2, b2);
   if (RCFlag == 0) {
     for (int i = 0; i < cmd; i++) {
       bf[i] = 0;

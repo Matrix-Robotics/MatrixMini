@@ -1,6 +1,5 @@
 #include "HC04.h"
 
-
 float MiniUS::get(){
 
 	pinMode(trig, OUTPUT);
