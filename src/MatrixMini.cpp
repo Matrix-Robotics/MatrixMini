@@ -22,7 +22,7 @@ void MatrixMini_::begin(float vbat) {
 void MatrixMini_:: det_version() {
 
   pinMode(det_pin, INPUT);
-
+  digitalWrite(8, LOW);
   if(digitalRead(det_pin))
   {
     _ver = 2;
@@ -60,11 +60,11 @@ void MatrixMini_:: init() {
       RC3.begin(_ver, 8);
       RC4.begin(_ver, 9);
 
-      M1.begin(0);
-      M2.begin(5);
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 5);
       
-      RGB2.begin(11, 10, 12);
-      RGB1.begin(14, 13, 15);
+      RGB1.begin(_ver, 13);
+      RGB2.begin(_ver, 10);
       break;
 
     case 2:
@@ -84,11 +84,11 @@ void MatrixMini_:: init() {
       RC3.begin(_ver, 10);
       RC4.begin(_ver, 11);
 
-      M1.begin(0);
-      M2.begin(5);
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 5);
 
-      RGB2.begin(11, 10, 12);
-      RGB1.begin(14, 13, 15);
+      RGB1.begin(_ver, 13);
+      RGB2.begin(_ver, 10);
 
       break;
 
@@ -111,12 +111,14 @@ void MatrixMini_:: init() {
       
       pinMode(8, OUTPUT);// enable motor driver
       digitalWrite(8, HIGH);
+
+      setPWM_PCA9685(8, 4095);
       
-      M1.begin(9);
-      M2.begin(11);
+      M1.begin(_ver, 9);
+      M2.begin(_ver, 11);
     
-      RGB2.begin(0, 1, 2);
-      RGB1.begin(3, 4, 5);
+      RGB1.begin(_ver, 0);
+      RGB2.begin(_ver, 3);
 
       break;
   }

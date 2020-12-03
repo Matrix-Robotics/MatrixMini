@@ -20,8 +20,8 @@ class MiniLED
   void set(byte);
 
   private:
-  void begin(uint8_t, uint8_t, uint8_t);
-  uint8_t _r, _g, _b;
+  void begin(int ver, uint8_t ch);
+  uint8_t _ch, _ver;
 
   friend class MatrixMini_;
   //Adafruit_NeoPixel pixels;

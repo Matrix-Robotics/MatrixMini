@@ -2,7 +2,8 @@
 
 
 
-void MiniDC::begin(int pin){
+void MiniDC::begin(int ver, int pin){
+  _ver = ver;
   _pin = pin;
 }
 
@@ -21,25 +22,32 @@ void MiniDC::set(int speed) {
 }
 
 void MiniDC::setMode_PCA9685() {
-  
-  int A = AIN1;
-  int B = AIN2;
-
-  if(_pin){
-    A = BIN1;
-    B = BIN2;
-  }
-
-  if(_mode){
-    setPWM_PCA9685(B, 0);
-    setPWM_PCA9685(A, 4095);
+  if(_ver == 3){
+    if(_mode){
+      setPWM_PCA9685(_pin, _speed, 0);
+    }
+    else{
+      setPWM_PCA9685(_pin, 0, _speed);
+    }
   }
   else{
-    setPWM_PCA9685(A, 0);
-    setPWM_PCA9685(B, 4095);
+    if(_pin){
+      if(_mode){
+        setPWM_PCA9685(_pin-2, 4095, 0, _speed);
+      }
+      else{
+        setPWM_PCA9685(_pin-2, 0, 4095, _speed);
+      }
+    }
+    else{
+      if(_mode){
+        setPWM_PCA9685(_pin, _speed, 0, 4095);
+      }
+      else{
+        setPWM_PCA9685(_pin, _speed, 4095, 0);
+      }
+    }
   }
-
-  setPWM_PCA9685(_pin, _speed);
 }
 
 

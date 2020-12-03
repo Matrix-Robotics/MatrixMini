@@ -19,8 +19,9 @@ private:
 	int _pin;
 	int _speed;
 	int _mode;
+	int _ver;
 
-	void begin(int pin);
+	void begin(int ver, int pin);
 	
 	void setMode_PCA9685();
 };

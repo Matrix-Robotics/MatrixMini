@@ -8,10 +8,9 @@
     give you a RGB object with {@link MatrixMini.getRGB}
 */
 /**************************************************************************/
-void MiniLED::begin(uint8_t r,  uint8_t g,  uint8_t b){
-  _r = r;
-  _g = g;
-  _b = b;
+void MiniLED::begin(int ver, uint8_t ch){
+  _ch = ch;
+  _ver = ver;
 }
 /**************************************************************************/
 /*!
@@ -21,10 +20,13 @@ void MiniLED::begin(uint8_t r,  uint8_t g,  uint8_t b){
 /**************************************************************************/
 
 void MiniLED::setRGB(byte R, long G, byte B) {
-
-  setPWM_PCA9685(_r, map(R, 0, 255, 0, 4095));
-  setPWM_PCA9685(_g, map(G, 0, 255, 0, 4095));
-  setPWM_PCA9685(_b, map(B, 0, 255, 0, 4095));
+  if (_ver == 3){
+    setPWM_PCA9685(_ch, map(R, 0, 255, 0, 4095), map(G, 0, 255, 0, 4095), map(B, 0, 255, 0, 4095));
+  }
+  else{
+    setPWM_PCA9685(_ch, map(G, 0, 255, 0, 4095), map(R, 0, 255, 0, 4095), map(B, 0, 255, 0, 4095));
+  }
+  
 
 }
 

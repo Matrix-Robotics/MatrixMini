@@ -14,8 +14,9 @@
 
 #define PCA9685_PRESCALER 0xFE
 
-void setPWM_PCA9685(uint8_t ch, uint16_t on, uint16_t off);
 void setPWM_PCA9685(uint8_t ch, uint16_t duty);
+void setPWM_PCA9685(uint8_t ch, uint16_t duty1, uint16_t duty2);
+void setPWM_PCA9685(uint8_t ch, uint16_t duty1, uint16_t duty2, uint16_t duty3);
 void init_PCA9685(uint8_t freq);
 uint16_t PWM_overflow_check(int pwm);
 

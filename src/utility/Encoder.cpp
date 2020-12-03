@@ -111,21 +111,18 @@ void BAT_Det(){
         break;
     case 3:
         if(DET_vcc > DET_VBAT){
-            setPWM_PCA9685(8, 4095);
+            setPWM_PCA9685(6, 0);
         }
         else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
-            setPWM_PCA9685(8, 0);
             setPWM_PCA9685(6, 4095);
         }
         else{
             if(VBAT_toggle_flag){
-                setPWM_PCA9685(8, 0);
                 setPWM_PCA9685(6, 4095);
                 VBAT_toggle_flag = 0;
             }
             else{
-                setPWM_PCA9685(8, 0);
-                setPWM_PCA9685(6, 0);
+                setPWM_PCA9685(6, 0);     
                 VBAT_toggle_flag = 1;
             }
         }
@@ -164,9 +161,7 @@ void set_VBAT(float vbat){
 void Encoder::Init(int portL, int portR){
 
     if(ver == 3){
-        setPWM_PCA9685(6, 0);
-        setPWM_PCA9685(8, 0);
-        setPWM_PCA9685(7, 4095);
+        setPWM_PCA9685(6, 0, 4095, 0); 
     }
 
     cli();
