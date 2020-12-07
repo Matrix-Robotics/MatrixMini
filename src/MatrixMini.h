@@ -24,8 +24,8 @@
 #define AA_6 8.1
 #define LI_2 7.4
 #define LI_3 11.1
-#define LI_2 14.8
-#define LI_3 18.5
+#define LI_4 14.8
+#define LI_5 18.5
 #define LI_6 22.2
 
 
