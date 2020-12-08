@@ -102,12 +102,12 @@ void MatrixMini_:: init() {
       D3.begin(10,11); 
       D4.begin(12,13); 
 
-      init_PCA9685(0x03); //1526Hz
+      init_PCA9685(0x79); //50Hz
 
-      RC1.begin(_ver, 16);
-      RC2.begin(_ver, 4);
-      RC3.begin(_ver, 15);
-      RC4.begin(_ver, 14);
+      RC1.begin(_ver, 12);
+      RC2.begin(_ver, 11);
+      RC3.begin(_ver, 10);
+      RC4.begin(_ver, 9);
       
       pinMode(8, OUTPUT);// enable motor driver
       digitalWrite(8, HIGH);
