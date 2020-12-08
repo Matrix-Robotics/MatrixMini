@@ -1,5 +1,5 @@
 #include "utility/PCA9685.h"
-
+#include "utility/PCA9633.h"
 
 #define FORWARD 1
 #define BACKWARD 0
@@ -22,6 +22,6 @@ private:
 	int _ver;
 
 	void begin(int ver, int pin);
-	
+	void setMode_PCA9633();
 	void setMode_PCA9685();
 };

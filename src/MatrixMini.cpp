@@ -103,6 +103,7 @@ void MatrixMini_:: init() {
       D4.begin(12,13); 
 
       init_PCA9685(0x79); //50Hz
+      init_PCA9633();
 
       RC1.begin(_ver, 12);
       RC2.begin(_ver, 11);
@@ -114,8 +115,8 @@ void MatrixMini_:: init() {
 
       setPWM_PCA9685(8, 4095);
       
-      M1.begin(_ver, 9);
-      M2.begin(_ver, 11);
+      M1.begin(_ver, 0);
+      M2.begin(_ver, 2);
     
       RGB1.begin(_ver, 0);
       RGB2.begin(_ver, 3);
