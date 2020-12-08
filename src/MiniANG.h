@@ -5,7 +5,6 @@ class MiniANG{
 private:
 	int pin1;
 	int pin2;
-	int _ver;
 	void begin(int, int);
 
 public:
