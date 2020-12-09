@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "utility/ADS1015.h"
 
 class MiniANG{
 private:
