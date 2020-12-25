@@ -16,13 +16,13 @@ void MiniRC::begin(int ver, int pin){
   _pin = pin;
   _ver = ver;
   
-  if (_ver > 1){
+  if (_ver == 2){
     _RCServo.attach(_pin);
   }
 }
 
 void MiniRC::set(int angle) {
-  if (_ver > 1){
+  if (_ver == 2){
     _RCServo.write(angle);
   }
   else{

@@ -17,8 +17,23 @@ void MiniDC::set(int speed) {
     _mode = FORWARD;
   }
 
-  _speed = map(speed, 0, 100, 0, 4095);
-  setMode_PCA9685();
+  if(_ver < 3){
+     _speed = map(speed, 0, 100, 0, 4095);
+    setMode_PCA9685();
+  }
+  else{
+     _speed = map(speed, 0, 100, 0, 255);
+    setMode_PCA9633();
+  }
+}
+
+void MiniDC::setMode_PCA9633() {
+  if(_mode){
+    setPWM_PCA9633(_pin, 0, _speed);
+  }
+  else{
+    setPWM_PCA9633(_pin, _speed, 0);
+  }
 }
 
 void MiniDC::setMode_PCA9685() {
