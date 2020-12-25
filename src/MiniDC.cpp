@@ -29,10 +29,10 @@ void MiniDC::set(int speed) {
 
 void MiniDC::setMode_PCA9633() {
   if(_mode){
-    setPWM_PCA9633(_pin, _speed, 0);
+    setPWM_PCA9633(_pin, 0, _speed);
   }
   else{
-    setPWM_PCA9633(_pin, 0, _speed);
+    setPWM_PCA9633(_pin, _speed, 0);
   }
 }
 
