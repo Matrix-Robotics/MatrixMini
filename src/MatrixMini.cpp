@@ -1,13 +1,16 @@
 
 #include "MatrixMini.h"
 
+int UART_flag = 0;
 
-
-void MatrixMini_::begin(float vbat) {
+void MatrixMini_::begin(float vbat, bool _enUART) {
   Wire.begin();
   det_version();
   init();
   set_VBAT(vbat);
+  if(_enUART){
+    UART_flag=1;
+  }
   cli();
 
     TCCR2B = 3;
@@ -142,5 +145,17 @@ int MatrixMini_:: v3_check() {
   delay(100);
   return i2cReadData(ADDR_PCA9633, PCA9633_MODE2, 1);
 }
+
+void serialEvent() {
+  while (Serial.available() && UART_flag) {
+    byte inChar = Serial.read();
+    Serial.println(inChar);
+    sendBuffer(Mini.A1.get());
+    if(inChar == 0x55){
+      sendEnable();
+    }
+  }
+}
+
 
 MatrixMini_ Mini;

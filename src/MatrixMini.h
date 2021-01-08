@@ -27,7 +27,8 @@
 #define LI_4 14.8
 #define LI_5 18.5
 #define LI_6 22.2
-
+#define disable false
+#define enable true
 
 class MatrixMini_{
 private:
@@ -37,7 +38,7 @@ private:
     
     
 public:
-    void begin(float vbat = AA_6);
+    void begin(float vbat = AA_6, bool _enUART = disable);
     int _ver;
     // Modules
     MiniDC  M1, M2;

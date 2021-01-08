@@ -1,5 +1,9 @@
 #include "Encoder.h"
- 
+
+uint32_t UARTbuffer;         // a string to hold incoming data
+bool UART_IT = false;  // whether the string is complete
+
+
 int encLtA, encLtB, encRtA, encRtB;
 long encLt, encRt;
 volatile bool ENCO_flag = false;
@@ -17,7 +21,10 @@ ISR(TIMER2_COMPA_vect){
     if(VBAT_flag){
         VBAT_check();
     }
-    
+    if (UART_IT) {
+        Serial.println(UARTbuffer);
+        UART_IT = false;
+    }
 }
 
 void Encoderead(){
@@ -157,6 +164,13 @@ void set_VBAT(float vbat){
     DET_VBAT = vbat;
 }
 
+
+void sendBuffer(uint32_t buf){
+    UARTbuffer = buf;
+}
+void sendEnable(){
+    UART_IT = true;
+}
 
 void Encoder::Init(int portL, int portR){
 
@@ -392,3 +406,5 @@ float Encoder::get_Distance(int M, float diameter){
 
     return  get_Turn(M) * diameter * PI;
 }
+
+
