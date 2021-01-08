@@ -15,7 +15,7 @@
 class MiniLED
 {
   public:
-  void setRGB(byte R, byte G, byte B);
+  void setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB);
   void setHSV(int H, float S, float V);
   void setColor(byte);
 
