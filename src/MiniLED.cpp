@@ -76,56 +76,6 @@ void MiniLED::setHSV(int H, float S, float V){
   showRGB();
 }
 
-void MiniLED::setColor(byte color) {
-  switch(color)  {
-    case BLACK:
-      _r = 0;
-      _g = 0;
-      _b = 0;
-      break;
-    case RED:
-      _r = 255;
-      _g = 0;
-      _b = 0;
-      break;
-    case ORANGE:
-      _r = 255;
-      _g = 125;
-      _b = 0;
-      break;
-    case YELLOW:
-      _r = 255;
-      _g = 255;
-      _b = 0;
-      break;
-    case GREEN:
-      _r = 0;
-      _g = 255;
-      _b = 0;
-      break;
-    case CYAN:
-      _r = 0;
-      _g = 255;
-      _b = 255;
-      break;
-    case BLUE:
-      _r = 0;
-      _g = 0;
-      _b = 255;
-      break;
-    case MAGENTA:
-      _r = 255;
-      _g = 0;
-      _b = 255;
-      break;
-    case WHITE:
-      _r = 255;
-      _g = 255;
-      _b = 255;
-      break;
-  }
-  showRGB();
-}
 
 void MiniLED::showRGB() {
   if (_ver == 3){
