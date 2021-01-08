@@ -1,23 +1,11 @@
 #include "utility/PCA9685.h"
 
-#define BLACK 0
-#define RED 1
-#define ORANGE 2
-#define YELLOW 3
-#define GREEN 4
-#define CYAN 5
-#define BLUE 6
-#define MAGENTA 7
-#define WHITE 8
-
-
 
 class MiniLED
 {
   public:
   void setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB);
   void setHSV(int H, float S, float V);
-  void setColor(byte);
 
   private:
   void begin(int ver, uint8_t ch);
@@ -26,5 +14,5 @@ class MiniLED
   void showRGB();
 
   friend class MatrixMini_;
-  //Adafruit_NeoPixel pixels;
+  
 };
