@@ -19,21 +19,17 @@ void MiniLED::begin(int ver, uint8_t ch){
 */
 /**************************************************************************/
 
-void MiniLED::setRGB(byte R, long G, byte B) {
-  if (_ver == 3){
-    setPWM_PCA9685(_ch, map(R, 0, 255, 0, 4095), map(G, 0, 255, 0, 4095), map(B, 0, 255, 0, 4095));
-  }
-  else{
-    setPWM_PCA9685(_ch, map(G, 0, 255, 0, 4095), map(R, 0, 255, 0, 4095), map(B, 0, 255, 0, 4095));
-  }
-  
-
+void MiniLED::setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB) {
+  _r = PWMR;
+  _g = PWMG;
+  _b = PWMB;
+  showRGB();
 }
 
 void MiniLED::setHSV(int H, float S, float V){
-  float X, C, m, r, g, b, part;
+  float X, C, m, part;
   int c;
-  r = 0; g = 0; b = 0;
+  _r = 0; _g = 0; _b = 0;
 
   C = V*S;
   part = (float)H/60;
@@ -43,91 +39,100 @@ void MiniLED::setHSV(int H, float S, float V){
   c = floor(part);
   switch(c){
     case 0:
-      r = C;
-      g = X;
-      b = 0;
+      _r = C;
+      _g = X;
+      _b = 0;
       break;
     case 1:
-      r = X;
-      g = C;
-      b = 0;
+      _r = X;
+      _g = C;
+      _b = 0;
       break;
     case 2:
-      r = 0;
-      g = C;
-      b = X;
+      _r = 0;
+      _g = C;
+      _b = X;
       break;
     case 3:
-      r = 0;
-      g = X;
-      b = C;
+      _r = 0;
+      _g = X;
+      _b = C;
       break;
     case 4:
-      r = X;
-      g = 0;
-      b = C;
+      _r = X;
+      _g = 0;
+      _b = C;
       break;
     case 5:
-      r = C;
-      g = 0;
-      b = X;
+      _r = C;
+      _g = 0;
+      _b = X;
       break;
   }
-  r = (r+m)*255;
-  g = (g+m)*255;
-  b = (b+m)*255;
+  _r = (_r+m)*255;
+  _g = (_g+m)*255;
+  _b = (_b+m)*255;
 
-  setRGB(r, g, b);
+  showRGB();
 }
 
-void MiniLED::set(byte color) {
-  float r, g, b;
+void MiniLED::setColor(byte color) {
   switch(color)  {
     case BLACK:
-      r = 0;
-      g = 0;
-      b = 0;
+      _r = 0;
+      _g = 0;
+      _b = 0;
       break;
     case RED:
-      r = 255;
-      g = 0;
-      b = 0;
+      _r = 255;
+      _g = 0;
+      _b = 0;
       break;
     case ORANGE:
-      r = 255;
-      g = 125;
-      b = 0;
+      _r = 255;
+      _g = 125;
+      _b = 0;
       break;
     case YELLOW:
-      r = 255;
-      g = 255;
-      b = 0;
+      _r = 255;
+      _g = 255;
+      _b = 0;
       break;
     case GREEN:
-      r = 0;
-      g = 255;
-      b = 0;
+      _r = 0;
+      _g = 255;
+      _b = 0;
       break;
     case CYAN:
-      r = 0;
-      g = 255;
-      b = 255;
+      _r = 0;
+      _g = 255;
+      _b = 255;
       break;
     case BLUE:
-      r = 0;
-      g = 0;
-      b = 255;
+      _r = 0;
+      _g = 0;
+      _b = 255;
       break;
     case MAGENTA:
-      r = 255;
-      g = 0;
-      b = 255;
+      _r = 255;
+      _g = 0;
+      _b = 255;
       break;
     case WHITE:
-      r = 255;
-      g = 255;
-      b = 255;
+      _r = 255;
+      _g = 255;
+      _b = 255;
       break;
   }
-  setRGB(r, g, b);
+  showRGB();
+}
+
+void MiniLED::showRGB() {
+  if (_ver == 3){
+    setPWM_PCA9685(_ch, map(_r, 0, 255, 0, 4095), map(_g, 0, 255, 0, 4095), map(_b, 0, 255, 0, 4095));
+  }
+  else{
+    setPWM_PCA9685(_ch, map(_g, 0, 255, 0, 4095), map(_r, 0, 255, 0, 4095), map(_b, 0, 255, 0, 4095));
+  }
+  
 }
