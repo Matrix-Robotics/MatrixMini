@@ -35,11 +35,11 @@ private:
     int v3_check();
     void det_version();
     void init();
-    
+    int _ver;
     
 public:
     void begin(float vbat = AA_6, bool _enUART = disable);
-    int _ver;
+    
     // Modules
     MiniDC  M1, M2;
     MiniRC  RC1, RC2, RC3, RC4;

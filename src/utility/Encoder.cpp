@@ -165,7 +165,7 @@ void set_VBAT(float vbat){
 }
 
 
-void sendBuffer(uint32_t buf){
+void sendBuffer(uint8_t buf){
     UARTbuffer = buf;
 }
 void sendEnable(){

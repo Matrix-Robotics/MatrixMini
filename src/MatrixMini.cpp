@@ -1,6 +1,7 @@
 
 #include "MatrixMini.h"
 
+String inputString = "";
 int UART_flag = 0;
 
 void MatrixMini_::begin(float vbat, bool _enUART) {
@@ -9,6 +10,7 @@ void MatrixMini_::begin(float vbat, bool _enUART) {
   init();
   set_VBAT(vbat);
   if(_enUART){
+    inputString.reserve(14);
     UART_flag=1;
   }
   cli();
@@ -139,7 +141,6 @@ void MatrixMini_:: init() {
   ENCO.begin(_ver);
 }
 
-
 int MatrixMini_:: v3_check() {
   i2cWriteData(ADDR_PCA9633, PCA9633_MODE2, 0x04);
   delay(100);
@@ -147,15 +148,48 @@ int MatrixMini_:: v3_check() {
 }
 
 void serialEvent() {
+  
   while (Serial.available() && UART_flag) {
-    byte inChar = Serial.read();
-    Serial.println(inChar);
-    sendBuffer(Mini.A1.get());
-    if(inChar == 0x55){
-      sendEnable();
+
+    char inChar = Serial.read();
+    inputString += inChar;
+    if (inChar == '\n') {
+      int MiniLength = inputString.length();
+      
+      if ((inputString.startsWith("MINI"))
+      && (MiniLength > 8) && (MiniLength < 14)){
+        Serial.println("");
+        Serial.print("keyin: ");
+        Serial.print(inputString);
+
+        char funcStr[2]; 
+        funcStr[0] = inputString.charAt(4);
+        funcStr[1] = inputString.charAt(5);
+        uint8_t func = strtol(funcStr, NULL, 16);
+        Serial.print("function: ");
+        Serial.println(func);
+        char paraInStr[2]; 
+        paraInStr[0] = inputString.charAt(6);
+        paraInStr[1] = inputString.charAt(7);
+        uint8_t paraIn = strtol(paraInStr, NULL, 16);
+        Serial.print("parameter: ");
+        Serial.println(paraIn);
+        if(func > 127){
+          Serial.println("output only");
+
+        }
+        else{
+          Serial.print("return: ");
+          sendBuffer(Mini.BTN1.get());
+          sendEnable();
+        }
+      }
+      inputString = "";
     }
   }
+  
 }
+
 
 
 MatrixMini_ Mini;
