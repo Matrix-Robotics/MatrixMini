@@ -13,7 +13,7 @@ class MiniLED
   private:
   void begin(int ver, uint8_t ch);
   uint8_t _ch, _ver;
-  uint8_t _r, _g, _b;
+  uint8_t _r = 0, _g = 0, _b = 0;
   void showRGB();
 
   friend class MatrixMini_;
