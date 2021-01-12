@@ -26,10 +26,27 @@ void MiniLED::setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB) {
   showRGB();
 }
 
+void MiniLED::setR(uint8_t PWM){
+  _r = PWM;
+
+  showRGB();
+}
+
+void MiniLED::setG(uint8_t PWM){
+  _g = PWM;
+
+  showRGB();
+}
+
+void MiniLED::setB(uint8_t PWM){
+  _b = PWM;
+
+  showRGB();
+}
+
 void MiniLED::setHSV(int H, float S, float V){
   float X, C, m, part;
   int c;
-  _r = 0; _g = 0; _b = 0;
 
   C = V*S;
   part = (float)H/60;
