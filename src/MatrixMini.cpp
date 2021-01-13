@@ -210,10 +210,20 @@ void setMini(uint8_t _func, uint8_t _para){
   switch (_func)
   {
     case 1:
-      Mini.M1.set(_para);
+      if(_para > 127){
+        Mini.M1.set(_para-256);
+      }
+      else{
+        Mini.M1.set(_para);
+      }
       break;
     case 2:
-      Mini.M2.set(_para);
+      if(_para > 127){
+        Mini.M2.set(_para-256);
+      }
+      else{
+        Mini.M2.set(_para);
+      }
       break;
     case 3:
       Mini.RC1.set(_para);
