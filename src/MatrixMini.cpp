@@ -4,14 +4,14 @@
 String inputString = "";
 int UART_flag = 0;
 
-void MatrixMini_::begin(float vbat, bool _enUART) {
+void MatrixMini_::begin(float vbat, bool _enUART, long buad) {
   Wire.begin();
   det_version();
   init();
   set_VBAT(vbat);
 
   if(_enUART){
-    Serial.begin(115200);
+    Serial.begin(buad);
     inputString.reserve(9);
     UART_flag=1;
   }
@@ -196,7 +196,6 @@ void serialEvent() {
   }
   
 }
-
 
 uint8_t strHex2Uint(char a, char b){
   char str[2];

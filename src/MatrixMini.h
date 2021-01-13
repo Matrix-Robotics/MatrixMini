@@ -38,7 +38,7 @@ private:
     int _ver;
     
 public:
-    void begin(float vbat = AA_6, bool _enUART = disable);
+    void begin(float vbat = AA_6, bool _enUART = disable,  long buad = 115200);
     
     // Modules
     MiniDC  M1, M2;
