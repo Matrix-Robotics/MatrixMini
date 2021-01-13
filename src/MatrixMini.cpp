@@ -163,33 +163,35 @@ void serialEvent() {
 
         uint8_t func = strHex2Uint(inputString.charAt(4), inputString.charAt(5));
 
-        Serial.println("");
-        Serial.print("keyin: ");
-        Serial.print(inputString);
+        // Serial.print("keyin: ");
+        // Serial.print(inputString);
 
-        Serial.print("function: ");
-        Serial.println(func);
+        // Serial.print("function: ");
+        // Serial.println(func);
 
         if(setFlag){
-          Serial.println("mode: Set");
+          // Serial.println("mode: Set");
 
           uint8_t para = strHex2Uint(inputString.charAt(6), inputString.charAt(7));
 
-          Serial.print("parameter: ");
-          Serial.println(para);
-
-          setMini(func, para);
+          // Serial.print("parameter: ");
+          // Serial.println(para);
+          if(para){
+            setMini(func, para-1);
+          }
+          else{
+            raiseError();
+          }
         }
         else if(getFlag){
-          Serial.println("mode: get");
+          // Serial.println("mode: get");
 
           serialSendBuffer(getMini(func));
           sendEnable();
         }
       }
       else{
-        serialSendBuffer(-1);
-        sendEnable();
+        raiseError();
       }
       inputString = "";
     }
@@ -207,57 +209,56 @@ uint8_t strHex2Uint(char a, char b){
 void setMini(uint8_t _func, uint8_t _para){
   switch (_func)
   {
-    case 0:
+    case 1:
       Mini.M1.set(_para);
       break;
-    case 1:
+    case 2:
       Mini.M2.set(_para);
       break;
-    case 2:
+    case 3:
       Mini.RC1.set(_para);
       break;
-    case 3:
+    case 4:
       Mini.RC2.set(_para);
       break;
-    case 4:
+    case 5:
       Mini.RC3.set(_para);
       break;
-    case 5:
+    case 6:
       Mini.RC4.set(_para);
       break;
-    case 6:
+    case 7:
       Mini.D1.set(_para);
       break;
-    case 7:
+    case 8:
       Mini.D2.set(_para);
       break;
-    case 8:
+    case 9:
       Mini.D3.set(_para);
       break;
-    case 9:
+    case 10:
       Mini.D4.set(_para);
       break;
-    case 10:
+    case 11:
       Mini.RGB1.setR(_para);
       break;
-    case 11:
+    case 12:
       Mini.RGB1.setG(_para);
       break;
-    case 12:
+    case 13:
       Mini.RGB1.setB(_para);
       break;
-    case 13:
+    case 14:
       Mini.RGB2.setR(_para);
       break;
-    case 14:
+    case 15:
       Mini.RGB2.setG(_para);
       break;
-    case 15:
+    case 16:
       Mini.RGB2.setB(_para);
       break;
     default:
-      serialSendBuffer(-1);
-      sendEnable();
+      raiseError();
     break;
   }
 }
@@ -297,5 +298,11 @@ int getMini(uint8_t _func){
       break;
   }
 }
+
+void raiseError(){
+  serialSendBuffer(-1);
+  sendEnable();
+}
+
 
 MatrixMini_ Mini;
