@@ -14,7 +14,7 @@ void BAT_Det();
 void set_VBAT(float vbat);
 void VBAT_check();
 void Encoderead();
-void sendBuffer(uint8_t buf);
+void serialSendBuffer(int buf);
 void sendEnable();
 
 static int8_t lastLt, lastRt;

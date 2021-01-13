@@ -9,14 +9,16 @@ void MatrixMini_::begin(float vbat, bool _enUART) {
   det_version();
   init();
   set_VBAT(vbat);
+
   if(_enUART){
-    inputString.reserve(14);
+    Serial.begin(115200);
+    inputString.reserve(9);
     UART_flag=1;
   }
   cli();
 
-    TCCR2B = 3;
-    // set prescaler to 32 and starts PWM
+    TCCR2B = 7;
+    // set prescaler to 1/64 and starts PWM
 
     TIMSK2 = 2;
     //Set interrupt on compare match
@@ -154,35 +156,40 @@ void serialEvent() {
     char inChar = Serial.read();
     inputString += inChar;
     if (inChar == '\n') {
-      int MiniLength = inputString.length();
-      
-      if ((inputString.startsWith("MINI"))
-      && (MiniLength > 8) && (MiniLength < 14)){
+      bool getFlag = (inputString.length() == 7) ? true : false;
+      bool setFlag = (inputString.length() == 9) ? true : false;
+
+      if ((inputString.startsWith("MINI")) && (getFlag || setFlag)){
+
+        uint8_t func = strHex2Uint(inputString.charAt(4), inputString.charAt(5));
+
         Serial.println("");
         Serial.print("keyin: ");
         Serial.print(inputString);
 
-        char funcStr[2]; 
-        funcStr[0] = inputString.charAt(4);
-        funcStr[1] = inputString.charAt(5);
-        uint8_t func = strtol(funcStr, NULL, 16);
         Serial.print("function: ");
         Serial.println(func);
-        char paraInStr[2]; 
-        paraInStr[0] = inputString.charAt(6);
-        paraInStr[1] = inputString.charAt(7);
-        uint8_t paraIn = strtol(paraInStr, NULL, 16);
-        Serial.print("parameter: ");
-        Serial.println(paraIn);
-        if(func > 127){
-          Serial.println("output only");
 
+        if(setFlag){
+          Serial.println("mode: Set");
+
+          uint8_t para = strHex2Uint(inputString.charAt(6), inputString.charAt(7));
+
+          Serial.print("parameter: ");
+          Serial.println(para);
+
+          setMini(func, para);
         }
-        else{
-          Serial.print("return: ");
-          sendBuffer(Mini.BTN1.get());
+        else if(getFlag){
+          Serial.println("mode: get");
+
+          serialSendBuffer(getMini(func));
           sendEnable();
         }
+      }
+      else{
+        serialSendBuffer(-1);
+        sendEnable();
       }
       inputString = "";
     }
@@ -191,5 +198,105 @@ void serialEvent() {
 }
 
 
+uint8_t strHex2Uint(char a, char b){
+  char str[2];
+  str[0] = a;
+  str[1] = b;
+  return strtol(str, NULL, 16);
+}
+
+void setMini(uint8_t _func, uint8_t _para){
+  switch (_func)
+  {
+    case 0:
+      Mini.M1.set(_para);
+      break;
+    case 1:
+      Mini.M2.set(_para);
+      break;
+    case 2:
+      Mini.RC1.set(_para);
+      break;
+    case 3:
+      Mini.RC2.set(_para);
+      break;
+    case 4:
+      Mini.RC3.set(_para);
+      break;
+    case 5:
+      Mini.RC4.set(_para);
+      break;
+    case 6:
+      Mini.D1.set(_para);
+      break;
+    case 7:
+      Mini.D2.set(_para);
+      break;
+    case 8:
+      Mini.D3.set(_para);
+      break;
+    case 9:
+      Mini.D4.set(_para);
+      break;
+    case 10:
+      Mini.RGB1.setR(_para);
+      break;
+    case 11:
+      Mini.RGB1.setG(_para);
+      break;
+    case 12:
+      Mini.RGB1.setB(_para);
+      break;
+    case 13:
+      Mini.RGB2.setR(_para);
+      break;
+    case 14:
+      Mini.RGB2.setG(_para);
+      break;
+    case 15:
+      Mini.RGB2.setB(_para);
+      break;
+    default:
+      serialSendBuffer(-1);
+      sendEnable();
+    break;
+  }
+}
+
+int getMini(uint8_t _func){
+  switch (_func)
+  {
+    case 128:
+      return Mini.BTN1.get();
+      break;
+    case 129:
+      return Mini.BTN2.get();
+      break;
+    case 130:
+      return Mini.D1.get();
+      break;
+    case 131:
+      return Mini.D2.get();
+      break;
+    case 132:
+      return Mini.D3.get();
+      break;
+    case 133:
+      return Mini.D4.get();
+      break;
+    case 134:
+      return Mini.A1.get();
+      break;
+    case 135:
+      return Mini.A2.get();
+      break;
+    case 136:
+      return Mini.A3.get();
+      break;
+    default:
+      return -1;
+      break;
+  }
+}
 
 MatrixMini_ Mini;

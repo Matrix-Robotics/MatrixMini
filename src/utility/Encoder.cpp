@@ -1,8 +1,7 @@
 #include "Encoder.h"
 
-uint32_t UARTbuffer;         // a string to hold incoming data
-bool UART_IT = false;  // whether the string is complete
-
+int UARTbuffer = -1;
+bool UART_IT = false;
 
 int encLtA, encLtB, encRtA, encRtB;
 long encLt, encRt;
@@ -16,14 +15,19 @@ int vcc_cont = 0;
 int VBAT_flag = 1;
 
 ISR(TIMER2_COMPA_vect){
-    
     Encoderead();
+
     if(VBAT_flag){
         VBAT_check();
-    }
-    if (UART_IT) {
-        Serial.println(UARTbuffer);
-        UART_IT = false;
+        if (UART_IT) {
+            if (UARTbuffer == -1){
+                Serial.println("error");
+            }
+            else{
+                Serial.println(UARTbuffer, 16);
+            }
+            UART_IT = false;
+        }
     }
 }
 
@@ -64,7 +68,6 @@ void Encoderead(){
     encRt += ReadRt();
 }
 
-
 int8_t ReadLt( void ){
 
     int8_t val;
@@ -78,7 +81,6 @@ int8_t ReadLt( void ){
     
     return val;					// counts since last call
 }
-
 
 int8_t ReadRt( void ){
 
@@ -138,10 +140,11 @@ void BAT_Det(){
         break;
     }
 }
+
 void VBAT_check(){
     vcc_cont++;
 
-    if(vcc_cont >= 500){
+    if(vcc_cont >= 15){
         switch (version)
         {
         case 2:
@@ -160,14 +163,15 @@ void VBAT_check(){
     
     
 }
+
 void set_VBAT(float vbat){
     DET_VBAT = vbat;
 }
 
-
-void sendBuffer(uint8_t buf){
+void serialSendBuffer(int buf){
     UARTbuffer = buf;
 }
+
 void sendEnable(){
     UART_IT = true;
 }
@@ -181,7 +185,7 @@ void Encoder::Init(int portL, int portR){
     cli();
 
     TCCR2B = 2;
-    // set prescaler to 64 and starts PWM
+    // set prescaler to 1/8 and starts PWM
 
     TIMSK2 = 2;
     //Set interrupt on compare match
@@ -406,5 +410,3 @@ float Encoder::get_Distance(int M, float diameter){
 
     return  get_Turn(M) * diameter * PI;
 }
-
-
