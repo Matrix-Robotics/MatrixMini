@@ -160,38 +160,19 @@ void serialEvent() {
       bool setFlag = (inputString.length() == 9) ? true : false;
 
       if ((inputString.startsWith("MINI")) && (getFlag || setFlag)){
-
         uint8_t func = strHex2Uint(inputString.charAt(4), inputString.charAt(5));
 
-        // Serial.print("keyin: ");
-        // Serial.print(inputString);
-
-        // Serial.print("function: ");
-        // Serial.println(func);
-
         if(setFlag){
-          // Serial.println("mode: Set");
-
           uint8_t para = strHex2Uint(inputString.charAt(6), inputString.charAt(7));
 
-          // Serial.print("parameter: ");
-          // Serial.println(para);
           if(para){
             setMini(func, para-1);
           }
-          else{
-            raiseError();
-          }
         }
         else if(getFlag){
-          // Serial.println("mode: get");
-
           serialSendBuffer(getMini(func));
           sendEnable();
         }
-      }
-      else{
-        raiseError();
       }
       inputString = "";
     }
@@ -268,8 +249,7 @@ void setMini(uint8_t _func, uint8_t _para){
       Mini.RGB2.setB(_para);
       break;
     default:
-      raiseError();
-    break;
+      break;
   }
 }
 
@@ -307,11 +287,6 @@ int getMini(uint8_t _func){
       return -1;
       break;
   }
-}
-
-void raiseError(){
-  serialSendBuffer(-1);
-  sendEnable();
 }
 
 
