@@ -11,17 +11,17 @@ float MiniUS::get(){
 	delayMicroseconds(10);
 	digitalWrite(trig, LOW);
 
-	duration = pulseIn(echo, HIGH, 26500);  //timeout = 450cm
-	distance = 0.017*duration;
+	duration = pulseIn(echo, HIGH, 26500); //timeout = 450cm
 
-	return distance;
-}
-
-float MiniUS::getAverage(int times){
-	sum = 0;
-	for(int i = 0; i < times; i++){
-		sum += get();
+	if (duration == 0){
+		delayMicroseconds(300);
+		distance = 450.0;
 	}
-	sum = sum / times;
-	return sum;
+	else if (duration > 0 && duration < 294){
+		distance = 5.0;
+	}
+	else{
+		distance = 0.017 * duration;
+	}
+	return distance;
 }
