@@ -1,12 +1,12 @@
-#include "Matrix_Color.h"
-
-
+#include "HT/HTColor.h"
+#include "HT/HTCompass.h"
 
 class MiniI2C{
 private:
 	void begin(int ver, byte ch);
 public:
 	friend class MatrixMini_;
-	M_Color MC;
+	HTColor HTColor;
+	HTCompass HTCompass;
 };
 
