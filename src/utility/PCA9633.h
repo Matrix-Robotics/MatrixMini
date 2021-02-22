@@ -1,3 +1,6 @@
+#ifndef _PCA9633_h_
+#define _PCA9633_h_
+
 #include "PCA954X.h"
 
 #define ADDR_PCA9633  0x62
@@ -15,3 +18,5 @@ void setPWM_PCA9633(uint8_t channel, uint8_t duty);
 void setPWM_PCA9633(uint8_t channel, uint8_t duty1, uint8_t duty2);
 
 uint8_t PWM_check(uint8_t pwm);
+
+#endif

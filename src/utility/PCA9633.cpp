@@ -1,7 +1,5 @@
 #include "PCA9633.h"
 
-
-
 void setPWM_PCA9633(uint8_t channel, uint8_t duty){
     duty = PWM_check(duty);
 

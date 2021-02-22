@@ -1,3 +1,6 @@
+#ifndef _MiniLED_h_
+#define _MiniLED_h_
+
 #include "utility/PCA9685.h"
 
 
@@ -19,3 +22,5 @@ class MiniLED
   friend class MatrixMini_;
   
 };
+
+#endif

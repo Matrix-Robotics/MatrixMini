@@ -11,15 +11,15 @@
 #define HT_COLOR_BLUE 		0x45
 
 class HTColor{
-	private:
-		uint8_t _ch, _ver;
-	public:
-		uint8_t getColorNumber();
-		uint8_t getR();
-		uint8_t getG();
-		uint8_t getB();
-		uint8_t getGrayscale();
-		friend class MiniI2C;
+private:
+	uint8_t _ch, _ver;
+public:
+	friend class MiniI2C;
+	uint8_t getColorNumber();
+	uint8_t getR();
+	uint8_t getG();
+	uint8_t getB();
+	uint8_t getGrayscale();
 };
 
 #endif

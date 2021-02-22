@@ -1,3 +1,6 @@
+#ifndef _MiniDC_h_
+#define _MiniDC_h_
+
 #include "utility/PCA9685.h"
 #include "utility/PCA9633.h"
 
@@ -25,3 +28,5 @@ private:
 	void setMode_PCA9633();
 	void setMode_PCA9685();
 };
+
+#endif

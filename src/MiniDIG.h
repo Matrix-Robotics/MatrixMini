@@ -1,3 +1,6 @@
+#ifndef _MiniDIG_h_
+#define _MiniDIG_h_
+
 #include <Arduino.h>
 #include "utility/HC04.h"
 
@@ -15,3 +18,5 @@ public:
 	void set(byte);
 	friend class MatrixMini_;
 };
+
+#endif

@@ -1,7 +1,5 @@
 #include "PCA9685.h"
 
-
-
 void init_PCA9685(uint8_t freq){
     i2cWriteData(ADDR_PCA9685, PCA9685_MODE1, 0x10);
     i2cWriteData(ADDR_PCA9685, PCA9685_PRESCALER, freq);

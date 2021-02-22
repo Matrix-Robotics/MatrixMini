@@ -1,3 +1,6 @@
+#ifndef _MiniBTN_h_
+#define _MiniBTN_h_
+
 #include <Arduino.h>
 
 class MiniBTN {
@@ -8,3 +11,5 @@ private:
 	int port;
 	void begin(int, int);
 };
+
+#endif

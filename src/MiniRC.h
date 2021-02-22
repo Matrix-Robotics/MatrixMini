@@ -1,3 +1,6 @@
+#ifndef _MiniRC_h_
+#define _MiniRC_h_
+
 #include "utility/PCA9685.h"
 #include <Servo.h>
 
@@ -13,3 +16,5 @@ class MiniRC {
     Servo _RCServo;
     void begin(int, int);
 };
+
+#endif

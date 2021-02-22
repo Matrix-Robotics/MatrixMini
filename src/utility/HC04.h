@@ -1,3 +1,6 @@
+#ifndef _HC04_h_
+#define _HC04_h_
+
 #include <Arduino.h>
 
 class MiniUS{
@@ -11,3 +14,5 @@ public:
 	friend class MiniDIG;
 	float get();
 };
+
+#endif

@@ -1,8 +1,6 @@
 #ifndef _PCA954X_h_
 #define _PCA954X_h_
 
-
-
 #include <Wire.h>
 #include <Arduino.h>
 

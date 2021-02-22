@@ -11,15 +11,15 @@
 #define HT_COMPASS_HEADING 		0x44
 
 class HTCompass{
-	private:
-		uint8_t _ch, _ver;
-	public:
-		void startCalibration();
-		bool finishCalibration();
-		uint8_t getHeading2();
-		uint16_t getHeading1();
-		uint16_t getHeading();
-		friend class MiniI2C;
+private:
+	uint8_t _ch, _ver;
+public:
+	friend class MiniI2C;
+	void startCalibration();
+	bool finishCalibration();
+	uint8_t getHeading2();
+	uint16_t getHeading1();
+	uint16_t getHeading();
 };
 
 #endif

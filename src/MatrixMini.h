@@ -2,8 +2,6 @@
  *  MatrixMini.h
  *
  * Written by KKITC RD Team
- * BSD license, all text here must be included in any redistribution.
- *
  ******************************************************************/
 
 #ifndef _MatrixMini_h_

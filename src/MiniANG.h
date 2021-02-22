@@ -1,3 +1,6 @@
+#ifndef _MiniANG_h_
+#define _MiniANG_h_
+
 #include <Arduino.h>
 
 class MiniANG{
@@ -10,3 +13,5 @@ public:
   	int get();
 	friend class MatrixMini_;
 };
+
+#endif
