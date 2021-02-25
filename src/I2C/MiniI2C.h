@@ -4,6 +4,7 @@
 
 #include "HT/HTColor.h"
 #include "HT/HTCompass.h"
+#include "MATRIX/MatrixController.h"
 
 class MiniI2C{
 private:
@@ -12,6 +13,7 @@ public:
 	friend class MatrixMini_;
 	HTColor HTColor;
 	HTCompass HTCompass;
+	MatrixController MXctrl;
 };
 
 #endif
