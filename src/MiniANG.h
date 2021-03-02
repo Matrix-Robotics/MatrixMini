@@ -10,7 +10,8 @@ private:
 	void begin(int, int);
 
 public:
-  	int get();
+  	uint16_t getANG();
+	bool getDIG();
 	friend class MatrixMini_;
 };
 
