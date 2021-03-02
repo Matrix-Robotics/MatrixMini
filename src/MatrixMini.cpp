@@ -275,13 +275,13 @@ int getMini(uint8_t _func){
       return Mini.D4.get();
       break;
     case 134:
-      return Mini.A1.get();
+      return Mini.A1.getANG();
       break;
     case 135:
-      return Mini.A2.get();
+      return Mini.A2.getANG();
       break;
     case 136:
-      return Mini.A3.get();
+      return Mini.A3.getANG();
       break;
     default:
       return -1;
