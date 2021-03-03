@@ -4,7 +4,7 @@
 #include "../../utility/PCA954X.h"
 #include "utility/Pixy2I2C.h"
 
-
+#define SIGG 1
 class PIXYCam{
 private:
     Pixy2I2C pixy;

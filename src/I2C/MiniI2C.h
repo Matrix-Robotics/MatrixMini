@@ -3,8 +3,9 @@
 
 #include "HT/HTColor.h"
 #include "HT/HTCompass.h"
+#include "MATRIX/MatrixController.h"
 
-// #include "PIXY/PixyCam.h"
+#include "PIXY/PixyCam.h"
 
 class MiniI2C{
 private:
@@ -14,7 +15,8 @@ public:
 	friend class MatrixMini_;
 	HTColor HTColor;
 	HTCompass HTCompass;
-	// PIXY PIXY;
+	PIXYCam PIXYCam;
+	MatrixController MXctrl;
 };
 
 #endif
