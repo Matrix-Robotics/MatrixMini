@@ -15,8 +15,8 @@ private:
 	uint8_t _ch, _ver;
 public:
 	friend class MiniI2C;
-	void startCal();
-	bool finishCal();
+	// void startCal();
+	// bool finishCal();
 	uint16_t getHeading();
 };
 

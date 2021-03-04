@@ -36,7 +36,11 @@ void MiniANG::begin(int ver, int ch){
 	}
 }
 
-
-int MiniANG::get() {
+uint16_t MiniANG::getANG() {
 	return analogRead(pin1);
+}
+
+bool MiniANG::getDIG() {
+	pinMode(pin2, INPUT);
+	return digitalRead(pin2);
 }

@@ -8,8 +8,7 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     HTCompass._ch = ch;
     PIXYCam._ver = ver;
     PIXYCam._ch = ch;
-    PIXYCam.initCam();
-    PIXYCam._block = PIXYCam.getBlocks();
+
     MXctrl._ver = ver;
     MXctrl._ch = ch;
     MXctrl.begin();

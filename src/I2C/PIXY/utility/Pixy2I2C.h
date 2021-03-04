@@ -43,8 +43,6 @@ public:
   int16_t recv(uint8_t *buf, uint8_t len, uint16_t *cs=NULL)
   {
     uint8_t i, j, n;
-    // TODO
-    i2cMUXSelect(2, 3);
     if (cs)
       *cs = 0;
     for (i=0; i<len; i+=n)
@@ -64,7 +62,6 @@ public:
   int16_t send(uint8_t *buf, uint8_t len)
   {
     int8_t i, packet;
-    i2cMUXSelect(2, 3);
 	  for (i=0; i<len; i+=PIXY_I2C_MAX_SEND){
       if (len-i<PIXY_I2C_MAX_SEND)
 		    packet = len-i;

@@ -1,7 +1,7 @@
 #include "PCA954X.h"
 
 
-void i2cWriteData(byte dev, byte addr){
+void i2cWriteData(uint8_t dev, uint8_t addr){
 
 	Wire.beginTransmission(dev);
 
@@ -10,7 +10,7 @@ void i2cWriteData(byte dev, byte addr){
 	Wire.endTransmission(1);
 }
 
-void i2cWriteData(byte dev, byte addr, uint8_t data){
+void i2cWriteData(uint8_t dev, uint8_t addr, uint8_t data){
 
 	Wire.beginTransmission(dev);
 
@@ -20,7 +20,7 @@ void i2cWriteData(byte dev, byte addr, uint8_t data){
 	Wire.endTransmission(1);
 }
 
-void i2cWriteData(byte dev, byte addr, uint8_t data, uint8_t data2){
+void i2cWriteData(uint8_t dev, uint8_t addr, uint8_t data, uint8_t data2){
 
 	Wire.beginTransmission(dev);
 
@@ -31,7 +31,25 @@ void i2cWriteData(byte dev, byte addr, uint8_t data, uint8_t data2){
 	Wire.endTransmission(1);
 }
 
-uint32_t i2cReadData(byte dev, int numBytes){
+void i2cWriteBytes(uint8_t dev, uint8_t addr, uint32_t data, int numBytes){
+	uint32_t d;
+	int shift;
+
+	Wire.beginTransmission(dev);
+
+	Wire.write(addr);
+
+	for(int i = numBytes-1; i > -1; i--){
+		shift = 8*i;
+		d = data >> shift;
+		Wire.write(d);
+		data = data - (d << shift);
+	}
+
+	Wire.endTransmission(1);
+}
+
+uint32_t i2cReadData(uint8_t dev, int numBytes){
 
 	Wire.requestFrom(dev, numBytes);
 
@@ -49,7 +67,7 @@ uint32_t i2cReadData(byte dev, int numBytes){
 	return dataBuf;
 }
 
-uint32_t i2cReadData(byte dev, byte addr, int numBytes){
+uint32_t i2cReadData(uint8_t dev, uint8_t addr, int numBytes){
 	
 	Wire.beginTransmission(dev);
 	Wire.write(addr);
@@ -75,7 +93,7 @@ uint32_t i2cReadData(byte dev, byte addr, int numBytes){
 
 
 
-void i2cMUXSelect(byte channel, int ver){
+void i2cMUXSelect(uint8_t channel, int ver){
 	switch (ver)
 	{
 	case 2:
