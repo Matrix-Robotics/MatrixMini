@@ -8,6 +8,7 @@ class PIXYCam{
 private:
     Pixy2I2C pixy;
 	uint8_t _ch, _ver;
+    Block _EmptyBlock;
     bool _INIT_FLAG = 0;
 
 public:

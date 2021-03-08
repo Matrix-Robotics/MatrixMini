@@ -8,8 +8,10 @@ void PIXYCam::getblock(int n_th=0){
   }
   
   pixy.ccc.getBlocks();
-  
   if (pixy.ccc.numBlocks){ 
     block = pixy.ccc.blocks[n_th];
+  }
+  else{
+    block = _EmptyBlock;
   } 
 }
