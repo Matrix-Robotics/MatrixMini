@@ -2,7 +2,7 @@
 
 uint8_t HTColor::getColorNumber(){
 	i2cMUXSelect(_ch, _ver);
-	return i2cReadData(HT_COLOR_ADDR, HT_COLOR_COLOR);
+	return i2cReadData(HT_COLOR_ADDR, HT_COLOR_COLOR, 1);
 }
 
 uint8_t HTColor::getR(){
