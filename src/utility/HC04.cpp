@@ -15,8 +15,8 @@ float MiniUS::get(){
 
 	if (duration == 0){
 		delayMicroseconds(100);
-		// distance = 450.0;
-		return -1;
+		// sensor timeout
+		distance = -1;
 	}
 	else if (duration > 0 && duration < 294){
 		distance = 5.0;

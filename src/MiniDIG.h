@@ -1,9 +1,10 @@
-#ifndef _MiniDIG_h_
-#define _MiniDIG_h_
+#ifndef _MINIDIG_H_
+#define _MINIDIG_H_
 
 #include <Arduino.h>
 #include "utility/HC04.h"
-#include "SoftwareSerial.h"
+#include <SoftwareSerial.h>
+
 
 class MiniDIG{
 private:
@@ -12,17 +13,18 @@ private:
 	int mode;
 	void updateMode(int);
 	void begin(int, int);
-	
+	void softwareserial(int, int);
+
 public:
  	MiniUS US;
-	// SoftwareSerial BT;
+	// 99, 98 are impossible values, 
+	// for avoiding default definition would be ill-formed.
+	SoftwareSerial BT = SoftwareSerial(99, 98);
  	bool get();
 	void set(byte);
-	void BTbegin();
-	bool BTavailable();
-	void BTreadBytes(byte*, byte);
+
 	friend class MatrixMini_;
+	
 };
-// SoftwareSerial BT(int pin1, int pin2);
 
 #endif

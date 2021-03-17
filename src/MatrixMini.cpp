@@ -1,4 +1,3 @@
-
 #include "MatrixMini.h"
 
 String inputString = "";
