@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "utility/HC04.h"
+#include "SoftwareSerial.h"
 
 class MiniDIG{
 private:
@@ -14,9 +15,14 @@ private:
 	
 public:
  	MiniUS US;
+	// SoftwareSerial BT;
  	bool get();
 	void set(byte);
+	void BTbegin();
+	bool BTavailable();
+	void BTreadBytes(byte*, byte);
 	friend class MatrixMini_;
 };
+// SoftwareSerial BT(int pin1, int pin2);
 
 #endif
