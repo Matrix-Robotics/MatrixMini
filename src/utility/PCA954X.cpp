@@ -31,7 +31,7 @@ void i2cWriteData(uint8_t dev, uint8_t addr, uint8_t data, uint8_t data2){
 	Wire.endTransmission(1);
 }
 
-void i2cWriteBytes(uint8_t dev, uint8_t addr, uint32_t data, int numBytes){
+void i2cWriteBytes(uint8_t dev, uint8_t addr, uint32_t data, uint8_t numBytes){
 	uint32_t d;
 	int shift;
 
@@ -49,7 +49,7 @@ void i2cWriteBytes(uint8_t dev, uint8_t addr, uint32_t data, int numBytes){
 	Wire.endTransmission(1);
 }
 
-uint32_t i2cReadData(uint8_t dev, int numBytes){
+uint32_t i2cReadData(uint8_t dev, uint8_t numBytes){
 
 	Wire.requestFrom(dev, numBytes);
 
@@ -67,7 +67,7 @@ uint32_t i2cReadData(uint8_t dev, int numBytes){
 	return dataBuf;
 }
 
-uint32_t i2cReadData(uint8_t dev, uint8_t addr, int numBytes){
+uint32_t i2cReadData(uint8_t dev, uint8_t addr, uint8_t numBytes){
 	
 	Wire.beginTransmission(dev);
 	Wire.write(addr);
