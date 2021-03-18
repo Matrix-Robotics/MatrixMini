@@ -19,7 +19,9 @@ public:
  	MiniUS US;
 	// 99, 98 are impossible values, 
 	// for avoiding default definition would be ill-formed.
-	SoftwareSerial BT = SoftwareSerial(99, 98);
+	// SoftwareSerial BT = SoftwareSerial(13, 12);
+	SoftwareSerial BT = SoftwareSerial(99, 94);
+
  	bool get();
 	void set(byte);
 
