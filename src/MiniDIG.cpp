@@ -11,7 +11,6 @@ void MiniDIG::begin(int pin1, int pin2){
 	
 	pinMode(_pin1, mode);
 	pinMode(_pin2, mode);
-	SoftwareSerial BT = SoftwareSerial(pin2, pin1);
 }
 
 bool MiniDIG::get() {
@@ -29,4 +28,9 @@ void MiniDIG::updateMode(int m) {
 		mode = m;
 		pinMode(_pin1, mode);
 	}
+}
+
+void MiniDIG::BTBegin(int baud) {
+	BT = new SoftwareSerial(_pin2, _pin1);
+	BT->begin(baud);
 }

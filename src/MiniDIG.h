@@ -5,28 +5,24 @@
 #include "utility/HC04.h"
 #include <SoftwareSerial.h>
 
-
-class MiniDIG{
+class MiniDIG
+{
 private:
 	int _pin1;
 	int _pin2;
 	int mode;
 	void updateMode(int);
 	void begin(int, int);
-	void softwareserial(int, int);
 
 public:
- 	MiniUS US;
-	// 99, 98 are impossible values, 
-	// for avoiding default definition would be ill-formed.
-	// SoftwareSerial BT = SoftwareSerial(13, 12);
-	SoftwareSerial BT = SoftwareSerial(99, 94);
+	MiniUS US;
+	SoftwareSerial *BT;
 
- 	bool get();
+	bool get();
 	void set(byte);
+	void BTBegin(int);
 
 	friend class MatrixMini_;
-	
 };
 
 #endif
