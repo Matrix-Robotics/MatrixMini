@@ -31,6 +31,9 @@ void MiniDIG::updateMode(int m) {
 }
 
 void MiniDIG::BTBegin(int baud) {
-	BT = new SoftwareSerial(_pin2, _pin1);
-	BT->begin(baud);
+	if(_flag){
+		BT = new SoftwareSerial(_pin2, _pin1);
+		BT->begin(baud);
+		_flag = false;
+	}
 }

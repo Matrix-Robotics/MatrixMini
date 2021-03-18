@@ -13,14 +13,15 @@ private:
 	int mode;
 	void updateMode(int);
 	void begin(int, int);
-
+	bool _flag = true;
+	
 public:
 	MiniUS US;
 	SoftwareSerial *BT;
 
 	bool get();
 	void set(byte);
-	void BTBegin(int);
+	void BTBegin(int baud=9600);
 
 	friend class MatrixMini_;
 };
