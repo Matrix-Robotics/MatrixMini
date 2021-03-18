@@ -1,5 +1,5 @@
-#ifndef _MINII2C_H_
-#define _MINII2C_H_
+#ifndef _MiniI2C_h_
+#define _MiniI2C_h_
 
 #include "HT/HTColor.h"
 #include "HT/HTCompass.h"
@@ -11,9 +11,9 @@ private:
 
 public:
 	friend class MatrixMini_;
-	HTColor HTColor;
-	HTCompass HTCompass;
-	PIXYCam PIXYCam;
+	HTColor HTcolor;
+	HTCompass HTcompass;
+	PIXYCam PIXYcam;
 	MatrixController MXctrl;
 };
 
