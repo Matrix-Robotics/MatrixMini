@@ -1,5 +1,5 @@
-#ifndef _PCA9633_h_
-#define _PCA9633_h_
+#ifndef _PCA9633_H_
+#define _PCA9633_H_
 
 #include "PCA954X.h"
 

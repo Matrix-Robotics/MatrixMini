@@ -1,5 +1,5 @@
-#ifndef _MiniDIG_h_
-#define _MiniDIG_h_
+#ifndef _MINIDIG_H_
+#define _MINIDIG_H_
 
 #include <Arduino.h>
 #include "utility/HC04.h"

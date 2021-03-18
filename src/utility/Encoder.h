@@ -1,5 +1,5 @@
-#ifndef _Encoder_h_
-#define _Encoder_h_
+#ifndef _Encoder_H_
+#define _Encoder_H_
 
 #include <Arduino.h>
 #include "PCA9685.h"

@@ -4,8 +4,8 @@
  * Written by KKITC RD Team
  ******************************************************************/
 
-#ifndef _MatrixMini_h_
-#define _MatrixMini_h_
+#ifndef _MatrixMini_H_
+#define _MatrixMini_H_
 
 #include <Arduino.h>
 #include "MiniDC.h"

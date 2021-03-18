@@ -1,5 +1,5 @@
-#ifndef _MiniBTN_h_
-#define _MiniBTN_h_
+#ifndef _MINIBTN_H_
+#define _MINIBTN_H_
 
 #include <Arduino.h>
 

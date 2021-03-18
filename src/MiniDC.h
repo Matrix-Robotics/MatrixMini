@@ -1,5 +1,5 @@
-#ifndef _MiniDC_h_
-#define _MiniDC_h_
+#ifndef _MINIDC_H_
+#define _MINIDC_H_
 
 #include "utility/PCA9685.h"
 #include "utility/PCA9633.h"
