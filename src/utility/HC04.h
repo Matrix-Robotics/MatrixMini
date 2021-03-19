@@ -1,5 +1,5 @@
-#ifndef _HC04_h_
-#define _HC04_h_
+#ifndef _HC04_H_
+#define _HC04_H_
 
 #include <Arduino.h>
 

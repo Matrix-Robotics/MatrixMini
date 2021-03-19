@@ -1,5 +1,5 @@
-#ifndef _MatrixController_h_
-#define _MatrixController_h_
+#ifndef _MatrixController_H_
+#define _MatrixController_H_
 
 #include "../../utility/PCA954X.h"
 

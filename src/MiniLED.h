@@ -1,5 +1,5 @@
-#ifndef _MiniLED_h_
-#define _MiniLED_h_
+#ifndef _MINILED_H_
+#define _MINILED_H_
 
 #include "utility/PCA9685.h"
 

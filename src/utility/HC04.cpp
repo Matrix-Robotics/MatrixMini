@@ -14,8 +14,9 @@ float MiniUS::get(){
 	duration = pulseIn(echo, HIGH, 26500); //timeout = 450cm
 
 	if (duration == 0){
-		delayMicroseconds(300);
-		distance = 450.0;
+		delayMicroseconds(100);
+		// sensor timeout
+		distance = -1;
 	}
 	else if (duration > 0 && duration < 294){
 		distance = 5.0;

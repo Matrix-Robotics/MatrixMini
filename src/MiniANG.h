@@ -1,5 +1,5 @@
-#ifndef _MiniANG_h_
-#define _MiniANG_h_
+#ifndef _MINIANG_H_
+#define _MINIANG_H_
 
 #include <Arduino.h>
 

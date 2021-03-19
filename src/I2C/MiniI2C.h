@@ -11,9 +11,9 @@ private:
 
 public:
 	friend class MatrixMini_;
-	HTColor HTColor;
-	HTCompass HTCompass;
-	PIXYCam PIXYCam;
+	HTColor HTcolor;
+	HTCompass HTcompass;
+	PIXYCam PIXYcam;
 	MatrixController MXctrl;
 };
 

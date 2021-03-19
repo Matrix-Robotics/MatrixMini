@@ -1,5 +1,5 @@
-#ifndef _HTColor_h_
-#define _HTColor_h_
+#ifndef _HTColor_H_
+#define _HTColor_H_
 
 #include "../../utility/PCA954X.h"
 

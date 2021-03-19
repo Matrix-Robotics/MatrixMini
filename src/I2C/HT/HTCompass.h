@@ -1,5 +1,5 @@
-#ifndef _HTCompass_h_
-#define _HTCompass_h_
+#ifndef _HTCompass_H_
+#define _HTCompass_H_
 
 #include "../../utility/PCA954X.h"
 

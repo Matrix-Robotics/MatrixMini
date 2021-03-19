@@ -1,5 +1,5 @@
-#ifndef _MiniRC_h_
-#define _MiniRC_h_
+#ifndef _MINIRC_H_
+#define _MINIRC_H_
 
 #include "utility/PCA9685.h"
 #include <Servo.h>

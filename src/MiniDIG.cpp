@@ -1,14 +1,14 @@
 #include "MiniDIG.h"
 
+
 void MiniDIG::begin(int pin1, int pin2){
 	_pin1 = pin1;
 	_pin2 = pin2;
 
 	US.echo = pin2;
 	US.trig = pin1;
-
 	mode = INPUT;
-
+	
 	pinMode(_pin1, mode);
 	pinMode(_pin2, mode);
 }
@@ -27,5 +27,13 @@ void MiniDIG::updateMode(int m) {
 	if(mode!=m){
 		mode = m;
 		pinMode(_pin1, mode);
+	}
+}
+
+void MiniDIG::BTBegin(int baud) {
+	if(_flag){
+		BT = new SoftwareSerial(_pin2, _pin1);
+		BT->begin(baud);
+		_flag = false;
 	}
 }
