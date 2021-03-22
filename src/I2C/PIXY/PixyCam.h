@@ -14,7 +14,7 @@ private:
 public:
     friend class MiniI2C;
     Block block;
-    void getblock(int n_th);
+    void getblock(int n_th=0);
 };
 
 #endif

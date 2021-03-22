@@ -1,6 +1,6 @@
 #include "PixyCam.h"
 
-void PIXYCam::getblock(int n_th=0){
+void PIXYCam::getblock(int n_th){
   i2cMUXSelect(_ch, _ver);
   if (_INIT_FLAG == 0){
     pixy.init();
