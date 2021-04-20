@@ -18,8 +18,8 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("A1 Port Read: ");  Serial.println(Mini.A1.get());
-  Serial.print("A3 Port Read: ");  Serial.println(Mini.A3.get());
+  Serial.print("A1 Port Read: ");  Serial.println(Mini.A1.getANG());
+  Serial.print("A3 Port Read: ");  Serial.println(Mini.A3.getANG());
   Serial.println("---");
   delay(2000);
 }
