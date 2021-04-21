@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.print(Mini.A1.get());
+  Serial.print(Mini.A1.getANG());
   Serial.print(" ");
-  Serial.println(Mini.A3.get());
+  Serial.println(Mini.A3.getANG());
 }
