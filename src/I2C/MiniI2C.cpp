@@ -1,6 +1,8 @@
 
 #include "MiniI2C.h"
 
+// ver is version of MATRIX Mini, start: 1, step:1, ends: 3
+// ch is I2C channel , start: 1, step:1, ends: 4
 void MiniI2C::begin(uint8_t ver, uint8_t ch){
     HTcolor._ver = ver;
     HTcolor._ch = ch;
