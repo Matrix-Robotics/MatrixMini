@@ -19,6 +19,7 @@ void setup() {
   Serial.println("Starting Up ... ");
 }
 
+//  The value of analog can be 0 to 1023 (integer).
 void loop() {
   Serial.print(Mini.A1.getANG());
   Serial.print(" ");
