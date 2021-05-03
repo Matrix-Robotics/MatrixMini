@@ -14,16 +14,16 @@
 //
 // Arduino I2C link class
 
-#ifndef _PIXY2I2C_H
-#define _PIXY2I2C_H
+#ifndef _MiniPixy2I2C_H
+#define _MiniPixy2I2C_H
 
-#include "TPixy2.h"
+#include "MiniTPixy2.h"
 #include "Wire.h"
 
 #define PIXY_I2C_DEFAULT_ADDR           0x54  
 #define PIXY_I2C_MAX_SEND               16 // don't send any more than 16 bytes at a time
 
-class Link2I2C
+class PixyLink2I2C
 {
 public:
   int8_t open(uint32_t arg) // take I2C address as argument to open
@@ -79,7 +79,7 @@ private:
 };
 
 
-typedef TPixy2<Link2I2C> Pixy2I2C;
+typedef MiniTPixy2<PixyLink2I2C> MiniPixy2I2C;
 
 
 #endif

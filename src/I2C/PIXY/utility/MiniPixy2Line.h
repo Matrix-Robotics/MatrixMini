@@ -12,13 +12,13 @@
 //
 // end license header
 //
-// This file is for defining the Block struct and the Pixy template class version 2.
-// (TPixy2).  TPixy takes a communication link as a template parameter so that 
+// This file is for defining the PIXYBlock struct and the Pixy template class version 2.
+// (MiniTPixy2).  TPixy takes a communication link as a template parameter so that 
 // all communication modes (SPI, I2C and UART) can share the same code.  
 //
 
-#ifndef _PIXY2LINE_H
-#define _PIXY2LINE_H
+#ifndef _MiniPixy2Line_H
+#define _MiniPixy2Line_H
 
 #define LINE_REQUEST_GET_FEATURES                0x30
 #define LINE_RESPONSE_GET_FEATURES               0x31
@@ -46,7 +46,7 @@
 
 #define LINE_MAX_INTERSECTION_LINES              6
 
-struct Vector
+struct PIXYVector
 {
   void print()
   {
@@ -63,14 +63,14 @@ struct Vector
   uint8_t m_flags;
 };
 
-struct IntersectionLine
+struct PIXYIIntersectionLine
 {
   uint8_t m_index;
   uint8_t m_reserved;
   int16_t m_angle;
 };
 
-struct Intersection
+struct PIXYIntersection
 {
   void print()
   {
@@ -90,15 +90,15 @@ struct Intersection
 	
   uint8_t m_n;
   uint8_t m_reserved;
-  IntersectionLine m_intLines[LINE_MAX_INTERSECTION_LINES];
+  PIXYIIntersectionLine m_intLines[LINE_MAX_INTERSECTION_LINES];
 };
 
-struct Barcode
+struct PIXYIBarcode
 {
   void print()
   {
     char buf[64];
-    sprintf(buf, "Barcode: (%d %d), val: %d flags: %d", m_x, m_y, m_code, m_flags);
+    sprintf(buf, "PIXYIBarcode: (%d %d), val: %d flags: %d", m_x, m_y, m_code, m_flags);
     Serial.println(buf);
   }
   
@@ -108,12 +108,12 @@ struct Barcode
   uint8_t m_code;
 };
 
-template <class LinkType> class TPixy2;
+template <class LinkType> class MiniTPixy2;
 
-template <class LinkType> class Pixy2Line
+template <class LinkType> class MiniPixy2Line
 {
 public:
-  Pixy2Line(TPixy2<LinkType> *pixy)
+  MiniPixy2Line(MiniTPixy2<LinkType> *pixy)
   {
     m_pixy = pixy;
   }	  
@@ -135,22 +135,22 @@ public:
   int8_t reverseVector();
   
   uint8_t numVectors;
-  Vector *vectors;
+  PIXYVector *vectors;
   
   uint8_t numIntersections;
-  Intersection *intersections;
+  PIXYIntersection *intersections;
 
   uint8_t numBarcodes;
-  Barcode *barcodes;
+  PIXYIBarcode *barcodes;
 
 private:
   int8_t getFeatures(uint8_t type, uint8_t features, bool wait);
-  TPixy2<LinkType> *m_pixy;
+  MiniTPixy2<LinkType> *m_pixy;
   
 };
 
 
-template <class LinkType> int8_t Pixy2Line<LinkType>::getFeatures(uint8_t type,  uint8_t features, bool wait)
+template <class LinkType> int8_t MiniPixy2Line<LinkType>::getFeatures(uint8_t type,  uint8_t features, bool wait)
 {
   int8_t res;
   uint8_t offset, fsize, ftype, *fdata;
@@ -184,20 +184,20 @@ template <class LinkType> int8_t Pixy2Line<LinkType>::getFeatures(uint8_t type, 
           fdata = &m_pixy->m_buf[offset+2]; 
           if (ftype==LINE_VECTOR)
           {
-            vectors = (Vector *)fdata;
-            numVectors = fsize/sizeof(Vector);
+            vectors = (PIXYVector *)fdata;
+            numVectors = fsize/sizeof(PIXYVector);
             res |= LINE_VECTOR;
 		      }
 		      else if (ftype==LINE_INTERSECTION)
           {
-            intersections = (Intersection *)fdata;
-            numIntersections = fsize/sizeof(Intersection);
+            intersections = (PIXYIntersection *)fdata;
+            numIntersections = fsize/sizeof(PIXYIntersection);
             res |= LINE_INTERSECTION;
           }
  		      else if (ftype==LINE_BARCODE)
           {
-            barcodes = (Barcode *)fdata;
-            numBarcodes = fsize/sizeof(Barcode);;
+            barcodes = (PIXYIBarcode *)fdata;
+            numBarcodes = fsize/sizeof(PIXYIBarcode);;
             res |= LINE_BARCODE;
           }
           else
@@ -223,7 +223,7 @@ template <class LinkType> int8_t Pixy2Line<LinkType>::getFeatures(uint8_t type, 
   }
 }
 
-template <class LinkType> int8_t Pixy2Line<LinkType>::setMode(uint8_t mode)
+template <class LinkType> int8_t MiniPixy2Line<LinkType>::setMode(uint8_t mode)
 {
   uint32_t res;
 
@@ -241,7 +241,7 @@ template <class LinkType> int8_t Pixy2Line<LinkType>::setMode(uint8_t mode)
 }
 
 
-template <class LinkType> int8_t Pixy2Line<LinkType>::setNextTurn(int16_t angle)
+template <class LinkType> int8_t MiniPixy2Line<LinkType>::setNextTurn(int16_t angle)
 {
   uint32_t res;
 
@@ -258,7 +258,7 @@ template <class LinkType> int8_t Pixy2Line<LinkType>::setNextTurn(int16_t angle)
       return PIXY_RESULT_ERROR;  // some kind of bitstream error
 }
 
-template <class LinkType>  int8_t Pixy2Line<LinkType>::setDefaultTurn(int16_t angle)
+template <class LinkType>  int8_t MiniPixy2Line<LinkType>::setDefaultTurn(int16_t angle)
 {
   uint32_t res;
 
@@ -275,7 +275,7 @@ template <class LinkType>  int8_t Pixy2Line<LinkType>::setDefaultTurn(int16_t an
       return PIXY_RESULT_ERROR;  // some kind of bitstream error
 }
 
-template <class LinkType> int8_t Pixy2Line<LinkType>::setVector(uint8_t index)
+template <class LinkType> int8_t MiniPixy2Line<LinkType>::setVector(uint8_t index)
 {
   uint32_t res;
 
@@ -293,7 +293,7 @@ template <class LinkType> int8_t Pixy2Line<LinkType>::setVector(uint8_t index)
 }
 
 
-template <class LinkType> int8_t Pixy2Line<LinkType>::reverseVector()
+template <class LinkType> int8_t MiniPixy2Line<LinkType>::reverseVector()
 {
   uint32_t res;
 

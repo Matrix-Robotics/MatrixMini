@@ -12,22 +12,22 @@
 //
 // end license header
 //
-// This file is for defining the Block struct and the Pixy template class version 2.
-// (TPixy2).  TPixy takes a communication link as a template parameter so that 
+// This file is for defining the PIXYBlock struct and the Pixy template class version 2.
+// (MiniTPixy2).  TPixy takes a communication link as a template parameter so that 
 // all communication modes (SPI, I2C and UART) can share the same code.  
 //
 
-#ifndef _PIXY2VIDEO_H
-#define _PIXY2VIDEO_H
+#ifndef _MiniPixy2Video_H
+#define _MiniPixy2Video_H
 
 #define VIDEO_REQUEST_GET_RGB   0x70
 
-template <class LinkType> class TPixy2;
+template <class LinkType> class MiniTPixy2;
 
-template <class LinkType> class Pixy2Video
+template <class LinkType> class MiniPixy2Video
 {
 public:
-  Pixy2Video(TPixy2<LinkType> *pixy)
+  MiniPixy2Video(MiniTPixy2<LinkType> *pixy)
   {
     m_pixy = pixy;
   }	  
@@ -35,11 +35,11 @@ public:
   int8_t getRGB(uint16_t x, uint16_t y, uint8_t *r, uint8_t *g, uint8_t *b, bool saturate=true);
   
 private:
-  TPixy2<LinkType> *m_pixy;
+  MiniTPixy2<LinkType> *m_pixy;
   
 };
 
-template <class LinkType> int8_t Pixy2Video<LinkType>::getRGB(uint16_t x, uint16_t y, uint8_t *r, uint8_t *g, uint8_t *b, bool saturate)
+template <class LinkType> int8_t MiniPixy2Video<LinkType>::getRGB(uint16_t x, uint16_t y, uint8_t *r, uint8_t *g, uint8_t *b, bool saturate)
 {
   while(1)
   {

@@ -12,13 +12,13 @@
 //
 // end license header
 //
-// This file is for defining the Block struct and the Pixy template class version 2.
-// (TPixy2).  TPixy takes a communication link as a template parameter so that 
+// This file is for defining the PIXYBlock struct and the Pixy template class version 2.
+// (MiniTPixy2).  TPixy takes a communication link as a template parameter so that 
 // all communication modes (SPI, I2C and UART) can share the same code.  
 //
 
-#ifndef _PIXY2CCC_H
-#define _PIXY2CCC_H
+#ifndef _MiniPixy2CCC_H
+#define _MiniPixy2CCC_H
 
 #define CCC_MAX_SIGNATURE                   7
 
@@ -41,7 +41,7 @@
 
 #define CCC_SIG_ALL                  0xff // all bits or'ed together
 
-struct Block 
+struct PIXYBlock 
 {
   // print block structure!
   void print()
@@ -78,12 +78,12 @@ struct Block
   uint8_t m_age;
 };
 
-template <class LinkType> class TPixy2;
+template <class LinkType> class MiniTPixy2;
 
-template <class LinkType> class Pixy2CCC
+template <class LinkType> class MiniPixy2CCC
 {
 public:
-  Pixy2CCC(TPixy2<LinkType> *pixy)
+  MiniPixy2CCC(MiniTPixy2<LinkType> *pixy)
   {
     m_pixy = pixy;
   }
@@ -91,13 +91,13 @@ public:
   int8_t getBlocks(bool wait=true, uint8_t sigmap=CCC_SIG_ALL, uint8_t maxBlocks=0xff);
   
   uint8_t numBlocks;
-  Block *blocks;
+  PIXYBlock *blocks;
 
 private:
-  TPixy2<LinkType> *m_pixy;
+  MiniTPixy2<LinkType> *m_pixy;
 };
 
-template <class LinkType> int8_t Pixy2CCC<LinkType>::getBlocks(bool wait, uint8_t sigmap, uint8_t maxBlocks)
+template <class LinkType> int8_t MiniPixy2CCC<LinkType>::getBlocks(bool wait, uint8_t sigmap, uint8_t maxBlocks)
 {
   blocks = NULL;
   numBlocks = 0;
@@ -116,8 +116,8 @@ template <class LinkType> int8_t Pixy2CCC<LinkType>::getBlocks(bool wait, uint8_
     {
       if (m_pixy->m_type==CCC_RESPONSE_BLOCKS)
       {
-        blocks = (Block *)m_pixy->m_buf;
-        numBlocks = m_pixy->m_length/sizeof(Block);
+        blocks = (PIXYBlock *)m_pixy->m_buf;
+        numBlocks = m_pixy->m_length/sizeof(PIXYBlock);
         return numBlocks;
       }
 	  // deal with busy and program changing states from Pixy (we'll wait)

@@ -16,8 +16,8 @@
 // it to communicate with Pixy over I2C, SPI, UART or USB using the 
 // Pixy packet protocol.
 
-#ifndef _TPIXY2_H
-#define _TPIXY2_H
+#ifndef _MiniTPixy2_H
+#define _MiniTPixy2_H
 
 // uncomment to turn on debug prints to console
 #define PIXY_DEBUG
@@ -55,11 +55,11 @@
 #define PIXY_RCS_MAX_POS                     1000L
 #define PIXY_RCS_CENTER_POS                  ((PIXY_RCS_MAX_POS-PIXY_RCS_MIN_POS)/2)
 
-#include "Pixy2CCC.h"
-#include "Pixy2Line.h"
-#include "Pixy2Video.h"
+#include "MiniPixy2CCC.h"
+#include "MiniPixy2Line.h"
+#include "MiniPixy2Video.h"
 
-struct Version
+struct PIXYVersion
 {
   void print()
   {
@@ -76,13 +76,13 @@ struct Version
 };
 
 
-template <class LinkType> class TPixy2
+template <class LinkType> class MiniTPixy2
 {
 public:
-  TPixy2();
-  ~TPixy2(); 
+  MiniTPixy2();
+  ~MiniTPixy2(); 
 
-  int8_t init(uint32_t arg=PIXY_DEFAULT_ARGVAL);
+  int8_t pixyinit(uint32_t arg=PIXY_DEFAULT_ARGVAL);
 
   int8_t getVersion();
   int8_t changeProg(const char *prog);
@@ -93,21 +93,21 @@ public:
   int8_t getResolution();
   int8_t getFPS();
   
-  Version *version;
+  PIXYVersion *version;
   uint16_t frameWidth;
   uint16_t frameHeight; 
   
   // Color connected components, color codes
-  Pixy2CCC<LinkType> ccc;
-  friend class Pixy2CCC<LinkType>;
+  MiniPixy2CCC<LinkType> ccc;
+  friend class MiniPixy2CCC<LinkType>;
 
   // Line following
-  Pixy2Line<LinkType> line;
-  friend class Pixy2Line<LinkType>;
+  MiniPixy2Line<LinkType> line;
+  friend class MiniPixy2Line<LinkType>;
 
   // Video
-  Pixy2Video<LinkType> video;
-  friend class Pixy2Video<LinkType>;
+  MiniPixy2Video<LinkType> video;
+  friend class MiniPixy2Video<LinkType>;
   
   LinkType m_link;
   
@@ -124,7 +124,7 @@ private:
 };
 
 
-template <class LinkType> TPixy2<LinkType>::TPixy2() : ccc(this), line(this), video(this)
+template <class LinkType> MiniTPixy2<LinkType>::MiniTPixy2() : ccc(this), line(this), video(this)
 {
   // allocate buffer space for send/receive
   m_buf = (uint8_t *)malloc(PIXY_BUFFERSIZE);
@@ -134,14 +134,14 @@ template <class LinkType> TPixy2<LinkType>::TPixy2() : ccc(this), line(this), vi
   version = NULL;
 }
 
-template <class LinkType> TPixy2<LinkType>::~TPixy2()
+template <class LinkType> MiniTPixy2<LinkType>::~MiniTPixy2()
 {
   m_link.close();
   free(m_buf);
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::init(uint32_t arg)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::pixyinit(uint32_t arg)
 {
   uint32_t t0;
   int8_t res;
@@ -166,7 +166,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::init(uint32_t arg)
 }
 
 
-template <class LinkType> int16_t TPixy2<LinkType>::getSync()
+template <class LinkType> int16_t MiniTPixy2<LinkType>::getSync()
 {
   uint8_t i, j, c, cprev;
   int16_t res;
@@ -214,7 +214,7 @@ template <class LinkType> int16_t TPixy2<LinkType>::getSync()
 }
 
 
-template <class LinkType> int16_t TPixy2<LinkType>::recvPacket()
+template <class LinkType> int16_t MiniTPixy2<LinkType>::recvPacket()
 {
   uint16_t csCalc, csSerial;
   int16_t res;
@@ -263,7 +263,7 @@ template <class LinkType> int16_t TPixy2<LinkType>::recvPacket()
 }
 
 
-template <class LinkType> int16_t TPixy2<LinkType>::sendPacket()
+template <class LinkType> int16_t MiniTPixy2<LinkType>::sendPacket()
 {
   // write header info at beginnig of buffer
   m_buf[0] = PIXY_NO_CHECKSUM_SYNC&0xff;
@@ -275,7 +275,7 @@ template <class LinkType> int16_t TPixy2<LinkType>::sendPacket()
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::changeProg(const char *prog)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::changeProg(const char *prog)
 {
   int32_t res;
   
@@ -302,7 +302,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::changeProg(const char *prog)
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::getVersion()
+template <class LinkType> int8_t MiniTPixy2<LinkType>::getVersion()
 {
   m_length = 0;
   m_type = PIXY_TYPE_REQUEST_VERSION;
@@ -311,7 +311,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::getVersion()
   {   
     if (m_type==PIXY_TYPE_RESPONSE_VERSION)
     {
-      version = (Version *)m_buf;
+      version = (PIXYVersion *)m_buf;
       return m_length;
     }
     else if (m_type==PIXY_TYPE_RESPONSE_ERROR)
@@ -321,7 +321,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::getVersion()
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::getResolution()
+template <class LinkType> int8_t MiniTPixy2<LinkType>::getResolution()
 {
   m_length = 1;
   m_bufPayload[0] = 0; // for future types of queries
@@ -343,7 +343,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::getResolution()
 }
     
 
-template <class LinkType> int8_t TPixy2<LinkType>::setCameraBrightness(uint8_t brightness)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::setCameraBrightness(uint8_t brightness)
 {
   uint32_t res;
   
@@ -361,7 +361,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::setCameraBrightness(uint8_t b
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::setServos(uint16_t s0, uint16_t s1)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::setServos(uint16_t s0, uint16_t s1)
 {
   uint32_t res;
   
@@ -380,7 +380,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::setServos(uint16_t s0, uint16
 }
 
 
-template <class LinkType> int8_t TPixy2<LinkType>::setLED(uint8_t r, uint8_t g, uint8_t b)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::setLED(uint8_t r, uint8_t g, uint8_t b)
 {
   uint32_t res;
   
@@ -399,7 +399,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::setLED(uint8_t r, uint8_t g, 
       return PIXY_RESULT_ERROR;  // some kind of bitstream error
 }
 
-template <class LinkType> int8_t TPixy2<LinkType>::setLamp(uint8_t upper, uint8_t lower)
+template <class LinkType> int8_t MiniTPixy2<LinkType>::setLamp(uint8_t upper, uint8_t lower)
 {
   uint32_t res;
   
@@ -417,7 +417,7 @@ template <class LinkType> int8_t TPixy2<LinkType>::setLamp(uint8_t upper, uint8_
       return PIXY_RESULT_ERROR;  // some kind of bitstream error	
 }
 
-template <class LinkType> int8_t TPixy2<LinkType>::getFPS()
+template <class LinkType> int8_t MiniTPixy2<LinkType>::getFPS()
 {
   uint32_t res;
   

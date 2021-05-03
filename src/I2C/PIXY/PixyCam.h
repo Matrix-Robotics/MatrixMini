@@ -2,18 +2,18 @@
 #define _PIXYPIXY_H_
 
 #include "../../utility/PCA954X.h"
-#include "utility/Pixy2I2C.h"
+#include "utility/MiniPixy2I2C.h"
 
 class PIXYCam{
 private:
-    Pixy2I2C pixy2;
+    MiniPixy2I2C minipixy;
 	uint8_t _ch, _ver;
-    Block _EmptyBlock;
+    PIXYBlock _EmptyBlock;
     bool _INIT_FLAG = 0;
 
 public:
     friend class MiniI2C;
-    Block block;
+    PIXYBlock block;
     void getblock(int n_th=0);
 };
 
