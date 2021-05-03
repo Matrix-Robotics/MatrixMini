@@ -1,6 +1,6 @@
 #include "PixyCam.h"
 
-// Get n th biggest color block, captured by PIXY Cam.
+// Get n largest color block, captured by PIXY Cam.
 void PIXYCam::getblock(int n_th){
   i2cMUXSelect(_ch, _ver);
 
