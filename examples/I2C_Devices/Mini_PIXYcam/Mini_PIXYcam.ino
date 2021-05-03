@@ -18,8 +18,8 @@ void setup() {
 }
 
 void loop() {
- // Get n th biggest color block, captured by PIXY Cam.
- // 0 th is the biggest color block.
+ // Get n largest color block, captured by PIXY Cam.
+ // 0 th is the largest color block.
  Mini.I2C1.PIXYcam.getblock(0);
 // .print(): A member function that prints the detected object information to the serial port
  Mini.I2C1.PIXYcam.block.print();
@@ -32,7 +32,7 @@ void loop() {
 // .m_angle: The angle of the object detected object if the detected object is a color code (-180 to 180).
 // .m_index :The tracking index of the block
 // .m_age: The number of frames the block has been tracked.
- Serial.print("Biggest block width : ");
+ Serial.print("largest block width : ");
  Serial.println(Mini.I2C1.PIXYcam.block.m_width);
  Serial.println("=================");
  
