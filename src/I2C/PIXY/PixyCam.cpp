@@ -1,6 +1,10 @@
 #include "PixyCam.h"
 #include "Wire.h"
 
+void PIXYCam::pixyinit(uint8_t sigmap){
+  _sigmap = sigmap;
+}
+
 bool PIXYCam::isBuffComplete(){
   Wire.requestFrom((uint8_t)MINI_PIXY_I2C_DEFAULT_ADDR, (uint8_t)2);
   // 16-bit sync
@@ -38,6 +42,7 @@ void PIXYCam::i2cWriteBuff(){
 
 uint8_t PIXYCam::i2cReadbuffer(){
   uint8_t n = 0;
+
   _buf = (uint8_t *)malloc(0x104);
   
   if (isBuffComplete())
@@ -61,19 +66,13 @@ uint8_t PIXYCam::i2cReadbuffer(){
         for (uint8_t j = 0; j < n; j++)
         {
           _buf[j + i] = Wire.read();
-          Serial.print("r ");
-          Serial.print(j + i);
-          Serial.print(" ");
-          Serial.println(_buf[j + i]);
           _checksum -= _buf[j + i];
         }
       }
-    };
+    }
   }
-  Serial.print("end checkusum ");
-  Serial.println(_checksum);
 
-  if (isSumCorrect() && _len_of_payload != 0){
+  if (isSumCorrect() && _len_of_payload != 0 && _len_of_payload % 14 == 0){
     // Valid block
     return _len_of_payload / 14;
   }
@@ -82,57 +81,144 @@ uint8_t PIXYCam::i2cReadbuffer(){
     // broken buf -> Invalid block
     return 255;
   }
-  
   // empty buf -> empty block
   return 0;
 }
 
-void PIXYCam::packblock(uint8_t n){
-  block.signature =  (_buf[n*14+1] << 8 ) | (_buf[n*14] & 0xff);
-  block.x =  (_buf[n*14+3] << 8 ) | (_buf[n*14+2] & 0xff);
-  block.y =  (_buf[n*14+5] << 8 ) | (_buf[n*14+4] & 0xff);
-  block.width =  (_buf[n*14+7] << 8 ) | (_buf[n*14+6] & 0xff);
-  block.height =  (_buf[n*14+9] << 8 ) | (_buf[n*14+8] & 0xff);
-  block.angle =  (_buf[n*14+11] << 8 ) | (_buf[n*14+10] & 0xff);
-  block.index = _buf[n*14+12];
-  block.age = _buf[n*14+13];
+void PIXYCam::pushBlock(){
+  _buf = (uint8_t *)malloc(0x104);
+  // default MINI_PIXY_MAX_BLOCKS is 8
+  blocks = (ColorBlock *)malloc(8 * sizeof(ColorBlock));
+
+  for (int n=1; n<=_count_of_block; n++){
+    // n means num_of_block
+    blocks[n].signature =  (_buf[n*14+1] << 8 ) + (_buf[n*14]);
+    blocks[n].x =  (_buf[n*14+3] << 8 ) + (_buf[n*14+2]);
+    blocks[n].y =  (_buf[n*14+5] << 8 ) + (_buf[n*14+4]);
+    blocks[n].width =  (_buf[n*14+7] << 8 ) + (_buf[n*14+6]);
+    blocks[n].height =  (_buf[n*14+9] << 8 ) + (_buf[n*14+8]);
+    blocks[n].angle =  (_buf[n*14+11] << 8 ) + (_buf[n*14+10]);
+
+    blocks[n].index = _buf[n*14+12];
+    blocks[n].age = _buf[n*14+13];
+  }
 }
 
 // Get n largest color block, captured by PIXY Cam.
-void PIXYCam::getblock(int n_th){
+// 1 is the largest, nth = 2 is a block which smaller then 1, and so on.
+bool PIXYCam::getblock(int n_th){
+  i2cMUXSelect(_ch, _ver);
+  // PIXY Cam is not working on MATRIX Mini I2C4
+  if (_ch == 3 or n_th == 0){
+    free(_buf);
+    return false;
+  }
   i2cWriteBuff();
-  uint8_t count_of_block = i2cReadbuffer();
-  Serial.print("count_of_block ");
-  Serial.println(count_of_block);
-
-  //TODO no block handle
-  // packblock(count_of_block);
+  // count_of_block start counting from 1
+  _count_of_block = i2cReadbuffer();
+  if (_count_of_block == 0 || n_th > _count_of_block){
+    // empty block
+    // If there doesn't exist speicifc color block,
+    // then return empty block with sig = 0 .
+    block = emptyblock;
+  }
+  else if (_count_of_block == 255)
+  {
+    // Invalid block
+    block = emptyblock;
+    free(_buf);
+    return false;
+  }
+  else
+  {
+    // Valid block
+    pushBlock();
+    block = blocks[n_th];
+  }
   free(_buf);
+  return true;
 };
 
+int PIXYCam::getCountofBLock(){
+  return _count_of_block;
+};
 
-// void PIXYCam::getblock(int n_th){
-  // i2cMUXSelect(_ch, _ver);
+int PIXYCam::getX(int sig, int n_th)
+{
+  uint8_t i = 1;
+  while(i <= _count_of_block)
+  {
+    if (blocks[i].signature == sig)
+    {
+      return blocks[i].x;
+    }
+    else
+    {
+      i++;
+    }
+  }
+};
 
-  // // PIXY Cam is not working on MATRIX Mini I2C4
-  // if (_ch != 3){
-  //   if (_INIT_FLAG == 0){
-  //     // minipixy.init is written by PIXY team,
-  //     // which takes too much time, 
-  //     // so it only needs to execute once.
-  //     minipixy.pixyinit();
+int PIXYCam::getY(int sig, int n_th)
+{
+  uint8_t i = 1;
+  while(i <= _count_of_block)
+  {
+    if (blocks[i].signature == sig)
+    {
+      return blocks[i].y;
+    }
+    else
+    {
+      i++;
+    }
+  }
+};
 
-  //     _INIT_FLAG = 1;
-  //   }
-    
-  //   minipixy.pixyccc.getBlocks();
-  //   if (minipixy.pixyccc.numBlocks){ 
-  //     block = minipixy.pixyccc.blocks[n_th];
-  //   }
-  //   else{
-  //     // If there doesn't exist speicifc color block,
-  //     // then return empty block with sig = 0 .
-  //     block = _EmptyBlock;
-  //   } 
-  // }
-// }
+int PIXYCam::getWidth(int sig, int n_th)
+{
+  uint8_t i = 1;
+  while(i <= _count_of_block)
+  {
+    if (blocks[i].signature == sig)
+    {
+      return blocks[i].width;
+    }
+    else
+    {
+      i++;
+    }
+  }
+};
+
+int PIXYCam::getHeight(int sig, int n_th)
+{
+  uint8_t i = 1;
+  while(i <= _count_of_block)
+  {
+    if (blocks[i].signature == sig)
+    {
+      return blocks[i].height;
+    }
+    else
+    {
+      i++;
+    }
+  }
+};
+
+int PIXYCam::getArea(int sig, int n_th)
+{
+  uint8_t i = 1;
+  while(i <= _count_of_block)
+  {
+    if (blocks[i].signature == sig)
+    {
+      return blocks[i].height * blocks[i].width;
+    }
+    else
+    {
+      i++;
+    }
+  }
+};
