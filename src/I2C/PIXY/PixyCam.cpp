@@ -112,11 +112,6 @@ ColorBlock PIXYCam::selectBlock(int sig, int n_th){
 // 1 is the largest, nth = 2 is a block which smaller then 1, and so on.
 bool PIXYCam::getblock(int sig, int n_th){
   i2cMUXSelect(_ch, _ver);
-  // PIXY Cam is not working on MATRIX Mini I2C4
-  if (_ch == 3)
-  {
-    return false;
-  }
   if (n_th == 0){
     n_th ++;
   }
