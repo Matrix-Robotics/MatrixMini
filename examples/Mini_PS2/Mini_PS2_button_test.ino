@@ -15,7 +15,7 @@
 void setup() {
     Mini.begin();
     Serial.begin(115200);
-    if(Mini.PS2.begin()){
+    if(Mini.PS2.begin()){ // 4 Wires on D1, 2 Wires on D3
         Serial.println("PS2 controller detect!");
     }
     else{
