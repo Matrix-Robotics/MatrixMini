@@ -16,6 +16,7 @@
 #include "MiniRC.h"
 #include "I2C/MiniI2C.h"
 #include "utility/Encoder.h"
+#include "utility/PS2Ctrl.h"
 
 #define det_pin 8
 
@@ -46,6 +47,7 @@ public:
 	MiniDIG D1, D2, D3, D4;
 	MiniANG A1, A2, A3;
     MiniI2C I2C1, I2C2, I2C3, I2C4;
+    PS2Ctrl PS2;
     Encoder ENCO;
 };
 extern MatrixMini_ Mini;

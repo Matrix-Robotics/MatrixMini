@@ -10,15 +10,17 @@ class PS2Ctrl{
         volatile uint8_t *_sck_port, *_mosi_port, *_miso_port, *_css_port;
         void SWSPI_BEGIN();
         void SWSPI_END();
+        bool init_PS2();
         uint8_t SWSPI_TXRX(uint8_t command);
+        uint8_t _ver = 1;
+        friend class MatrixMini_;
         
     public:
         bool L1, R1, L2, R2, L3, R3, SELECT, START;
         bool UP, RIGHT, DOWN, LEFT, TRIANGLE, CIRCLE, X, SQUARE;
         uint8_t RX, RY, LX, LY;
         void polling();
-		void init_PS2();
-        void begin(uint8_t sck,  uint8_t mosi,  uint8_t miso,  uint8_t css);
+        bool begin();
 };
 
 #endif

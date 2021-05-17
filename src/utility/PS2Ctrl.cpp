@@ -1,6 +1,20 @@
 #include "PS2Ctrl.h"
 
-void PS2Ctrl::begin(uint8_t sck, uint8_t mosi, uint8_t miso, uint8_t css){
+bool PS2Ctrl::begin(){
+	uint8_t sck, mosi, miso, css;
+	if(_ver > 2){
+		miso = 5;
+		mosi = 6;
+		css = 10;
+		sck = 11; 
+	}
+	else{
+		miso = 2;
+		mosi = 3;
+		css = 4;
+		sck = 5; 
+	}
+
 	_sck_port = portOutputRegister(digitalPinToPort(sck));
 	_sck_mask = digitalPinToBitMask(sck);
 	
@@ -17,6 +31,13 @@ void PS2Ctrl::begin(uint8_t sck, uint8_t mosi, uint8_t miso, uint8_t css){
     pinMode(mosi, OUTPUT);
 	pinMode(miso, INPUT);
 	pinMode(css, OUTPUT);
+	if(init_PS2()){
+		return true;
+	}
+	else{
+		return false;
+	}
+	
 }
 
 uint8_t PS2Ctrl::SWSPI_TXRX(uint8_t command){
@@ -45,26 +66,21 @@ uint8_t PS2Ctrl::SWSPI_TXRX(uint8_t command){
 }
 
 void PS2Ctrl::SWSPI_BEGIN(){
-	// digitalWrite(_mosi, 1);
 	*_mosi_port |= _mosi_mask;
-	// digitalWrite(_sck, 1);
 	*_sck_port |= _sck_mask;
-	// digitalWrite(_css, 0);
 	*_css_port &= ~_css_mask;
 }
 
 void PS2Ctrl::SWSPI_END(){
-	// digitalWrite(_mosi, 1);
 	*_mosi_port |= _mosi_mask;
-	// digitalWrite(_css, 1);
 	*_css_port |= _css_mask;
 	_delay_ms(1);
 }
 
-void PS2Ctrl::init_PS2(){
-	uint8_t chk_ana = 0;
-
-	while(chk_ana != 0x73){
+bool PS2Ctrl::init_PS2(){
+	uint8_t check = 0;
+	long tNow = millis();
+	while((check != 0x73) && ((millis()-tNow) < 5000)){
 		// put controller in config mode
 		SWSPI_BEGIN();
 
@@ -110,7 +126,7 @@ void PS2Ctrl::init_PS2(){
 		SWSPI_BEGIN();
 
 		SWSPI_TXRX(0x01);
-		chk_ana = SWSPI_TXRX(0x42);            // the 2nd byte to be returned from the controller should = 0x73 for "red" analouge controller.
+		check = SWSPI_TXRX(0x42);  // the 2nd byte should = 0x73 for "red" analouge controller.
 		SWSPI_TXRX(0x00);
 		SWSPI_TXRX(0x00);
 		SWSPI_TXRX(0x00);
@@ -121,6 +137,13 @@ void PS2Ctrl::init_PS2(){
 
 		SWSPI_END();
    }
+   if(check == 0x73){
+	   return true;
+   }
+   else{
+	    return false;
+   }
+
 }
 
 void PS2Ctrl::polling(){
@@ -129,6 +152,7 @@ void PS2Ctrl::polling(){
 	SWSPI_TXRX(0x01);
 	SWSPI_TXRX(0x42);
 	SWSPI_TXRX(0x00);
+
 	_rx[0] = SWSPI_TXRX(0x00);
 	_rx[1] = SWSPI_TXRX(0x00);
 	_rx[2] = SWSPI_TXRX(0x00);

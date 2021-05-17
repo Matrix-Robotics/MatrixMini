@@ -139,6 +139,8 @@ void MatrixMini_:: init() {
   I2C3.begin(_ver, 2);
   I2C4.begin(_ver, 3);
 
+  PS2._ver = _ver;
+  
   ENCO.begin(_ver);
 }
 
