@@ -8,7 +8,7 @@
  *  
  * www.matrixrobotics.com
  */
-#include "src/MatrixMini.h"
+#include <MatrixMini.h>
 #include <arduino.h>
 
 
@@ -17,10 +17,11 @@ void setup() {
     Serial.begin(115200);
     if(Mini.PS2.begin()){ // 4 Wires on D1, 2 Wires on D3
         Serial.println("PS2 controller detect!");
+        Serial.println("make sure your controller power is on and press the start button");
     }
     else{
         Serial.println("could not find PS2 controller");
-        Serial.println("make sure your controller power is on and press the start button");
+        Serial.println("check pinout from receiver to MatrixMini");
         while(1);
     }
 }
