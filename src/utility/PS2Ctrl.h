@@ -17,7 +17,7 @@ class PS2Ctrl{
         
     public:
         bool L1, R1, L2, R2, L3, R3, SELECT, START;
-        bool UP, RIGHT, DOWN, LEFT, TRIANGLE, CIRCLE, X, SQUARE;
+        bool UP, RIGHT, DOWN, LEFT, TRIANGLE, CIRCLE, CROSS, SQUARE;
         uint8_t RX, RY, LX, LY;
         void polling();
         bool begin();

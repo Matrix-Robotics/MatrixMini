@@ -177,7 +177,7 @@ void PS2Ctrl::polling(){
 	R1 = 		!(_rx[1]&0x08);
 	TRIANGLE = 	!(_rx[1]&0x10);
 	CIRCLE = 	!(_rx[1]&0x20);
-	X = 		!(_rx[1]&0x40);
+	CROSS = 	!(_rx[1]&0x40);
 	SQUARE = 	!(_rx[1]&0x80);
 
 	RX = _rx[2];
