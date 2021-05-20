@@ -1,5 +1,5 @@
 /*******************
-  Mini Ultrasonic Sensor Example
+  Mini PS2 Controller Example
  * Description: Demonstrates how to read out the status of buttons, joysticks on PS2 Controller 
  * 
  *
