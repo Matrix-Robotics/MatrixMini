@@ -5,10 +5,11 @@
 // #include <MatrixMotionSensor.h>
 // #include <MatrixMotorExtension.h>
 // #include <MatrixServoExtension.h>
+// #include <MatrixController.h>
+
 
 #include "HT/HTColor.h"
 #include "HT/HTCompass.h"
-#include "MATRIX/MatrixController.h"
 #include "PIXY/PixyCam.h"
 class MiniI2C{
 private:
@@ -19,7 +20,7 @@ public:
 	HTColor HTcolor;
 	HTCompass HTcompass;
 	PIXYCam PIXYcam;
-	MatrixController MXctrl;
+	// MatrixController MXctrl;
 	// MatrixColor MXcolor;
 	// MatrixMotion MXmotion;
 	// MatrixMotor MXmotor;
