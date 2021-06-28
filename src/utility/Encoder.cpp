@@ -383,11 +383,11 @@ void Encoder::begin(int _ver){
 float Encoder::get_Angle(int M, int ppr){
     switch (M)
     {
-    case L:
+    case ENL:
         return abs((encLt%ppr)*360/ppr);
         break;
     
-    case R:
+    case ENR:
         return abs((encRt%ppr)*360/ppr);
         break;
     }
@@ -396,11 +396,11 @@ float Encoder::get_Angle(int M, int ppr){
 float Encoder::get_Turn(int M, int ppr){
     switch (M)
     {
-    case L:
+    case ENL:
         return float(encLt)/ppr;
         break;
     
-    case R:
+    case ENR:
         return float(encRt)/ppr;
         break;
     }

@@ -4,8 +4,8 @@
 #include <Arduino.h>
 #include "PCA9685.h"
 
-#define L 0x99
-#define R 0x98
+#define ENL 0x99
+#define ENR 0x98
 
 int8_t ReadLt();
 int8_t ReadRt();
