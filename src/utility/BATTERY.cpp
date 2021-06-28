@@ -1,21 +1,22 @@
-#include "Encoder.h"
+#include "BATTERY.h"
 
 int UARTbuffer = -1;
 bool UART_IT = false;
 
-int encLtA, encLtB, encRtA, encRtB;
-long encLt, encRt;
-volatile bool ENCO_flag = false;
-int version;
+int version = 1;
 
-float DET_VBAT;
+float DET_VBAT = 7.4;
 int VBAT_toggle_flag = 0;
-float DET_vcc;
+float DET_vcc = 0;
 int vcc_cont = 0;
 int VBAT_flag = 1;
 
+// int encLtA, encLtB, encRtA, encRtB;
+// long encLt, encRt;
+// volatile bool ENCO_flag = false;
+
 ISR(TIMER2_COMPA_vect){
-    Encoderead();
+    // Encoderead();
 
     if(VBAT_flag){
         VBAT_check();
@@ -31,6 +32,85 @@ ISR(TIMER2_COMPA_vect){
     }
 }
 
+void VBAT_check(){
+    vcc_cont++;
+
+    if(vcc_cont >= 15){
+        switch (version)
+        {
+        case 2:
+            DET_vcc = (float(analogRead(A6))/1024*5.03*4)+0.3;
+            break;
+        case 3:
+            DET_vcc = float(analogRead(A3))/1024*5*5.545;   
+            break;
+        default:
+            break;
+        }
+        BAT_Det();
+        vcc_cont = 0;
+    }
+}
+
+void BAT_Det(){
+    
+    switch (version)
+    { 
+    case 2:
+        if(DET_vcc > DET_VBAT){
+            setPWM_PCA9685(6, 0);
+        }
+        else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
+            setPWM_PCA9685(6, 4095);
+        }
+        else{
+            if(VBAT_toggle_flag){
+                setPWM_PCA9685(6, 4095);
+                VBAT_toggle_flag = 0;
+            }
+            else{
+                setPWM_PCA9685(6, 0);
+                VBAT_toggle_flag = 1;
+            }
+        }
+        break;
+    case 3:
+        if(DET_vcc > DET_VBAT){
+            setPWM_PCA9685(6, 0);
+        }
+        else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
+            setPWM_PCA9685(6, 4095);
+        }
+        else{
+            if(VBAT_toggle_flag){
+                setPWM_PCA9685(6, 4095);
+                VBAT_toggle_flag = 0;
+            }
+            else{
+                setPWM_PCA9685(6, 0);     
+                VBAT_toggle_flag = 1;
+            }
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void set_VBAT(float vbat, int ver){
+    DET_VBAT = vbat;
+    version = ver;
+}
+
+void serialSendBuffer(int buf){
+    UARTbuffer = buf;
+}
+
+void sendEnable(){
+    UART_IT = true;
+}
+
+/*
 void Encoderead(){
     int8_t val, diff;
 
@@ -94,86 +174,6 @@ int8_t ReadRt( void ){
     sei();
 
     return val;					// counts since last call
-}
-
-void BAT_Det(){
-    
-    switch (version)
-    { 
-    case 2:
-        if(DET_vcc > DET_VBAT){
-            setPWM_PCA9685(6, 0);
-        }
-        else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
-            setPWM_PCA9685(6, 4095);
-        }
-        else{
-            if(VBAT_toggle_flag){
-                setPWM_PCA9685(6, 4095);
-                VBAT_toggle_flag = 0;
-            }
-            else{
-                setPWM_PCA9685(6, 0);
-                VBAT_toggle_flag = 1;
-            }
-        }
-        break;
-    case 3:
-        if(DET_vcc > DET_VBAT){
-            setPWM_PCA9685(6, 0);
-        }
-        else if(((DET_VBAT*0.95) < DET_vcc) & (DET_vcc < DET_VBAT)){
-            setPWM_PCA9685(6, 4095);
-        }
-        else{
-            if(VBAT_toggle_flag){
-                setPWM_PCA9685(6, 4095);
-                VBAT_toggle_flag = 0;
-            }
-            else{
-                setPWM_PCA9685(6, 0);     
-                VBAT_toggle_flag = 1;
-            }
-        }
-        break;
-    default:
-        break;
-    }
-}
-
-void VBAT_check(){
-    vcc_cont++;
-
-    if(vcc_cont >= 15){
-        switch (version)
-        {
-        case 2:
-            DET_vcc = (float(analogRead(A6))/1024*5.03*4)+0.3;
-            break;
-        case 3:
-            DET_vcc = float(analogRead(A3))/1024*5*5.545;   
-            break;
-        default:
-            break;
-        }
-        BAT_Det();
-        vcc_cont = 0;
-        //Serial.println(DET_vcc);
-    }
-    
-    
-}
-
-void set_VBAT(float vbat){
-    DET_VBAT = vbat;
-}
-
-void serialSendBuffer(int buf){
-    UARTbuffer = buf;
-}
-
-void sendEnable(){
-    UART_IT = true;
 }
 
 void Encoder::Init(int portL, int portR){
@@ -377,7 +377,6 @@ int Encoder::det_pinR(int port){
 }
 void Encoder::begin(int _ver){
     ver = _ver;
-    version = _ver;
 }
 
 float Encoder::get_Angle(int M, int ppr){
@@ -410,3 +409,4 @@ float Encoder::get_Distance(int M, float diameter){
 
     return  get_Turn(M) * diameter * PI;
 }
+*/

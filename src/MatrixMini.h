@@ -8,14 +8,17 @@
 #define _MatrixMini_H_
 
 #include <Arduino.h>
+
 #include "MiniDC.h"
 #include "MiniLED.h"
 #include "MiniBTN.h"
 #include "MiniDIG.h"
 #include "MiniANG.h"
 #include "MiniRC.h"
+
 #include "I2C/MiniI2C.h"
-#include "utility/Encoder.h"
+
+#include "utility/BATTERY.h"
 #include "utility/PS2Ctrl.h"
 
 #define det_pin 8
@@ -48,7 +51,6 @@ public:
 	MiniANG A1, A2, A3;
     MiniI2C I2C1, I2C2, I2C3, I2C4;
     PS2Ctrl PS2;
-    Encoder ENCO;
 };
 extern MatrixMini_ Mini;
 

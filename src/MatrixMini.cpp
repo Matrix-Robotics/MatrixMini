@@ -7,7 +7,7 @@ void MatrixMini_::begin(float vbat, bool _enUART, long buad) {
   Wire.begin();
   det_version();
   init();
-  set_VBAT(vbat);
+  set_VBAT(vbat, _ver);
 
   if(_enUART){
     Serial.begin(buad);
@@ -141,7 +141,7 @@ void MatrixMini_:: init() {
 
   PS2._ver = _ver;
   
-  ENCO.begin(_ver);
+  // ENCO.begin(_ver);
 }
 
 int MatrixMini_:: v3_check() {
