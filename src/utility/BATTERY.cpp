@@ -11,12 +11,12 @@ float DET_vcc = 0;
 int vcc_cont = 0;
 int VBAT_flag = 1;
 
-// int encLtA, encLtB, encRtA, encRtB;
-// long encLt, encRt;
+int encLtA, encLtB, encRtA, encRtB;
+long encLt, encRt;
 // volatile bool ENCO_flag = false;
 
 ISR(TIMER2_COMPA_vect){
-    // Encoderead();
+    Encoderead();
 
     if(VBAT_flag){
         VBAT_check();
@@ -110,7 +110,6 @@ void sendEnable(){
     UART_IT = true;
 }
 
-/*
 void Encoderead(){
     int8_t val, diff;
 
@@ -175,6 +174,7 @@ int8_t ReadRt( void ){
 
     return val;					// counts since last call
 }
+/*
 
 void Encoder::Init(int portL, int portR){
 

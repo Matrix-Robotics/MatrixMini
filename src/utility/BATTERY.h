@@ -11,7 +11,6 @@ void set_VBAT(float vbat, int ver);
 void serialSendBuffer(int buf);
 void sendEnable();
 
-/*
 void Encoderead();
 
 #define ENL 0x99
@@ -22,6 +21,7 @@ int8_t ReadRt();
 
 static int8_t lastLt, lastRt;
 static volatile int8_t encDeltaLt, encDeltaRt;
+/*
 
 class Encoder{
 private:
