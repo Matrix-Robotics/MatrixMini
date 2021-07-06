@@ -5,7 +5,7 @@ void MiniBTN::begin(int ver, int portInit){
 	pinMode(port, INPUT);
 	
 	if(ver == 1){
-		digitalWrite(port, HIGH);
+		digitalWrite(port, HIGH); // version 1 need internal pull-up
 	}
 }
 

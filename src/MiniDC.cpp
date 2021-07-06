@@ -28,7 +28,7 @@ void MiniDC::set(int speed) {
 }
 
 void MiniDC::setMode_PCA9633() {
-  if(_mode){
+  if(_mode == FORWARD){
     setPWM_PCA9633(_pin, 0, _speed);
   }
   else{
@@ -37,30 +37,20 @@ void MiniDC::setMode_PCA9633() {
 }
 
 void MiniDC::setMode_PCA9685() {
-  if(_ver == 3){
-    if(_mode){
-      setPWM_PCA9685(_pin, _speed, 0);
+  if(_pin == 5){
+    if(_mode == FORWARD){
+      setPWM_PCA9685(_pin-2, 4095, 0, _speed); // IN1, IN2, PWM
     }
     else{
-      setPWM_PCA9685(_pin, 0, _speed);
+      setPWM_PCA9685(_pin-2, 0, 4095, _speed); // IN1, IN2, PWM
     }
   }
   else{
-    if(_pin){
-      if(_mode){
-        setPWM_PCA9685(_pin-2, 4095, 0, _speed);
-      }
-      else{
-        setPWM_PCA9685(_pin-2, 0, 4095, _speed);
-      }
+    if(_mode == FORWARD){
+      setPWM_PCA9685(_pin, _speed, 0, 4095); // PWM, IN2, IN1
     }
     else{
-      if(_mode){
-        setPWM_PCA9685(_pin, _speed, 0, 4095);
-      }
-      else{
-        setPWM_PCA9685(_pin, _speed, 4095, 0);
-      }
+      setPWM_PCA9685(_pin, _speed, 4095, 0); // PWM, IN2, IN1
     }
   }
 }

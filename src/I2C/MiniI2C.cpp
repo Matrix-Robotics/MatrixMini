@@ -13,10 +13,6 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     PIXYcam._ver = ver;
     PIXYcam._ch = ch;
 
-    // MXctrl._ver = ver;
-    // MXctrl._ch = ch;
-    // MXctrl.begin();
-
     // MXcolor._ver = ver;
     // MXcolor._ch = ch;
     // MXcolor.begin();
@@ -25,6 +21,10 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     // MXmotion._ch = ch;
     // MXmotion.begin();
 
+    // MXsonic._ver = ver;
+    // MXsonic._ch = ch;
+    // MXsonic.begin();
+
     // MXmotor._ver = ver;
     // MXmotor._ch = ch;
     // MXmotor.begin();
@@ -32,4 +32,8 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     // MXservo._ver = ver;
     // MXservo._ch = ch;
     // MXservo.begin();
+
+    // MXctrl._ver = ver;
+    // MXctrl._ch = ch;
+    // MXctrl.begin();
 }

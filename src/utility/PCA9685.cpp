@@ -1,10 +1,10 @@
 #include "PCA9685.h"
 
 void init_PCA9685(uint8_t freq){
-    i2cWriteData(ADDR_PCA9685, PCA9685_MODE1, 0x10);
-    i2cWriteData(ADDR_PCA9685, PCA9685_PRESCALER, freq);
-    i2cWriteData(ADDR_PCA9685, PCA9685_MODE1, 0xA1);
-    setPWM_PCA9685(61, 0); 
+    i2cWriteData(ADDR_PCA9685, PCA9685_MODE1, 0x10); // reset driver ic
+    i2cWriteData(ADDR_PCA9685, PCA9685_PRESCALER, freq); // set the driver frequncy
+    i2cWriteData(ADDR_PCA9685, PCA9685_MODE1, 0xA1); // enable the driver
+    setPWM_PCA9685(61, 0);  // set all channel to 0
 }    
 
 void setPWM_PCA9685(uint8_t ch, uint16_t duty){

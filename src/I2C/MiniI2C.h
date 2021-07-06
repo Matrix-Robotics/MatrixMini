@@ -3,6 +3,7 @@
 
 // #include <MatrixColorSensor.h>
 // #include <MatrixMotionSensor.h>
+// #include <MatrixUltrasonicSensor.h>
 // #include <MatrixMotorExtension.h>
 // #include <MatrixServoExtension.h>
 // #include <MatrixController.h>
@@ -20,11 +21,13 @@ public:
 	HTColor HTcolor;
 	HTCompass HTcompass;
 	PIXYCam PIXYcam;
-	// MatrixController MXctrl;
+
 	// MatrixColor MXcolor;
 	// MatrixMotion MXmotion;
+	// MatrixUltrasonic MXsonic;
 	// MatrixMotor MXmotor;
 	// MatrixServo MXservo;
+	// MatrixController MXctrl;
 };
 
 #endif

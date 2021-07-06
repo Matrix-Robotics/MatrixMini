@@ -14,9 +14,9 @@ void setPWM_PCA9633(uint8_t channel, uint8_t duty1, uint8_t duty2){
 }
 
 void init_PCA9633(){
-    i2cWriteData(ADDR_PCA9633, PCA9633_MODE1, 0x00); //Turn On All LED Output
-    i2cWriteData(ADDR_PCA9633, PCA9633_MODE2, 0x04); //Set Output in Push-pull Mode
-    i2cWriteData(ADDR_PCA9633, PCA9633_PWMOUT, 0xAA); //Set Output in Individual Mode
+    i2cWriteData(ADDR_PCA9633, PCA9633_MODE1, 0x00); // Turn On All channel Output
+    i2cWriteData(ADDR_PCA9633, PCA9633_MODE2, 0x04); // Set Output in Push-pull Mode
+    i2cWriteData(ADDR_PCA9633, PCA9633_PWMOUT, 0xAA); // Set Output in Individual Mode
     setPWM_PCA9633(0, 0x00, 0x00); // Reset All channel to 0;
     setPWM_PCA9633(2, 0x00, 0x00);
 }

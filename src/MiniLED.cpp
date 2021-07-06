@@ -1,23 +1,9 @@
 #include "MiniLED.h"
 
-
-/**************************************************************************/
-/*!
-    @brief  Create a RGB(led) object, un-initialized!
-    You should never call this, instead have the {@link MatrixMini}
-    give you a RGB object with {@link MatrixMini.getRGB}
-*/
-/**************************************************************************/
 void MiniLED::begin(int ver, uint8_t ch){
   _ch = ch;
   _ver = ver;
 }
-/**************************************************************************/
-/*!
-    @brief  Control the RGB pwm frequencies
-    @param  speed The 16-bit PWM value, 0 is dark, 4096 is at full density
-*/
-/**************************************************************************/
 
 void MiniLED::setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB) {
   _r = PWMR;
@@ -92,7 +78,6 @@ void MiniLED::setHSV(int H, float S, float V){
 
   showRGB();
 }
-
 
 void MiniLED::showRGB() {
   if (_ver == 3){
