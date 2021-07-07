@@ -1,13 +1,14 @@
 #ifndef _MINII2C_H_
 #define _MINII2C_H_
 
-// #include <MatrixColorSensor.h>
-// #include <MatrixMotionSensor.h>
-// #include <MatrixUltrasonicSensor.h>
-// #include <MatrixMotorExtension.h>
-// #include <MatrixServoExtension.h>
-// #include <MatrixController.h>
+#include <MatrixController.h>
 
+#include <MatrixColorSensor.h>
+#include <MatrixMotionSensor.h>
+// #include <MatrixUltrasonicSensor.h>
+
+#include <MatrixMotorExtension.h>
+#include <MatrixServoExtension.h>
 
 #include "HT/HTColor.h"
 #include "HT/HTCompass.h"
@@ -22,12 +23,14 @@ public:
 	HTCompass HTcompass;
 	PIXYCam PIXYcam;
 
-	// MatrixColor MXcolor;
-	// MatrixMotion MXmotion;
+	MatrixController MXctrl;
+
+	MatrixColor MXcolor;
+	MatrixMotion MXmotion;
 	// MatrixUltrasonic MXsonic;
-	// MatrixMotor MXmotor;
-	// MatrixServo MXservo;
-	// MatrixController MXctrl;
+
+	MatrixMotor MXmotor;
+	MatrixServo MXservo;
 };
 
 #endif
