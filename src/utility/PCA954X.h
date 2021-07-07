@@ -4,8 +4,9 @@
 #include <Wire.h>
 #include <Arduino.h>
 
-
+#ifndef ADDR_PCA954X
 #define ADDR_PCA954X 0x70
+#endif
 
 void i2cWriteData(uint8_t dev, uint8_t addr);
 void i2cWriteData(uint8_t dev, uint8_t addr, uint8_t data);
