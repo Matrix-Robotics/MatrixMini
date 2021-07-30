@@ -20,32 +20,32 @@ Polling data from PS2 Controller.
 ```Arduino
 Mini.PS2.polling();
 ```
-#### RX
+#### Object
 
-- `L1` is a **boolean** of PS2 L1 button is clicked.
-- `R1` is a **boolean** of PS2 R1 button is clicked.
-- `L2` is a **boolean** of PS2 L2 button is clicked.
-- `R2` is a **boolean** of PS2 R2 button is clicked.
-- `L3` is a **boolean** of PS2 L3 button is clicked.
-- `R3` is a **boolean** of PS2 R3 button is clicked.
+- `Mini.PS2.L1` is a **boolean** of PS2 L1 button is clicked.
+- `Mini.PS2.R1` is a **boolean** of PS2 R1 button is clicked.
+- `Mini.PS2.L2` is a **boolean** of PS2 L2 button is clicked.
+- `Mini.PS2.R2` is a **boolean** of PS2 R2 button is clicked.
+- `Mini.PS2.L3` is a **boolean** of PS2 L3 button is clicked.
+- `Mini.PS2.R3` is a **boolean** of PS2 R3 button is clicked.
 
-- `SELECT` is a **boolean** of PS2 SELECT button is clicked.
-- `START` is a **boolean** of PS2 START button is clicked.
+- `Mini.PS2.SELECT` is a **boolean** of PS2 SELECT button is clicked.
+- `Mini.PS2.START` is a **boolean** of PS2 START button is clicked.
 
-- `UP` is a **boolean** of PS2 UP button is clicked.
-- `RIGHT` is a **boolean** of PS2 RIGHT button is clicked.
-- `DOWN` is a **boolean** of PS2 DOWN button is clicked.
-- `LEFT` is a **boolean** of PS2 LEFT button is clicked.
+- `Mini.PS2.UP` is a **boolean** of PS2 UP button is clicked.
+- `Mini.PS2.RIGHT` is a **boolean** of PS2 RIGHT button is clicked.
+- `Mini.PS2.DOWN` is a **boolean** of PS2 DOWN button is clicked.
+- `Mini.PS2.LEFT` is a **boolean** of PS2 LEFT button is clicked.
 
-- `TRIANGLE` is a **boolean** of PS2 TRIANGLE button is clicked.
-- `CIRCLE` is a **boolean** of PS2 CIRCLE button is clicked.
-- `CROSS` is a **boolean** of PS2 CROSS button is clicked.
-- `SQUARE` is a **boolean** of PS2 SQUARE button is clicked.
+- `Mini.PS2.TRIANGLE` is a **boolean** of PS2 TRIANGLE button is clicked.
+- `Mini.PS2.CIRCLE` is a **boolean** of PS2 CIRCLE button is clicked.
+- `Mini.PS2.CROSS` is a **boolean** of PS2 CROSS button is clicked.
+- `Mini.PS2.SQUARE` is a **boolean** of PS2 SQUARE button is clicked.
 
-- `RX` is a **uint8_t** of PS2 Right joystck X axis data.
-- `RY` is a **uint8_t** of PS2 Right joystck Y axis data.
-- `LX` is a **uint8_t** of PS2 Left joystck X axis data.
-- `LY` is a **uint8_t** of PS2 Left joystck Y axis data.
+- `Mini.PS2.RX` is a **uint8_t** of PS2 Right joystck X axis data.
+- `Mini.PS2.RY` is a **uint8_t** of PS2 Right joystck Y axis data.
+- `Mini.PS2.LX` is a **uint8_t** of PS2 Left joystck X axis data.
+- `Mini.PS2.LY` is a **uint8_t** of PS2 Left joystck Y axis data.
 
 <br /><br /><br />
 ***

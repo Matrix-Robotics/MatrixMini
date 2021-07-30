@@ -1,11 +1,12 @@
 ## Analog 
+`AX` 's `X` means number of the analog port. (Options: `A1` / `A2` / `A3`)
 ### Get ANG
 
 Get analog data from analog port. <br />
-  `A1` means analog port 1. (Options: `A1` / `A2` / `A3`)
+  
 
 ```Arduino
-Mini.A1.getANG()
+Mini.AX.getANG()
 ```
 #### Return
 - A **uint16_t** result of analog data.
@@ -15,10 +16,9 @@ Mini.A1.getANG()
 ### Get DIG
 
 Get digital data from analog port. <br />
-  `A1` means analog port 1. (Options: `A1` / `A2` / `A3`)
 
 ```Arduino
-Mini.A1.getDIG()
+Mini.AX.getDIG()
 ```
 
 #### Return
@@ -29,13 +29,15 @@ Mini.A1.getDIG()
 <br />
 
 ## Button
+
+`BTNX` 's `X` means number of the Button. (Options: `BTN1` / `BTN2`)
+
 ### Get BTN
 
 Get Button is clicked or not. <br />
-  `BTN1` means Button 1. (Options: `BTN1` / `BTN2`)
 
 ```Arduino
-Mini.BTN1.get()
+Mini.BTNX.get()
 ```
 
 #### Return
@@ -46,13 +48,15 @@ Mini.BTN1.get()
 <br />
 
 ## Digital
+
+`DX` 's `X` means number of the digital port. (Options: `D1` / `D2` / `D3` / `D4`)
+
 ### Get DIG
 
 Get digital data from digital port. <br />
-  `D1` means digital port 1. (Options: `D1` / `D2` / `D3` / `D4`)
 
 ```Arduino
-Mini.D1.get()
+Mini.DX.get()
 ```
 
 #### Return
@@ -64,28 +68,28 @@ Mini.D1.get()
 ### Set DIG
 
 Set digital data to digital port. <br />
-  `D1` means digital port 1. (Options: `D1` / `D2` / `D3` / `D4`)
 
 ```Arduino
-Mini.D1.set(byte);
+Mini.DX.set(byte v);
 ```
 
 #### Parameters
 
-- `byte` is a **byte** which you want to set.
+- `v` is a **byte** which you want to set.
 <br /><br /><br />
 ***
 <br />
 
 ## Ultrasonic Sensor
 
+`DX` 's `X` means number of the digital port. (Options: `D1` / `D2` / `D3` / `D4`)
+
 ## Get DIG
 
 Get digital data from digital port by using ultrasonic sensor. <br />
-  `D1` means digital port 1. (Options: `D1` / `D2` / `D3` / `D4`)
 
 ```Arduino
-Mini.D1.US.get()
+Mini.DX.US.get()
 ```
 
 #### Return
@@ -97,13 +101,14 @@ Mini.D1.US.get()
 
 ## DC Motor
 
+`MX` 's `X` means number of the Motor port. (Options: `M1` / `M2`)
+
 ### Set Motor
 
 Set DC Motor speed. <br />
-  `M1` means Motor port 1. (Options: `M1` / `M2`)
 
 ```Arduino
-Mini.M1.set(speed);
+Mini.MX.set(int speed);
 ```
 #### Parameters
 
@@ -114,13 +119,14 @@ Mini.M1.set(speed);
 
 ## RC Motor
 
+`RCX` 's `X` means number of the RC port. (Options: `RC1` / `RC2` / `RC3` / `RC4`)
+
 ### Set RC
 
 Set RC Servo angle. <br />
-  `RC1` means RC port 1. (Options: `RC1` / `RC2` / `RC3` / `RC4`)
 
 ```Arduino
-Mini.RC1.set(angle);
+Mini.RCX.set(int angle);
 ```
 #### Parameters
 
@@ -131,13 +137,14 @@ Mini.RC1.set(angle);
 
 ## LED
 
+`RGBX` 's `X` means number of the RGB port. (Options: `RGB1` / `RGB2`)
+
 ### Set R
 
 Set LED red color pwm. <br />
-  `RGB1` means RGB1 port 1. (Options: `RGB1` / `RGB2`)
 
 ```Arduino
-Mini.RGB1.setR(PWM);
+Mini.RGBX.setR(uint8_t PWM);
 ```
 #### Parameters
 
@@ -148,10 +155,9 @@ Mini.RGB1.setR(PWM);
 ### Set G
 
 Set LED green color pwm. <br />
-  `RGB1` means RGB1 port 1. (Options: `RGB1` / `RGB2`)
 
 ```Arduino
-Mini.RGB1.setG(PWM);
+Mini.RGBX.setG(uint8_t PWM);
 ```
 #### Parameters
 
@@ -162,10 +168,9 @@ Mini.RGB1.setG(PWM);
 ### Set B
 
 Set LED blue color pwm. <br />
-  `RGB1` means RGB1 port 1. (Options: `RGB1` / `RGB2`)
 
 ```Arduino
-Mini.RGB1.setB(PWM);
+Mini.RGBX.setB(uint8_t PWM);
 ```
 #### Parameters
 
@@ -176,10 +181,9 @@ Mini.RGB1.setB(PWM);
 ### Set RGB
 
 Set LED RGB color pwm. <br />
-  `RGB1` means RGB1 port 1. (Options: `RGB1` / `RGB2`)
 
 ```Arduino
-Mini.RGB1.setRGB(PWMR, PWMG, PWMB);
+Mini.RGBX.setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB);
 ```
 #### Parameters
 
@@ -192,10 +196,9 @@ Mini.RGB1.setRGB(PWMR, PWMG, PWMB);
 ### Set HSV
 
 Set LED HSV color pwm. <br />
-  `RGB1` means RGB1 port 1. (Options: `RGB1` / `RGB2`)
 
 ```Arduino
-Mini.RGB1.setHSV(H, S, V);
+Mini.RGBX.setHSV(int H, float S, float V);
 ```
 #### Parameters
 
