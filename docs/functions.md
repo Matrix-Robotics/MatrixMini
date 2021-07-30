@@ -24,8 +24,9 @@ Mini.A1.getDIG();
 #### Return
 
 - A **boolean** result of digital data. (`true` / `false`)
-<br />
+<br /><br /><br />
 ***
+<br />
 
 ## Button
 ### Get BTN
