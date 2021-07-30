@@ -205,15 +205,9 @@ void setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB)
 ```
 ### Parameters
 
-- `PWMR` is a **uint8_t** of red color. (Options: 0~255)
-- `PWMG` is a **uint8_t** of green color. (Options: 0~255)
-- `PWMB` is a **uint8_t** of blue color. (Options: 0~255)
+- `H` is a **uint8_t** of red color. (Options: 0~255)
+- `S` is a **uint8_t** of green color. (Options: 0~255)
+- `V` is a **uint8_t** of blue color. (Options: 0~255)
 <br /><br /><br />
 ***
 <br />
-
-
-
-  
-
-  Mini.RGB1.setHSV();
