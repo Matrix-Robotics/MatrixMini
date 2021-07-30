@@ -1,71 +1,219 @@
-## Set Angle
+## Get ANG
 
-RC-servo angle setting.
+Get analog data from analog port.
+  `A1` means analog port 1.  
+  (Options: `A1` / `A2` / `A3`)
 
 ```Arduino
-void setAngle(int ch, uint8_t Angle)
+uint16_t getANG()
 ```
-
-### Parameters
-
-- `ch` is a channel number from `1` through `8`
-- `Angle` is a servo angle from `0` through `180` (unit: degree)
 <br /><br /><br />
 ***
 <br />
 
-## Channel Release
+## Get DIG (analog port)
 
-Release the select servo.
-
-```Arduino
-void ChannelRelease(int ch)
-```
-
-### Parameters
-
-- `ch` is a channel number from `1` through `8`
-<br /><br /><br />
-***
-<br />
-
-## Get Battery Voltage
-
-Get battery **voltage** of controller.
+Get digital data from analog port.
+  `A1` means analog port 1.  
+  (Options: `A1` / `A2` / `A3`)
 
 ```Arduino
-float getVbat()
+bool getDIG()
 ```
 
 ### Return
 
-- A **float** number from `0` through `8.4`. (unit: v)
+- A **boolean** result of digital data. (`1` / `0`)
+<br /><br /><br />
+***
+<br />
+
+## Get BTN
+
+Get Button is clicked or not.
+  `BTN1` means Button 1.  
+  (Options: `BTN1` / `BTN2`)
+
+```Arduino
+bool get()
+```
+
+### Return
+
+- A **boolean** result of BTN is clicked. (`1` / `0`)
+<br /><br /><br />
+***
+<br />
+
+## Get DIG (digital port)
+
+Get digital data from digital port.
+  `D1` means digital port 1.  
+  (Options: `D1` / `D2` / `D3` / `D4`)
+
+```Arduino
+bool get()
+```
+
+### Return
+
+- A **boolean** result of digital data. (`1` / `0`)
+<br /><br /><br />
+***
+<br />
+
+## Set DIG
+
+Set digital data to digital port.
+  `D1` means digital port 1.  
+  (Options: `D1` / `D2` / `D3` / `D4`)
+
+```Arduino
+void set(z)
+```
+
+### Parameters
+
+- `byte` is a **byte** which you want to set.
+<br /><br /><br />
+***
+<br />
+
+## Get DIG (ultrasonic sensor)
+
+Get digital data from digital port by using ultrasonic sensor.
+  `D1` means digital port 1.  
+  (Options: `D1` / `D2` / `D3` / `D4`)
+
+```Arduino
+float get()
+```
+
+### Return
+
+- A **float**  distance of ultrasonic sensor and object.
+<br /><br /><br />
+***
+<br />
+
+## Set Motor
+
+Set DC Motor speed.
+  `M1` means Motor port 1.  
+  (Options: `M1` / `M2`)
+
+```Arduino
+void set(int speed)
+```
+### Parameters
+
+- `speed` is a **int** of motor speed. (Options: 0~100)
+<br /><br /><br />
+***
+<br />
+
+## Set RC
+
+Set RC Servo angle.
+  `RC1` means RC port 1.  
+  (Options: `RC1` / `RC2` / `RC3` / `RC4`)
+
+```Arduino
+void set(int angle)
+```
+### Parameters
+
+- `angle` is a **int** of servo angle. (Options: 0~180)
+<br /><br /><br />
+***
+<br />
+
+## Set R
+
+Set LED red color pwm.
+  `RGB1` means RGB1 port 1.  
+  (Options: `RGB1` / `RGB2`)
+
+```Arduino
+void setR(uint8_t PWM)
+```
+### Parameters
+
+- `PWM` is a **uint8_t** of red color. (Options: 0~255)
+<br /><br /><br />
+***
+<br />
+
+## Set G
+
+Set LED green color pwm.
+  `RGB1` means RGB1 port 1.  
+  (Options: `RGB1` / `RGB2`)
+
+```Arduino
+void setG(uint8_t PWM)
+```
+### Parameters
+
+- `PWM` is a **uint8_t** of green color. (Options: 0~255)
+<br /><br /><br />
+***
+<br />
+
+## Set B
+
+Set LED blue color pwm.
+  `RGB1` means RGB1 port 1.  
+  (Options: `RGB1` / `RGB2`)
+
+```Arduino
+void setB(uint8_t PWM)
+```
+### Parameters
+
+- `PWM` is a **uint8_t** of blue color. (Options: 0~255)
+<br /><br /><br />
+***
+<br />
+
+## Set RGB
+
+Set LED RGB color pwm.
+  `RGB1` means RGB1 port 1.  
+  (Options: `RGB1` / `RGB2`)
+
+```Arduino
+void setHSV(int H, float S, float V)
+```
+### Parameters
+
+- `H` is a **int** of hue.
+- `S` is a **float** of saturation.
+- `V` is a **float** of value.
+<br /><br /><br />
+***
+<br />
+
+## Set HSV
+
+Set LED HSV color pwm.
+  `RGB1` means RGB1 port 1.  
+  (Options: `RGB1` / `RGB2`)
+
+```Arduino
+void setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB)
+```
+### Parameters
+
+- `PWMR` is a **uint8_t** of red color. (Options: 0~255)
+- `PWMG` is a **uint8_t** of green color. (Options: 0~255)
+- `PWMB` is a **uint8_t** of blue color. (Options: 0~255)
+<br /><br /><br />
+***
+<br />
 
 
 
-
-  Mini.A1.getANG();
-
-  Mini.A1.getDIG();
-
-  Mini.BTN1.get();
-
-  Mini.D1.get();
-
-  Mini.D1.set();
-
-  Mini.D1.US.get();
-
-  Mini.M1.set();
-
-  Mini.RC1.set();
-
-  Mini.RGB1.setR();
   
-  Mini.RGB1.setG();
-  
-  Mini.RGB1.setB();
-  
-  Mini.RGB1.setRGB();
 
   Mini.RGB1.setHSV();

@@ -1,6 +1,6 @@
 # Matrix Mini Arduino Library
-Matrix Mini is an Arduino based robot controller. 
-With the Matrix building system, you can make tons of projects. 
+Matrix Mini is an Arduino based robot controller.<br>
+With the Matrix building system, you can make tons of projects.<br>
 From basic tracking car to omni-directional mobile platform, you can make any ideas comes out of your mind.
 ## Features
 Support 4 channel/360 angle RC Servo control.<br>
