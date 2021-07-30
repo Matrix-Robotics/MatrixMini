@@ -205,3 +205,4 @@ Mini.RGBX.setHSV(int H, float S, float V);
 - `H` is a **int** of hue.
 - `S` is a **float** of saturation.
 - `V` is a **float** of value.
+

@@ -1,4 +1,5 @@
 * [Overview](overview.md)
 * [Begin](begin.md)
 * [Functions](functions.md)
+* [I2C_Devices](i2c_devices.md)
 * [3rd_party](3rd_party.md) 
