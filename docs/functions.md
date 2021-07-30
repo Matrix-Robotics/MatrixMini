@@ -5,7 +5,7 @@ Get analog data from analog port. <br />
   `A1` means analog port 1. (Options: `A1` / `A2` / `A3`)
 
 ```Arduino
-Mini.A1.getANG();
+Mini.A1.getANG()
 ```
 #### Return
 - A **uint16_t** result of analog data.
@@ -18,7 +18,7 @@ Get digital data from analog port. <br />
   `A1` means analog port 1. (Options: `A1` / `A2` / `A3`)
 
 ```Arduino
-Mini.A1.getDIG();
+Mini.A1.getDIG()
 ```
 
 #### Return
@@ -35,7 +35,7 @@ Get Button is clicked or not. <br />
   `BTN1` means Button 1. (Options: `BTN1` / `BTN2`)
 
 ```Arduino
-Mini.BTN1.get();
+Mini.BTN1.get()
 ```
 
 #### Return
@@ -52,7 +52,7 @@ Get digital data from digital port. <br />
   `D1` means digital port 1. (Options: `D1` / `D2` / `D3` / `D4`)
 
 ```Arduino
-Mini.D1.get();
+Mini.D1.get()
 ```
 
 #### Return
@@ -85,7 +85,7 @@ Get digital data from digital port by using ultrasonic sensor. <br />
   `D1` means digital port 1. (Options: `D1` / `D2` / `D3` / `D4`)
 
 ```Arduino
-Mini.D1.US.get();
+Mini.D1.US.get()
 ```
 
 #### Return
