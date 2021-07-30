@@ -1,12 +1,12 @@
-## Begin
+### Begin
 
 Reset and initialize Matrix Mini Controller to default state.
 
 ```Arduino
-void begin(float vbat, bool _enUART, long buad)
+Mini.begin(float vbat, bool _enUART, long buad);
 ```
 
-### Parameters
+#### Parameters
 
 - `vbat` is a string of battery voltage.<br />
     `AA_6` means 6 AA batteries.<br />
