@@ -1,9 +1,10 @@
+# PS2 Controller
 ## Begin
 
 Reset and initialize PS2 Controller to default state.
 
 ```Arduino
-bool begin()
+Mini.PS2.begin()
 ```
 ### Return
 
@@ -17,7 +18,7 @@ bool begin()
 Polling data from PS2 Controller.
 
 ```Arduino
-void polling()
+Mini.PS2.polling()
 ```
 ### RX
 
