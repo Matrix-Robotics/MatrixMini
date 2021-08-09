@@ -1,6 +1,6 @@
 #include "BATTERY.h"
 
-int UARTbuffer = -1;
+uint16_t UARTbuffer = -1;
 bool UART_IT = false;
 
 int version = 1;
@@ -106,7 +106,7 @@ void set_VBAT(float vbat, int ver){
     version = ver;
 }
 
-void serialSendBuffer(int buf){
+void serialSendBuffer(int16_t buf){
     UARTbuffer = buf;
 }
 

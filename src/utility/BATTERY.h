@@ -8,7 +8,7 @@ void VBAT_check();
 void BAT_Det();
 void set_VBAT(float vbat, int ver);
 
-void serialSendBuffer(int buf);
+void serialSendBuffer(int16_t buf);
 void sendEnable();
 /*
 void Encoderead();

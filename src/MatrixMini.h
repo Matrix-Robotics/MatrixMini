@@ -56,6 +56,6 @@ extern MatrixMini_ Mini;
 
 uint8_t strHex2Uint(char a, char b);
 void setMini(uint8_t _func, uint8_t _para);
-int getMini(uint8_t _func);
+int16_t getMini(uint8_t _func);
 void raiseError();
 #endif

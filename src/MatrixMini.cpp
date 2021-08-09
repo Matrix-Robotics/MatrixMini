@@ -556,7 +556,7 @@ void setMini(uint8_t _func, uint8_t _para){
   }
 }
 
-int getMini(uint8_t _func){
+int16_t getMini(uint8_t _func){
   switch (_func)
   {
     case 128:
