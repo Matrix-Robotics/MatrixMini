@@ -162,7 +162,6 @@ void serialEvent() {
 
       if ((inputString.startsWith("MINI")) && (getFlag || setFlag)){
         uint8_t func = strHex2Uint(inputString.charAt(4), inputString.charAt(5));
-
         if(setFlag){
           uint8_t para = strHex2Uint(inputString.charAt(6), inputString.charAt(7));
 
@@ -185,7 +184,10 @@ uint8_t strHex2Uint(char a, char b){
   char str[2];
   str[0] = a;
   str[1] = b;
-  return strtol(str, NULL, 16);
+  char *ptr;
+  ptr = "-9999";
+
+  return strtol(str, &ptr, 16);
 }
 
 void setMini(uint8_t _func, uint8_t _para){
@@ -537,7 +539,18 @@ void setMini(uint8_t _func, uint8_t _para){
     case 112:
       Mini.I2C4.MXmotor.setPWM(8, _para);
       break;
-
+    case 113:
+      Mini.I2C1.MXmotion.setFilter((FilterType)_para);
+      break;
+    case 114:
+      Mini.I2C2.MXmotion.setFilter((FilterType)_para);
+      break;
+    case 115:
+      Mini.I2C3.MXmotion.setFilter((FilterType)_para);
+      break;
+    case 116:
+      Mini.I2C4.MXmotion.setFilter((FilterType)_para);
+      break;
     default:
       break;
   }
@@ -718,8 +731,169 @@ int getMini(uint8_t _func){
       return Mini.I2C4.MXcolor.getColorNumber();
       break;
 
+    case 177:
+      return Mini.I2C1.MXmotion.getAccel(x);
+      break;
+
+    case 178:
+      return Mini.I2C1.MXmotion.getAccel(y);
+      break;
+
+    case 179:
+      return Mini.I2C1.MXmotion.getAccel(z);
+      break;
+
+    case 180:
+      return Mini.I2C2.MXmotion.getAccel(x);
+      break;
+
+    case 181:
+      return Mini.I2C2.MXmotion.getAccel(y);
+      break;
+
+    case 182:
+      return Mini.I2C2.MXmotion.getAccel(z);
+      break;
+
+    case 183:
+      return Mini.I2C3.MXmotion.getAccel(x);
+      break;
+
+    case 184:
+      return Mini.I2C3.MXmotion.getAccel(y);
+      break;
+
+    case 185:
+      return Mini.I2C3.MXmotion.getAccel(z);
+      break;
+
+    case 186:
+      return Mini.I2C4.MXmotion.getAccel(x);
+      break;
+
+    case 187:
+      return Mini.I2C4.MXmotion.getAccel(y);
+      break;
+
+    case 188:
+      return Mini.I2C4.MXmotion.getAccel(z);
+      break;
+
+    case 189:
+      return Mini.I2C1.MXmotion.getRoll();
+      break;
+
+    case 190:
+      return Mini.I2C2.MXmotion.getRoll();
+      break;
+
+    case 191:
+      return Mini.I2C3.MXmotion.getRoll();
+      break;
+
+    case 192:
+      return Mini.I2C4.MXmotion.getRoll();
+      break;
+
+    case 193:
+      return Mini.I2C1.MXmotion.getYaw();
+      break;
+
+    case 194:
+      return Mini.I2C2.MXmotion.getYaw();
+      break;
+
+    case 195:
+      return Mini.I2C3.MXmotion.getYaw();
+      break;
+
+    case 196:
+      return Mini.I2C4.MXmotion.getYaw();
+      break;
+
+    case 197:
+      return Mini.I2C1.MXmotion.getPitch();
+      break;
+
+    case 198:
+      return Mini.I2C2.MXmotion.getPitch();
+      break;
+
+    case 199:
+      return Mini.I2C3.MXmotion.getPitch();
+      break;
+
+    case 200:
+      return Mini.I2C4.MXmotion.getPitch();
+      break;
+
+    case 201:
+      return Mini.I2C1.MXmotion.getGyro(x);
+      break;
+
+    case 202:
+      return Mini.I2C1.MXmotion.getGyro(y);
+      break;
+
+    case 203:
+      return Mini.I2C1.MXmotion.getGyro(z);
+      break;
+
+    case 204:
+      return Mini.I2C2.MXmotion.getGyro(x);
+      break;
+
+    case 205:
+      return Mini.I2C2.MXmotion.getGyro(y);
+      break;
+
+    case 206:
+      return Mini.I2C2.MXmotion.getGyro(z);
+      break;
+
+    case 207:
+      return Mini.I2C3.MXmotion.getGyro(x);
+      break;
+
+    case 208:
+      return Mini.I2C3.MXmotion.getGyro(y);
+      break;
+
+    case 209:
+      return Mini.I2C3.MXmotion.getGyro(z);
+      break;
+
+    case 210:
+      return Mini.I2C4.MXmotion.getGyro(x);
+      break;
+
+    case 211:
+      return Mini.I2C4.MXmotion.getGyro(y);
+      break;
+
+    case 212:
+      return Mini.I2C4.MXmotion.getGyro(z);
+      break;
+
+    case 213:
+      return Mini.I2C1.MXmotion.getTemperature();
+      break;
+
+    case 214:
+      return Mini.I2C2.MXmotion.getTemperature();
+      break;
+
+    case 215:
+      return Mini.I2C3.MXmotion.getTemperature();
+      break;
+
+    case 216:
+      return Mini.I2C4.MXmotion.getTemperature();
+      break;
+
+
     default:
-      return -1;
+      return -9999;
       break;
   }
 }

@@ -25,7 +25,7 @@ ISR(TIMER2_COMPA_vect){
     if(VBAT_flag){
         VBAT_check();
         if (UART_IT) {
-            if (UARTbuffer == -1){
+            if (UARTbuffer == -9999){
                 Serial.println("error");
             }
             else{
