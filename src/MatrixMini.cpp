@@ -185,7 +185,7 @@ uint8_t strHex2Uint(char a, char b){
   str[0] = a;
   str[1] = b;
   char *ptr;
-  ptr = "-9999";
+  ptr = (char*)"-9999";
 
   return strtol(str, &ptr, 16);
 }
