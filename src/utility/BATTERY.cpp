@@ -1,6 +1,6 @@
 #include "BATTERY.h"
 
-uint16_t UARTbuffer = -1;
+uint16_t UARTbuffer = -9999;
 bool UART_IT = false;
 
 int version = 1;

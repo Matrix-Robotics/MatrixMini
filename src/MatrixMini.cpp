@@ -890,6 +890,15 @@ int16_t getMini(uint8_t _func){
     case 216:
       return Mini.I2C4.MXmotion.getTemperature();
       break;
+    case 217:
+      return Mini.A1.getDIG();
+      break;
+    case 218:
+      return Mini.A2.getDIG();
+      break;
+    case 219:
+      return Mini.A3.getDIG();
+      break;
 
 
     default:
