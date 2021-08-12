@@ -65,6 +65,21 @@ Mini.DX.get()
 <br />
 ***
 
+## Get Ultrasonic
+
+Get distance from digital port by using ultrasonic sensor. <br />
+
+```Arduino
+Mini.DX.US.get()
+```
+
+#### Return
+
+- A **float**  distance of ultrasonic sensor and object.
+<br /><br /><br />
+***
+<br />
+
 ### Set DIG
 
 Set digital data to digital port. <br />
@@ -76,25 +91,6 @@ Mini.DX.set(byte v);
 #### Parameters
 
 - `v` is a **byte** which you want to set.
-<br /><br /><br />
-***
-<br />
-
-## Ultrasonic Sensor
-
-`DX` 's `X` means number of the digital port. (Options: `D1` / `D2` / `D3` / `D4`)
-
-## Get DIG
-
-Get digital data from digital port by using ultrasonic sensor. <br />
-
-```Arduino
-Mini.DX.US.get()
-```
-
-#### Return
-
-- A **float**  distance of ultrasonic sensor and object.
 <br /><br /><br />
 ***
 <br />
@@ -205,4 +201,3 @@ Mini.RGBX.setHSV(int H, float S, float V);
 - `H` is a **int** of hue.
 - `S` is a **float** of saturation.
 - `V` is a **float** of value.
-
