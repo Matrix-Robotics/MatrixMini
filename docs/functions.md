@@ -1,71 +1,208 @@
-## Set Angle
+## Analog 
+`AX` 's `X` means number of the analog port. (Options: `A1` / `A2` / `A3`)
+### Get ANG
 
-RC-servo angle setting.
+Get analog data from analog port. <br />
+  
 
 ```Arduino
-void setAngle(int ch, uint8_t Angle)
+Mini.AX.getANG()
+```
+#### Return
+- A **uint16_t** result of analog data.
+<br />
+***
+
+### Get DIG
+
+Get digital data from analog port. <br />
+
+```Arduino
+Mini.AX.getDIG()
 ```
 
-### Parameters
+#### Return
 
-- `ch` is a channel number from `1` through `8`
-- `Angle` is a servo angle from `0` through `180` (unit: degree)
+- A **boolean** result of digital data. (`true` / `false`)
 <br /><br /><br />
 ***
 <br />
 
-## Channel Release
+## Button
 
-Release the select servo.
+`BTNX` 's `X` means number of the Button. (Options: `BTN1` / `BTN2`)
+
+### Get BTN
+
+Get Button is clicked or not. <br />
 
 ```Arduino
-void ChannelRelease(int ch)
+Mini.BTNX.get()
 ```
 
-### Parameters
+#### Return
 
-- `ch` is a channel number from `1` through `8`
+- A **boolean** result of BTN is clicked. (`true` / `false`)
 <br /><br /><br />
 ***
 <br />
 
-## Get Battery Voltage
+## Digital
 
-Get battery **voltage** of controller.
+`DX` 's `X` means number of the digital port. (Options: `D1` / `D2` / `D3` / `D4`)
+
+### Get DIG
+
+Get digital data from digital port. <br />
 
 ```Arduino
-float getVbat()
+Mini.DX.get()
 ```
 
-### Return
+#### Return
 
-- A **float** number from `0` through `8.4`. (unit: v)
+- A **boolean** result of digital data. (`true` / `false`)
+<br />
+***
 
+### Set DIG
 
+Set digital data to digital port. <br />
 
+```Arduino
+Mini.DX.set(byte v);
+```
 
-  Mini.A1.getANG();
+#### Parameters
 
-  Mini.A1.getDIG();
+- `v` is a **byte** which you want to set.
+<br /><br /><br />
+***
+<br />
 
-  Mini.BTN1.get();
+## Ultrasonic Sensor
 
-  Mini.D1.get();
+`DX` 's `X` means number of the digital port. (Options: `D1` / `D2` / `D3` / `D4`)
 
-  Mini.D1.set();
+## Get DIG
 
-  Mini.D1.US.get();
+Get digital data from digital port by using ultrasonic sensor. <br />
 
-  Mini.M1.set();
+```Arduino
+Mini.DX.US.get()
+```
 
-  Mini.RC1.set();
+#### Return
 
-  Mini.RGB1.setR();
-  
-  Mini.RGB1.setG();
-  
-  Mini.RGB1.setB();
-  
-  Mini.RGB1.setRGB();
+- A **float**  distance of ultrasonic sensor and object.
+<br /><br /><br />
+***
+<br />
 
-  Mini.RGB1.setHSV();
+## DC Motor
+
+`MX` 's `X` means number of the Motor port. (Options: `M1` / `M2`)
+
+### Set Motor
+
+Set DC Motor speed. <br />
+
+```Arduino
+Mini.MX.set(int speed);
+```
+#### Parameters
+
+- `speed` is a **int** of motor speed. (Options: 0~100)
+<br /><br /><br />
+***
+<br />
+
+## RC Motor
+
+`RCX` 's `X` means number of the RC port. (Options: `RC1` / `RC2` / `RC3` / `RC4`)
+
+### Set RC
+
+Set RC Servo angle. <br />
+
+```Arduino
+Mini.RCX.set(int angle);
+```
+#### Parameters
+
+- `angle` is a **int** of servo angle. (Options: 0~180)
+<br /><br /><br />
+***
+<br />
+
+## LED
+
+`RGBX` 's `X` means number of the RGB port. (Options: `RGB1` / `RGB2`)
+
+### Set R
+
+Set LED red color pwm. <br />
+
+```Arduino
+Mini.RGBX.setR(uint8_t PWM);
+```
+#### Parameters
+
+- `PWM` is a **uint8_t** of red color. (Options: 0~255)
+<br />
+***
+
+### Set G
+
+Set LED green color pwm. <br />
+
+```Arduino
+Mini.RGBX.setG(uint8_t PWM);
+```
+#### Parameters
+
+- `PWM` is a **uint8_t** of green color. (Options: 0~255)
+<br />
+***
+
+### Set B
+
+Set LED blue color pwm. <br />
+
+```Arduino
+Mini.RGBX.setB(uint8_t PWM);
+```
+#### Parameters
+
+- `PWM` is a **uint8_t** of blue color. (Options: 0~255)
+<br />
+***
+
+### Set RGB
+
+Set LED RGB color pwm. <br />
+
+```Arduino
+Mini.RGBX.setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB);
+```
+#### Parameters
+
+- `PWMR` is a **uint8_t** of red color. (Options: 0~255)
+- `PWMG` is a **uint8_t** of green color. (Options: 0~255)
+- `PWMB` is a **uint8_t** of blue color. (Options: 0~255)
+<br />
+***
+
+### Set HSV
+
+Set LED HSV color pwm. <br />
+
+```Arduino
+Mini.RGBX.setHSV(int H, float S, float V);
+```
+#### Parameters
+
+- `H` is a **int** of hue.
+- `S` is a **float** of saturation.
+- `V` is a **float** of value.
+

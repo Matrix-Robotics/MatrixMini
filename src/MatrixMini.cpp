@@ -162,7 +162,6 @@ void serialEvent() {
 
       if ((inputString.startsWith("MINI")) && (getFlag || setFlag)){
         uint8_t func = strHex2Uint(inputString.charAt(4), inputString.charAt(5));
-
         if(setFlag){
           uint8_t para = strHex2Uint(inputString.charAt(6), inputString.charAt(7));
 
@@ -185,7 +184,10 @@ uint8_t strHex2Uint(char a, char b){
   char str[2];
   str[0] = a;
   str[1] = b;
-  return strtol(str, NULL, 16);
+  char *ptr;
+  ptr = (char*)"-9999";
+
+  return strtol(str, &ptr, 16);
 }
 
 void setMini(uint8_t _func, uint8_t _para){
@@ -346,204 +348,107 @@ void setMini(uint8_t _func, uint8_t _para){
       Mini.I2C4.MXservo.setAngle(8, _para);
       break;
     case 49:
-      Mini.I2C1.MXservo.ChannelRelease(1);
-      break;
-    case 50:
-      Mini.I2C1.MXservo.ChannelRelease(2);
-      break;
-    case 51:
-      Mini.I2C1.MXservo.ChannelRelease(3);
-      break;
-    case 52:
-      Mini.I2C1.MXservo.ChannelRelease(4);
-      break;
-    case 53:
-      Mini.I2C1.MXservo.ChannelRelease(5);
-      break;
-    case 54:
-      Mini.I2C1.MXservo.ChannelRelease(6);
-      break;
-    case 55:
-      Mini.I2C1.MXservo.ChannelRelease(7);
-      break;
-    case 56:
-      Mini.I2C1.MXservo.ChannelRelease(8);
-      break;
-    case 57:
-      Mini.I2C2.MXservo.ChannelRelease(1);
-      break;
-    case 58:
-      Mini.I2C2.MXservo.ChannelRelease(2);
-      break;
-    case 59:
-      Mini.I2C2.MXservo.ChannelRelease(3);
-      break;
-    case 60:
-      Mini.I2C2.MXservo.ChannelRelease(4);
-      break;
-    case 61:
-      Mini.I2C2.MXservo.ChannelRelease(5);
-      break;
-    case 62:
-      Mini.I2C2.MXservo.ChannelRelease(6);
-      break;
-    case 63:
-      Mini.I2C2.MXservo.ChannelRelease(7);
-      break;
-    case 64:
-      Mini.I2C2.MXservo.ChannelRelease(8);
-      break;
-    case 65:
-      Mini.I2C3.MXservo.ChannelRelease(1);
-      break;
-    case 66:
-      Mini.I2C3.MXservo.ChannelRelease(2);
-      break;
-    case 67:
-      Mini.I2C3.MXservo.ChannelRelease(3);
-      break;
-    case 68:
-      Mini.I2C3.MXservo.ChannelRelease(4);
-      break;
-    case 69:
-      Mini.I2C3.MXservo.ChannelRelease(5);
-      break;
-    case 70:
-      Mini.I2C3.MXservo.ChannelRelease(6);
-      break;
-    case 71:
-      Mini.I2C3.MXservo.ChannelRelease(7);
-      break;
-    case 72:
-      Mini.I2C3.MXservo.ChannelRelease(8);
-      break;
-    case 73:
-      Mini.I2C4.MXservo.ChannelRelease(1);
-      break;
-    case 74:
-      Mini.I2C4.MXservo.ChannelRelease(2);
-      break;
-    case 75:
-      Mini.I2C4.MXservo.ChannelRelease(3);
-      break;
-    case 76:
-      Mini.I2C4.MXservo.ChannelRelease(4);
-      break;
-    case 77:
-      Mini.I2C4.MXservo.ChannelRelease(5);
-      break;
-    case 78:
-      Mini.I2C4.MXservo.ChannelRelease(6);
-      break;
-    case 79:
-      Mini.I2C4.MXservo.ChannelRelease(7);
-      break;
-    case 80:
-      Mini.I2C4.MXservo.ChannelRelease(8);
-      break;
-    case 81:
       Mini.I2C1.MXmotor.setPWM(1, _para);
       break;
-    case 82:
+    case 50:
       Mini.I2C1.MXmotor.setPWM(2, _para);
       break;
-    case 83:
+    case 51:
       Mini.I2C1.MXmotor.setPWM(3, _para);
       break;
-    case 84:
+    case 52:
       Mini.I2C1.MXmotor.setPWM(4, _para);
       break;
-    case 85:
+    case 53:
       Mini.I2C1.MXmotor.setPWM(5, _para);
       break;
-    case 86:
+    case 54:
       Mini.I2C1.MXmotor.setPWM(6, _para);
       break;
-    case 87:
+    case 55:
       Mini.I2C1.MXmotor.setPWM(7, _para);
       break;
-    case 88:
+    case 56:
       Mini.I2C1.MXmotor.setPWM(8, _para);
       break;
-    case 89:
+    case 57:
       Mini.I2C2.MXmotor.setPWM(1, _para);
       break;
-    case 90:
+    case 58:
       Mini.I2C2.MXmotor.setPWM(2, _para);
       break;
-    case 91:
+    case 59:
       Mini.I2C2.MXmotor.setPWM(3, _para);
       break;
-    case 92:
+    case 60:
       Mini.I2C2.MXmotor.setPWM(4, _para);
       break;
-    case 93:
+    case 61:
       Mini.I2C2.MXmotor.setPWM(5, _para);
       break;
-    case 94:
+    case 62:
       Mini.I2C2.MXmotor.setPWM(6, _para);
       break;
-    case 95:
+    case 63:
       Mini.I2C2.MXmotor.setPWM(7, _para);
       break;
-    case 96:
+    case 64:
       Mini.I2C2.MXmotor.setPWM(8, _para);
       break;
-    case 97:
+    case 65:
       Mini.I2C3.MXmotor.setPWM(1, _para);
       break;
-    case 98:
+    case 66:
       Mini.I2C3.MXmotor.setPWM(2, _para);
       break;
-    case 99:
+    case 67:
       Mini.I2C3.MXmotor.setPWM(3, _para);
       break;
-    case 100:
+    case 68:
       Mini.I2C3.MXmotor.setPWM(4, _para);
       break;
-    case 101:
+    case 69:
       Mini.I2C3.MXmotor.setPWM(5, _para);
       break;
-    case 102:
+    case 70:
       Mini.I2C3.MXmotor.setPWM(6, _para);
       break;
-    case 103:
+    case 71:
       Mini.I2C3.MXmotor.setPWM(7, _para);
       break;
-    case 104:
+    case 72:
       Mini.I2C3.MXmotor.setPWM(8, _para);
       break;
-    case 105:
+    case 73:
       Mini.I2C4.MXmotor.setPWM(1, _para);
       break;
-    case 106:
+    case 74:
       Mini.I2C4.MXmotor.setPWM(2, _para);
       break;
-    case 107:
+    case 75:
       Mini.I2C4.MXmotor.setPWM(3, _para);
       break;
-    case 108:
+    case 76:
       Mini.I2C4.MXmotor.setPWM(4, _para);
       break;
-    case 109:
+    case 77:
       Mini.I2C4.MXmotor.setPWM(5, _para);
       break;
-    case 110:
+    case 78:
       Mini.I2C4.MXmotor.setPWM(6, _para);
       break;
-    case 111:
+    case 79:
       Mini.I2C4.MXmotor.setPWM(7, _para);
       break;
-    case 112:
+    case 80:
       Mini.I2C4.MXmotor.setPWM(8, _para);
       break;
-
     default:
       break;
   }
 }
 
-int getMini(uint8_t _func){
+int16_t getMini(uint8_t _func){
   switch (_func)
   {
     case 128:
@@ -573,153 +478,235 @@ int getMini(uint8_t _func){
     case 136:
       return Mini.A3.getANG();
       break;
-    
+    case 137:
+      return Mini.A1.getDIG();
+      break;
+    case 138:
+      return Mini.A2.getDIG();
+      break;
+    case 139:
+      return Mini.A3.getDIG();
+      break;
+    case 140:
+      return Mini.D1.US.get();
+      break;
     case 141:
+      return Mini.D2.US.get();
+      break;
+    case 142:
+      return Mini.D3.US.get();
+      break;
+    case 143:
+      return Mini.D4.US.get();
+      break;
+    case 144:
       return Mini.I2C1.MXcolor.getColor(R);
       break;
-    
-    case 142:
+    case 145:
       return Mini.I2C1.MXcolor.getColor(G);
       break;
-    
-    case 143:
+    case 146:
       return Mini.I2C1.MXcolor.getColor(B);
       break;
-
-    case 144:
+    case 147:
       return Mini.I2C1.MXcolor.getColor(C);
       break;
-
-    case 145:
+    case 148:
       return Mini.I2C1.MXcolor.getColor(M);
       break;
-
-    case 146:
+    case 149:
       return Mini.I2C1.MXcolor.getColor(Y);
       break;
-    
-    case 147:
+    case 150:
       return Mini.I2C1.MXcolor.getColor(K);
       break;
-
-    case 148:
+    case 151:
       return Mini.I2C2.MXcolor.getColor(R);
       break;
-    
-    case 149:
+    case 152:
       return Mini.I2C2.MXcolor.getColor(G);
       break;
-    
-    case 150:
+    case 153:
       return Mini.I2C2.MXcolor.getColor(B);
       break;
 
-    case 151:
+    case 154:
       return Mini.I2C2.MXcolor.getColor(C);
       break;
-
-    case 152:
+    case 155:
       return Mini.I2C2.MXcolor.getColor(M);
       break;
-
-    case 153:
+    case 156:
       return Mini.I2C2.MXcolor.getColor(Y);
       break;
-    
-    case 154:
+    case 157:
       return Mini.I2C2.MXcolor.getColor(K);
       break;
-
-    case 155:
+    case 158:
       return Mini.I2C3.MXcolor.getColor(R);
       break;
-    
-    case 156:
+    case 159:
       return Mini.I2C3.MXcolor.getColor(G);
       break;
-    
-    case 157:
+    case 160:
       return Mini.I2C3.MXcolor.getColor(B);
       break;
-
-    case 158:
+    case 161:
       return Mini.I2C3.MXcolor.getColor(C);
       break;
-
-    case 159:
+    case 162:
       return Mini.I2C3.MXcolor.getColor(M);
       break;
-
-    case 160:
+    case 163:
       return Mini.I2C3.MXcolor.getColor(Y);
       break;
-    
-    case 161:
+    case 164:
       return Mini.I2C3.MXcolor.getColor(K);
       break;
-
-    case 162:
+    case 165:
       return Mini.I2C4.MXcolor.getColor(R);
       break;
-    
-    case 163:
+    case 166:
       return Mini.I2C4.MXcolor.getColor(G);
       break;
-    
-    case 164:
+    case 167:
       return Mini.I2C4.MXcolor.getColor(B);
       break;
-
-    case 165:
+    case 168:
       return Mini.I2C4.MXcolor.getColor(C);
       break;
-
-    case 166:
+    case 169:
       return Mini.I2C4.MXcolor.getColor(M);
       break;
-
-    case 167:
+    case 170:
       return Mini.I2C4.MXcolor.getColor(Y);
       break;
-    
-    case 168:
+    case 171:
       return Mini.I2C4.MXcolor.getColor(K);
       break;
-
-    case 169:
-      return Mini.I2C1.MXcolor.getGrayscale();
-      break;
-
-    case 170:
-      return Mini.I2C2.MXcolor.getGrayscale();
-      break;
-
-    case 171:
-      return Mini.I2C3.MXcolor.getGrayscale();
-      break;
-
     case 172:
-      return Mini.I2C4.MXcolor.getGrayscale();
-      break;
-
-    case 173:
       return Mini.I2C1.MXcolor.getColorNumber();
       break;
-
-    case 174:
+    case 173:
       return Mini.I2C2.MXcolor.getColorNumber();
       break;
-
-    case 175:
+    case 174:
       return Mini.I2C3.MXcolor.getColorNumber();
       break;
-
-    case 176:
+    case 175:
       return Mini.I2C4.MXcolor.getColorNumber();
+      break;
+    case 176:
+      return Mini.I2C1.MXmotion.getAccel(x);
+      break;
+    case 177:
+      return Mini.I2C1.MXmotion.getAccel(y);
+      break;
+    case 178:
+      return Mini.I2C1.MXmotion.getAccel(z);
+      break;
+    case 179:
+      return Mini.I2C2.MXmotion.getAccel(x);
+      break;
+    case 180:
+      return Mini.I2C2.MXmotion.getAccel(y);
+      break;
+    case 181:
+      return Mini.I2C2.MXmotion.getAccel(z);
+      break;
+    case 182:
+      return Mini.I2C3.MXmotion.getAccel(x);
+      break;
+    case 183:
+      return Mini.I2C3.MXmotion.getAccel(y);
+      break;
+    case 184:
+      return Mini.I2C3.MXmotion.getAccel(z);
+      break;
+    case 185:
+      return Mini.I2C4.MXmotion.getAccel(x);
+      break;
+    case 186:
+      return Mini.I2C4.MXmotion.getAccel(y);
+      break;
+    case 187:
+      return Mini.I2C4.MXmotion.getAccel(z);
+      break;
+    case 188:
+      return Mini.I2C1.MXmotion.getRoll();
+      break;
+    case 189:
+      return Mini.I2C2.MXmotion.getRoll();
+      break;
+    case 190:
+      return Mini.I2C3.MXmotion.getRoll();
+      break;
+    case 191:
+      return Mini.I2C4.MXmotion.getRoll();
+      break;
+    case 192:
+      return Mini.I2C1.MXmotion.getYaw();
+      break;
+    case 193:
+      return Mini.I2C2.MXmotion.getYaw();
+      break;
+    case 194:
+      return Mini.I2C3.MXmotion.getYaw();
+      break;
+    case 195:
+      return Mini.I2C4.MXmotion.getYaw();
+      break;
+    case 196:
+      return Mini.I2C1.MXmotion.getPitch();
+      break;
+    case 197:
+      return Mini.I2C2.MXmotion.getPitch();
+      break;
+    case 198:
+      return Mini.I2C3.MXmotion.getPitch();
+      break;
+    case 199:
+      return Mini.I2C4.MXmotion.getPitch();
+      break;
+    case 200:
+      return Mini.I2C1.MXmotion.getGyro(x);
+      break;
+    case 201:
+      return Mini.I2C1.MXmotion.getGyro(y);
+      break;
+    case 202:
+      return Mini.I2C1.MXmotion.getGyro(z);
+      break;
+    case 203:
+      return Mini.I2C2.MXmotion.getGyro(x);
+      break;
+    case 204:
+      return Mini.I2C2.MXmotion.getGyro(y);
+      break;
+    case 205:
+      return Mini.I2C2.MXmotion.getGyro(z);
+      break;
+    case 206:
+      return Mini.I2C3.MXmotion.getGyro(x);
+      break;
+    case 207:
+      return Mini.I2C3.MXmotion.getGyro(y);
+      break;
+    case 208:
+      return Mini.I2C3.MXmotion.getGyro(z);
+      break;
+    case 209:
+      return Mini.I2C4.MXmotion.getGyro(x);
+      break;
+    case 210:
+      return Mini.I2C4.MXmotion.getGyro(y);
+      break;
+    case 211:
+      return Mini.I2C4.MXmotion.getGyro(z);
       break;
 
     default:
-      return -1;
+      return -9999;
       break;
   }
 }

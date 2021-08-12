@@ -1,6 +1,6 @@
 #include "BATTERY.h"
 
-int UARTbuffer = -1;
+uint16_t UARTbuffer = -9999;
 bool UART_IT = false;
 
 int version = 1;
@@ -25,7 +25,7 @@ ISR(TIMER2_COMPA_vect){
     if(VBAT_flag){
         VBAT_check();
         if (UART_IT) {
-            if (UARTbuffer == -1){
+            if (UARTbuffer == -9999){
                 Serial.println("error");
             }
             else{
@@ -106,7 +106,7 @@ void set_VBAT(float vbat, int ver){
     version = ver;
 }
 
-void serialSendBuffer(int buf){
+void serialSendBuffer(int16_t buf){
     UARTbuffer = buf;
 }
 
