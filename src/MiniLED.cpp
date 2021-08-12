@@ -31,7 +31,7 @@ void MiniLED::setB(uint8_t PWM){
 }
 
 void MiniLED::setHSV(int H, float S, float V){
-  float X, C, m, part;
+  float X, C, m, part, r, g, b;
   int c;
 
   C = V*S;
@@ -42,39 +42,39 @@ void MiniLED::setHSV(int H, float S, float V){
   c = floor(part);
   switch(c){
     case 0:
-      _r = C;
-      _g = X;
-      _b = 0;
+      r = C;
+      g = X;
+      b = 0;
       break;
     case 1:
-      _r = X;
-      _g = C;
-      _b = 0;
+      r = X;
+      g = C;
+      b = 0;
       break;
     case 2:
-      _r = 0;
-      _g = C;
-      _b = X;
+      r = 0;
+      g = C;
+      b = X;
       break;
     case 3:
-      _r = 0;
-      _g = X;
-      _b = C;
+      r = 0;
+      g = X;
+      b = C;
       break;
     case 4:
-      _r = X;
-      _g = 0;
-      _b = C;
+      r = X;
+      g = 0;
+      b = C;
       break;
     case 5:
-      _r = C;
-      _g = 0;
-      _b = X;
+      r = C;
+      g = 0;
+      b = X;
       break;
   }
-  _r = (_r+m)*255;
-  _g = (_g+m)*255;
-  _b = (_b+m)*255;
+  _r = (r+m)*255;
+  _g = (g+m)*255;
+  _b = (b+m)*255;
 
   showRGB();
 }
