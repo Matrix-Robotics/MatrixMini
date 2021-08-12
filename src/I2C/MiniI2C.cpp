@@ -32,8 +32,4 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     MXctrl._ver = ver;
     MXctrl._ch = ch;
     MXctrl.begin();
-
-    // MXsonic._ver = ver;
-    // MXsonic._ch = ch;
-    // MXsonic.begin();
 }

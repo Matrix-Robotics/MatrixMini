@@ -5,7 +5,6 @@
 
 #include <MatrixColorSensor.h>
 #include <MatrixMotionSensor.h>
-// #include <MatrixUltrasonicSensor.h>
 
 #include <MatrixMotorExtension.h>
 #include <MatrixServoExtension.h>
@@ -27,7 +26,6 @@ public:
 
 	MatrixColor MXcolor;
 	MatrixMotion MXmotion;
-	// MatrixUltrasonic MXsonic;
 
 	MatrixMotor MXmotor;
 	MatrixServo MXservo;
