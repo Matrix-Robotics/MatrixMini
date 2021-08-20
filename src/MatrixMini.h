@@ -38,6 +38,7 @@ private:
     void det_version();
     void init();
     int _ver;
+    int _map(uint8_t x);
     
 public:
     void begin(float vbat = AA_6, bool _enUART = disable,  long buad = 115200);

@@ -190,6 +190,20 @@ uint8_t strHex2Uint(char a, char b){
   return strtol(str, &ptr, 16);
 }
 
+int _map(uint8_t x)
+{
+    if (x > 127)
+    {
+        // map input from 255~156 to 0~-255
+        return (x - 255) * (-255 - 0) / (156 - 255);
+    }
+    else
+    {
+        // map input from 0~100 to 0~255
+        return x * 255 / 100;
+    }
+}
+
 void setMini(uint8_t _func, uint8_t _para){
   switch (_func)
   {
@@ -348,100 +362,52 @@ void setMini(uint8_t _func, uint8_t _para){
       Mini.I2C4.MXservo.setAngle(8, _para);
       break;
     case 49:
-      Mini.I2C1.MXmotor.setPWM(1, _para);
+      Mini.I2C1.MXmotor.setPWM(1, _map(_para));
       break;
     case 50:
-      Mini.I2C1.MXmotor.setPWM(2, _para);
+      Mini.I2C1.MXmotor.setPWM(2, _map(_para));
       break;
     case 51:
-      Mini.I2C1.MXmotor.setPWM(3, _para);
+      Mini.I2C1.MXmotor.setPWM(3, _map(_para));
       break;
     case 52:
-      Mini.I2C1.MXmotor.setPWM(4, _para);
+      Mini.I2C1.MXmotor.setPWM(4, _map(_para));
       break;
     case 53:
-      Mini.I2C1.MXmotor.setPWM(5, _para);
+      Mini.I2C2.MXmotor.setPWM(1, _map(_para));
       break;
     case 54:
-      Mini.I2C1.MXmotor.setPWM(6, _para);
+      Mini.I2C2.MXmotor.setPWM(2, _map(_para));
       break;
     case 55:
-      Mini.I2C1.MXmotor.setPWM(7, _para);
+      Mini.I2C2.MXmotor.setPWM(3, _map(_para));
       break;
     case 56:
-      Mini.I2C1.MXmotor.setPWM(8, _para);
+      Mini.I2C2.MXmotor.setPWM(4, _map(_para));
       break;
     case 57:
-      Mini.I2C2.MXmotor.setPWM(1, _para);
+      Mini.I2C3.MXmotor.setPWM(1, _map(_para));
       break;
     case 58:
-      Mini.I2C2.MXmotor.setPWM(2, _para);
+      Mini.I2C3.MXmotor.setPWM(2, _map(_para));
       break;
     case 59:
-      Mini.I2C2.MXmotor.setPWM(3, _para);
+      Mini.I2C3.MXmotor.setPWM(3, _map(_para));
       break;
     case 60:
-      Mini.I2C2.MXmotor.setPWM(4, _para);
+      Mini.I2C3.MXmotor.setPWM(4, _map(_para));
       break;
     case 61:
-      Mini.I2C2.MXmotor.setPWM(5, _para);
+      Mini.I2C4.MXmotor.setPWM(1, _map(_para));
       break;
     case 62:
-      Mini.I2C2.MXmotor.setPWM(6, _para);
+      Mini.I2C4.MXmotor.setPWM(2, _map(_para));
       break;
     case 63:
-      Mini.I2C2.MXmotor.setPWM(7, _para);
+      Mini.I2C4.MXmotor.setPWM(3, _map(_para));
       break;
     case 64:
-      Mini.I2C2.MXmotor.setPWM(8, _para);
-      break;
-    case 65:
-      Mini.I2C3.MXmotor.setPWM(1, _para);
-      break;
-    case 66:
-      Mini.I2C3.MXmotor.setPWM(2, _para);
-      break;
-    case 67:
-      Mini.I2C3.MXmotor.setPWM(3, _para);
-      break;
-    case 68:
-      Mini.I2C3.MXmotor.setPWM(4, _para);
-      break;
-    case 69:
-      Mini.I2C3.MXmotor.setPWM(5, _para);
-      break;
-    case 70:
-      Mini.I2C3.MXmotor.setPWM(6, _para);
-      break;
-    case 71:
-      Mini.I2C3.MXmotor.setPWM(7, _para);
-      break;
-    case 72:
-      Mini.I2C3.MXmotor.setPWM(8, _para);
-      break;
-    case 73:
-      Mini.I2C4.MXmotor.setPWM(1, _para);
-      break;
-    case 74:
-      Mini.I2C4.MXmotor.setPWM(2, _para);
-      break;
-    case 75:
-      Mini.I2C4.MXmotor.setPWM(3, _para);
-      break;
-    case 76:
-      Mini.I2C4.MXmotor.setPWM(4, _para);
-      break;
-    case 77:
-      Mini.I2C4.MXmotor.setPWM(5, _para);
-      break;
-    case 78:
-      Mini.I2C4.MXmotor.setPWM(6, _para);
-      break;
-    case 79:
-      Mini.I2C4.MXmotor.setPWM(7, _para);
-      break;
-    case 80:
-      Mini.I2C4.MXmotor.setPWM(8, _para);
+      Mini.I2C4.MXmotor.setPWM(4, _map(_para));
       break;
     default:
       break;
