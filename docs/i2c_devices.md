@@ -9,7 +9,7 @@ Mini.I2CX.MXColor.function
 ## MatrixMotionSensor
 
 ```Arduino
-Mini.I2CX.MXColor.function
+Mini.I2CX.MXMotion.function
 ```
 `I2CX` 's `X` means number of the I2C port. (Options: `I2C1` / `I2C2` / `I2C3` / `I2C4`) <br />
 `function` means function of MatrixMotionSensor. (See [MatrixMotionSensor](https://matrix-robotics.github.io/MatrixMotionSensor/) for more details.)
@@ -17,7 +17,7 @@ Mini.I2CX.MXColor.function
 ## MatrixServoExtension
 
 ```Arduino
-Mini.I2CX.MXColor.function
+Mini.I2CX.MXServo.function
 ```
 `I2CX` 's `X` means number of the I2C port. (Options: `I2C1` / `I2C2` / `I2C3` / `I2C4`) <br />
 `function` means function of MatrixServoExtension. (See [MatrixServoExtension](https://matrix-robotics.github.io/MatrixServoExtension/) for more details.)
@@ -25,7 +25,7 @@ Mini.I2CX.MXColor.function
 ## MatrixMotorExtension
 
 ```Arduino
-Mini.I2CX.MXColor.function
+Mini.I2CX.MXMotor.function
 ```
 `I2CX` 's `X` means number of the I2C port. (Options: `I2C1` / `I2C2` / `I2C3` / `I2C4`) <br />
 `function` means function of MatrixMotorExtension. (See [MatrixMotorExtension](https://matrix-robotics.github.io/MatrixMotorExtension/) for more details.)

@@ -11,7 +11,7 @@ Mini.AX.getANG()
 #### Return
 - A **uint16_t** result of analog data.
 <br />
-***
+
 
 ### Get DIG
 
@@ -25,7 +25,7 @@ Mini.AX.getDIG()
 
 - A **boolean** result of digital data. (`true` / `false`)
 <br /><br /><br />
-***
+
 <br />
 
 ## Button
@@ -44,7 +44,7 @@ Mini.BTNX.get()
 
 - A **boolean** result of BTN is clicked. (`true` / `false`)
 <br /><br /><br />
-***
+
 <br />
 
 ## Digital
@@ -63,7 +63,7 @@ Mini.DX.get()
 
 - A **boolean** result of digital data. (`true` / `false`)
 <br />
-***
+
 
 ## Get Ultrasonic
 
@@ -77,7 +77,7 @@ Mini.DX.US.get()
 
 - A **float**  distance of ultrasonic sensor and object.
 <br /><br /><br />
-***
+
 <br />
 
 ### Set DIG
@@ -92,7 +92,7 @@ Mini.DX.set(byte v);
 
 - `v` is a **byte** which you want to set.
 <br /><br /><br />
-***
+
 <br />
 
 ## DC Motor
@@ -110,7 +110,7 @@ Mini.MX.set(int speed);
 
 - `speed` is a **int** of motor speed. (Options: 0~100)
 <br /><br /><br />
-***
+
 <br />
 
 ## RC Motor
@@ -128,7 +128,7 @@ Mini.RCX.set(int angle);
 
 - `angle` is a **int** of servo angle. (Options: 0~180)
 <br /><br /><br />
-***
+
 <br />
 
 ## LED
@@ -146,7 +146,7 @@ Mini.RGBX.setR(uint8_t PWM);
 
 - `PWM` is a **uint8_t** of red color. (Options: 0~255)
 <br />
-***
+
 
 ### Set G
 
@@ -159,7 +159,7 @@ Mini.RGBX.setG(uint8_t PWM);
 
 - `PWM` is a **uint8_t** of green color. (Options: 0~255)
 <br />
-***
+
 
 ### Set B
 
@@ -172,7 +172,7 @@ Mini.RGBX.setB(uint8_t PWM);
 
 - `PWM` is a **uint8_t** of blue color. (Options: 0~255)
 <br />
-***
+
 
 ### Set RGB
 
@@ -187,7 +187,7 @@ Mini.RGBX.setRGB(uint8_t PWMR, uint8_t PWMG, uint8_t PWMB);
 - `PWMG` is a **uint8_t** of green color. (Options: 0~255)
 - `PWMB` is a **uint8_t** of blue color. (Options: 0~255)
 <br />
-***
+
 
 ### Set HSV
 

@@ -11,7 +11,6 @@ Mini.PS2.begin();
 
 - A **boolean** result of initialization. (`true` / `false`)
 <br />
-***
 
 ### Polling
 
@@ -46,7 +45,3 @@ Mini.PS2.polling();
 - `Mini.PS2.RY` is a **uint8_t** of PS2 Right joystck Y axis data.
 - `Mini.PS2.LX` is a **uint8_t** of PS2 Left joystck X axis data.
 - `Mini.PS2.LY` is a **uint8_t** of PS2 Left joystck Y axis data.
-
-<br /><br /><br />
-***
-<br />
