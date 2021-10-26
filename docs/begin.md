@@ -10,7 +10,7 @@ Mini.begin(float vbat, bool _enUART, long buad);
 
 - `vbat` is a string of battery voltage.<br />
     `AA_6` means 6 AA batteries.<br />
-    `AA_2` means 2 Li-ion batteries.  
+    `LI_2` means 2 Li-ion batteries.  
     (Options: `AA_6` / `LI_2` / `LI_3` / `LI_4` / `LI_5` / `LI_6`)
 - `_enUART` is a string of enable UART for serial control. (Options: `enable` / `disable`)
 - `buad` is a  long int of UART baud rate. <br />
