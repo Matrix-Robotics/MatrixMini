@@ -98,11 +98,11 @@ void i2cMUXSelect(uint8_t channel, int ver){
 	{
 	case 2:
 		i2cWriteData(ADDR_PCA954X, channel+4);
-		delay(10);
+		delayMicroseconds(300);
 		break;
 	case 3:
 		i2cWriteData(ADDR_PCA954X, (1 << channel));
-		delay(10);
+		delayMicroseconds(300);
 		break;
 	default:
 		break;
