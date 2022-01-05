@@ -9,11 +9,7 @@
  * www.matrixrobotics.com
 */
 
-#include <Wire.h>
 #include <MatrixMini.h>
-#include <SoftwareSerial.h>
-
-SoftwareSerial BT (6, 5); // Bluetooth module on D4
 
 int pos1 = 90;
 int pos2 = 90;
@@ -48,12 +44,11 @@ int RCFlag = 0;
 void setup() {
   Serial.begin(115200);
   Mini.begin();
-  BT.begin(9600);
 }
 
 void loop() {
-  if (BT.available() > 0) {
-    BT.readBytes(bf, cmd);
+  if (Serial.available() > 0) {
+    Serial.readBytes(bf, cmd);
   }
   if (bf[0] == 255) {
     switch (bf[key]) {
