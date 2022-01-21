@@ -39,7 +39,7 @@ ISR(TIMER2_COMPA_vect){
 void VBAT_check(){
     vcc_cont++;
 
-    if(vcc_cont >= 15){
+    if(vcc_cont >= 150){
         switch (version)
         {
         case 2:
