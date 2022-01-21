@@ -42,13 +42,13 @@ int RCFlag = 0;
 #define _RC4 18
 
 void setup() {
-  Serial.begin(115200);
   Mini.begin();
+  Mini.D4.Serial.begin(9600);
 }
 
 void loop() {
-  if (Serial.available() > 0) {
-    Serial.readBytes(bf, cmd);
+  if (Mini.D4.Serial.available() > 0) {
+    Mini.D4.Serial.readBytes(bf, cmd);
   }
   if (bf[0] == 255) {
     switch (bf[key]) {

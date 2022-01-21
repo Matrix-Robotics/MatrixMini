@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "utility/HC04.h"
-
+#include <SoftwareSerial.h>
 class MiniDIG
 {
 private:
@@ -13,13 +13,11 @@ private:
 	void updateMode(int);
 	void begin(int, int);
 	bool _flag = true;
-	
 public:
 	MiniUS US;
-
 	bool get();
 	void set(byte);
-
+	SoftwareSerial Serial = SoftwareSerial(1,1);
 	friend class MatrixMini_;
 };
 

@@ -1,6 +1,5 @@
 #include "MiniDIG.h"
 
-
 void MiniDIG::begin(int pin1, int pin2){
 	_pin1 = pin1;
 	_pin2 = pin2;
@@ -11,6 +10,7 @@ void MiniDIG::begin(int pin1, int pin2){
 	
 	pinMode(_pin1, mode);
 	pinMode(_pin2, mode);
+	Serial = SoftwareSerial(pin1, pin2);
 }
 
 bool MiniDIG::get() {
