@@ -190,4 +190,5 @@ void loop() {
       bf[i] = 0;
     }
   }
+  delay(1);
 }
