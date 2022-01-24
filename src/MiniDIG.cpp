@@ -10,7 +10,7 @@ void MiniDIG::begin(int pin1, int pin2){
 	
 	pinMode(_pin1, mode);
 	pinMode(_pin2, mode);
-	Serial = SoftwareSerial(pin1, pin2);
+	Serial = SoftwareSerial(pin2, pin1);
 }
 
 bool MiniDIG::get() {
