@@ -9,8 +9,6 @@ class MiniDIG
 private:
 	int _pin1;
 	int _pin2;
-	int mode;
-	void updateMode(int);
 	void begin(int, int);
 	bool _flag = true;
 public:

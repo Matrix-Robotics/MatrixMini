@@ -58,6 +58,7 @@ void MatrixMini_:: init() {
       D2.begin(3,4);
       D3.begin(4,5); 
       D4.begin(5,6); 
+      pinMode(5, OUTPUT);
 
       init_PCA9685(0x79); //50Hz
 
@@ -82,6 +83,7 @@ void MatrixMini_:: init() {
       D2.begin(3,4); 
       D3.begin(4,5); 
       D4.begin(5,12); 
+      pinMode(5, OUTPUT);
 
       init_PCA9685(0x03); //1526Hz
 
@@ -107,6 +109,8 @@ void MatrixMini_:: init() {
       D2.begin(7,9);
       D3.begin(10,11); 
       D4.begin(12,13); 
+
+      pinMode(12, OUTPUT);
 
       init_PCA9685(0x79); //50Hz
       init_PCA9633();
