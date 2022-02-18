@@ -21,6 +21,10 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     MXmotion._ch = ch;
     MXmotion.begin();
 
+    MXlaser._ver = ver;
+    MXlaser._ch = ch;
+    MXlaser.begin();
+
     MXmotor._ver = ver;
     MXmotor._ch = ch;
     MXmotor.begin();
