@@ -1,5 +1,5 @@
-# Matrix Mini Arduino Library
-Matrix Mini is an Arduino based robot controller. 
+# Matrix Mini (R3 based) Arduino Library
+MATRIX Mini (Mini 2.0) is an Arduino R3 based robot controller for MR110, MR120, MR3000 Series. 
 With the Matrix building system, you can make tons of projects. 
 From basic tracking car to omni-directional mobile platform, you can make any ideas comes out of your mind.
 ## Features
