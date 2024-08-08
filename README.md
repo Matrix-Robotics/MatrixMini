@@ -12,7 +12,7 @@ Support 3 channel Analog I/O.<br>
 Support 4 channel independent I2C Interface.<br>
 Battery voltage monitor.
 ## Repository Contents
-* [**/docs**](./docs) - Matrix Servo Extension documentation.
+* [**/docs**](./docs) - Matrix Mini 2.0 documentation.
 * [**/examples**](./examples) - Example sketches for the library (.ino). Run these by Arduino IDE.
 * [**/src**](./src) - Source files for the library (.cpp, .h).
 
