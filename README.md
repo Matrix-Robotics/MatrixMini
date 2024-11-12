@@ -1,9 +1,9 @@
 # Matrix Mini (R3 based) Arduino Library
 ![image](https://github.com/user-attachments/assets/b0c2e6e8-df5c-40c7-8d4f-3c62c15750d6)
 
-MATRIX Mini (Mini 2.0) is an Arduino R3 based robot controller for MR110, MR120, MR3000 Series. 
+MATRIX Mini (Mini 2.0) is an Arduino Uno R3 based robot controller for MR110, MR120, MR3000 Series. 
 With the Matrix building system, you can make tons of projects. 
-From basic tracking car to omni-directional mobile platform, you can make any ideas comes out of your mind.
+From basic tracking car to sumo robot, you can make any ideas comes out of your mind.
 ## Features
 Support 4 channel/360 angle RC Servo control.<br>
 Support 2 channel/8-bit full-bridge DC motor control.<br>

@@ -36,7 +36,7 @@ void MiniANG::begin(int ver, int ch){
 	}
 }
 
-uint16_t MiniANG::getANG() {
+int MiniANG::getANG() {
 	return analogRead(pin1);
 }
 
