@@ -17,23 +17,32 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
     MXcolor._ch = ch;
     MXcolor.begin();
 
-    MXmotion._ver = ver;
-    MXmotion._ch = ch;
-    MXmotion.begin();
+    // MXmotion._ver = ver;
+    // MXmotion._ch = ch;
+    // MXmotion.begin();
 
     MXlaser._ver = ver;
     MXlaser._ch = ch;
     MXlaser.begin();
 
-    MXmotor._ver = ver;
-    MXmotor._ch = ch;
-    MXmotor.begin();
+    // MXmotor._ver = ver;
+    // MXmotor._ch = ch;
+    // MXmotor.begin();
 
-    MXservo._ver = ver;
-    MXservo._ch = ch;
-    MXservo.begin();
+    // MXservo._ver = ver;
+    // MXservo._ch = ch;
+    // MXservo.begin();
 
     MXctrl._ver = ver;
     MXctrl._ch = ch;
     MXctrl.begin();
+	
+	MXLaserV2._ver = ver;
+    MXLaserV2._ch = ch;
+	
+	MXColorV3._ver = ver;
+    MXColorV3._ch = ch;
+	
+	MXGesture._ver = ver;
+    MXGesture._ch = ch;
 }

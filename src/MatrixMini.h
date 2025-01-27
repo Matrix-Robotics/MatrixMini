@@ -41,7 +41,7 @@ private:
     int _map(uint8_t _para);
     
 public:
-    void begin(float vbat = AA_6, bool _enUART = disable,  long buad = 115200);
+    void begin(float vbat = AA_6, bool _enUART = disable,  long buad = 57600);
     
     // Modules
     MiniDC  M1, M2;
@@ -55,8 +55,8 @@ public:
 };
 extern MatrixMini_ Mini;
 
-uint8_t strHex2Uint(char a, char b);
-void setMini(uint8_t _func, uint8_t _para);
-int16_t getMini(uint8_t _func);
-void raiseError();
+// uint8_t strHex2Uint(char a, char b);
+// void setMini(uint8_t _func, uint8_t _para);
+// int16_t getMini(uint8_t _func);
+// void raiseError();
 #endif

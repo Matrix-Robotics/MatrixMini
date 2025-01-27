@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 #include "utility/HC04.h"
+#include "utility/Mini_DHT11.h"
+#include "utility/Mini_DS18B20.h"
 #include <SoftwareSerial.h>
 class MiniDIG
 {
@@ -13,6 +15,9 @@ private:
 	bool _flag = true;
 public:
 	MiniUS US;
+	MXDHT11 MXDHT;
+	MiniDS18B20 MXOnewireDT;
+	
 	bool get();
 	void set(byte);
 	SoftwareSerial Serial = SoftwareSerial(1,1);
