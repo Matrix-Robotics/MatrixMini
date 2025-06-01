@@ -39,10 +39,13 @@ void MiniI2C::begin(uint8_t ver, uint8_t ch){
 	
 	MXLaserV2._ver = ver;
     MXLaserV2._ch = ch;
+	MXLaserV2.begin();
 	
 	MXColorV3._ver = ver;
     MXColorV3._ch = ch;
+	MXColorV3.begin();
 	
 	MXGesture._ver = ver;
     MXGesture._ch = ch;
+	MXGesture.begin();
 }
