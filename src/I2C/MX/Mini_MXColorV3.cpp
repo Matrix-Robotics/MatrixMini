@@ -7,8 +7,8 @@
  * Add: Merge into Mini.I2C instance.
  * 
  * @author MATRIX Robotics
- * @version 1.0
- * @date 2024
+ * @version 1.1
+ * @date 2025
  * @license MIT License
  */
 #include "Mini_MXColorV3.h"
@@ -37,20 +37,51 @@ bool MatrixColorV3::begin() {
   return true; // 初始化成功
 }
 
-uint16_t MatrixColorV3::getR(){
+uint16_t MatrixColorV3::getRRaw(){
   return readRegister16(TCS34725_RDATAL);
 }
 
-uint16_t MatrixColorV3::getG(){
+uint16_t MatrixColorV3::getGRaw(){
   return readRegister16(TCS34725_GDATAL);
 }
 
-uint16_t MatrixColorV3::getB(){
+uint16_t MatrixColorV3::getBRaw(){
   return readRegister16(TCS34725_BDATAL);
 }
 
-uint16_t MatrixColorV3::getC(){
+uint16_t MatrixColorV3::getCRaw(){
   return readRegister16(TCS34725_CDATAL);
+}
+
+uint16_t MatrixColorV3::getR(){
+  uint16_t r = readRegister16(TCS34725_RDATAL);
+  uint16_t c = readRegister16(TCS34725_CDATAL);
+  if(c == 0) return 0;
+  uint32_t normalized = (uint32_t)r * 255 / c;
+  return (uint8_t)(normalized > 255 ? 255 : normalized);
+}
+
+uint16_t MatrixColorV3::getG(){
+  uint16_t g = readRegister16(TCS34725_GDATAL);
+  uint16_t c = readRegister16(TCS34725_CDATAL);
+  if(c == 0) return 0;
+  uint32_t normalized = (uint32_t)g * 255 / c;
+  return (uint8_t)(normalized > 255 ? 255 : normalized);
+}
+
+uint16_t MatrixColorV3::getB(){
+  uint16_t b = readRegister16(TCS34725_BDATAL);
+  uint16_t c = readRegister16(TCS34725_CDATAL);
+  if(c == 0) return 0;
+  uint32_t normalized = (uint32_t)b * 255 / c;
+  return (uint8_t)(normalized > 255 ? 255 : normalized);
+}
+
+uint16_t MatrixColorV3::getC(){
+  uint16_t raw = readRegister16(TCS34725_CDATAL);
+  const uint16_t MAX_C = 1024;
+  uint32_t normalized = (uint32_t)raw * 255 / MAX_C;
+  return (uint8_t)(normalized > 255 ? 255 : normalized);
 }
 
 float MatrixColorV3::calcColorTemp(uint16_t r, uint16_t g, uint16_t b) {

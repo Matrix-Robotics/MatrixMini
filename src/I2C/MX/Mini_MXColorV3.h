@@ -7,8 +7,8 @@
  * Add: Merge into Mini.I2C instance.
  * 
  * @author MATRIX Robotics
- * @version 1.0
- * @date 2024
+ * @version 1.1
+ * @date 2025
  * @license MIT License
  */
 #ifndef _Mini_MXColorV3_H_
@@ -69,6 +69,34 @@ class MatrixColorV3{
 		 * @return true if initialization is successful, false otherwise.
 		 */
 		bool begin();
+		
+		/**
+		 * @brief Getting Red channel raw value from MATRIX Color V3 sensor.
+		 *
+		 * @return Red channel value.
+		 */
+		uint16_t getRRaw();
+		
+		/**
+		 * @brief Getting Green channel raw value from MATRIX Color V3 sensor.
+		 *
+		 * @return Green channel value.
+		 */
+		uint16_t getGRaw();
+		
+		/**
+		 * @brief Getting Bule channel raw value from MATRIX Color V3 sensor.
+		 *
+		 * @return Blue channel value.
+		 */
+		uint16_t getBRaw();
+		
+		/**
+		 * @brief Getting Clear channel raw value from MATRIX Color V3 sensor.
+		 *
+		 * @return Clear channel value.
+		 */
+		uint16_t getCRaw();
 		
 		/**
 		 * @brief Getting Red channel value from MATRIX Color V3 sensor.
